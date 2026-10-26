@@ -94,10 +94,10 @@ final class ChipBar: UIView {
             }
             button.addAction(UIAction { [weak self] _ in self?.tapped(title) }, for: .touchUpInside)
             button.translatesAutoresizingMaskIntoConstraints = false
+            stack.addArrangedSubview(button)
             button.widthAnchor.constraint(
                 lessThanOrEqualTo: scrollView.frameLayoutGuide.widthAnchor, constant: -2 * DS.Spacing.l
             ).isActive = true
-            stack.addArrangedSubview(button)
             return button
         }
     }
