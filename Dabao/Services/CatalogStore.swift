@@ -1,8 +1,14 @@
 import Foundation
 import os
 
+/// Anything that can give us restaurants. The real app talks to a server;
+/// ours reads a JSON file bundled with the app, so it works offline in class.
+protocol RestaurantServicing {
+    func fetchRestaurants(completion: @escaping (Result<[Restaurant], Error>) -> Void)
+}
+
 /// The restaurant catalogue. It reads the bundled `restaurants.json` once and keeps it in memory,
-/// so every screen sees the same restaurants. It replaces `RestaurantService`.
+/// so every screen sees the same restaurants.
 @MainActor
 final class CatalogStore: RestaurantServicing {
 
