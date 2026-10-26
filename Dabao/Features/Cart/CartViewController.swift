@@ -181,14 +181,23 @@ final class CartViewController: UIViewController {
     }
 
     private func confirmPlaceOrder() {
+        guard !cart.lines.isEmpty else { return }
         let total = PriceFormatter.string(from: cart.total)
-        let alert = UIAlertController(title: "Order placed!",
-                                      message: "We've charged \(total). Your food is on the way (not really, this is a demo).",
+        let restaurantName = cart.restaurant?.name ?? "this restaurant"
+        let alert = UIAlertController(title: "Place order?",
+                                      message: "\(total) from \(restaurantName).",
                                       preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Yay", style: .default) { [weak self] _ in
-            self?.cart.clear()
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        alert.addAction(UIAlertAction(title: "Place order", style: .default) { [weak self] _ in
+            self?.placeOrder()
         })
         present(alert, animated: true)
+    }
+
+    private func placeOrder() {
+        // HistoryStore snapshots the cart, saves the order and empties the cart (which updates the badge).
+        guard HistoryStore.shared.place(cart: cart) != nil else { return }
+        Toast.show("Order placed", in: view)
     }
 }
 
