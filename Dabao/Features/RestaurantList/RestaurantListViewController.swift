@@ -20,6 +20,10 @@ final class RestaurantListViewController: UIViewController {
     private let searchController = UISearchController(searchResultsController: nil)
     private let chipBar = ChipBar()
     private let headerContainer = UIView()
+    private let forYouHeader = SectionHeaderView(reuseIdentifier: nil)
+    private let forYouCarousel = ForYouCarouselView()
+    private let forYouStack = UIStackView()
+    private var isSearchActive = false
     private let cartBar = StickyCartBar()
     private lazy var emptyState: EmptyStateView = {
         let view = EmptyStateView(symbolName: "magnifyingglass",
@@ -43,7 +47,7 @@ final class RestaurantListViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Dabao"
+        navigationItem.title = "Dabao"
         navigationController?.navigationBar.prefersLargeTitles = true
         view.backgroundColor = DS.Color.background
 
@@ -53,11 +57,15 @@ final class RestaurantListViewController: UIViewController {
         setUpSpinner()
         loadRestaurants()
 
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(cartDidChange),
-                                               name: CartStore.didChangeNotification,
-                                               object: nil)
+        let center = NotificationCenter.default
+        center.addObserver(self, selector: #selector(cartDidChange), name: CartStore.didChangeNotification, object: nil)
+        center.addObserver(self, selector: #selector(forYouInputsDidChange), name: HistoryStore.didChangeNotification, object: nil)
+        center.addObserver(self, selector: #selector(forYouInputsDidChange), name: Recommender.didUpdateNotification, object: nil)
         cartDidChange()
+
+        registerForTraitChanges([UITraitPreferredContentSizeCategory.self]) { (self: RestaurantListViewController, _) in
+            self.view.setNeedsLayout()
+        }
     }
 
     override func viewDidLayoutSubviews() {
@@ -74,6 +82,7 @@ final class RestaurantListViewController: UIViewController {
 
     private func setUpSearch() {
         searchController.searchResultsUpdater = self
+        searchController.delegate = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Search restaurants and dishes"
         navigationItem.searchController = searchController
@@ -103,12 +112,32 @@ final class RestaurantListViewController: UIViewController {
         chipBar.onSelect = { [weak self] title in
             self?.didSelectChip(title)
         }
-        headerContainer.addSubview(chipBar)
+
+        forYouHeader.configure(title: "For you")
+        // Outside a table the header's content view isn't sized for us, so we pin it ourselves.
+        let headerContent = forYouHeader.contentView
+        headerContent.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            chipBar.topAnchor.constraint(equalTo: headerContainer.topAnchor),
-            chipBar.leadingAnchor.constraint(equalTo: headerContainer.leadingAnchor),
-            chipBar.trailingAnchor.constraint(equalTo: headerContainer.trailingAnchor),
-            chipBar.bottomAnchor.constraint(equalTo: headerContainer.bottomAnchor)
+            headerContent.topAnchor.constraint(equalTo: forYouHeader.topAnchor),
+            headerContent.leadingAnchor.constraint(equalTo: forYouHeader.leadingAnchor),
+            headerContent.trailingAnchor.constraint(equalTo: forYouHeader.trailingAnchor),
+            headerContent.bottomAnchor.constraint(equalTo: forYouHeader.bottomAnchor)
+        ])
+        forYouCarousel.onSelect = { [weak self] id in self?.openMenu(restaurantID: id) }
+        forYouStack.axis = .vertical
+        forYouStack.addArrangedSubview(forYouHeader)
+        forYouStack.addArrangedSubview(forYouCarousel)
+        forYouStack.isHidden = true
+
+        let headerStack = UIStackView(arrangedSubviews: [forYouStack, chipBar])
+        headerStack.axis = .vertical
+        headerStack.translatesAutoresizingMaskIntoConstraints = false
+        headerContainer.addSubview(headerStack)
+        NSLayoutConstraint.activate([
+            headerStack.topAnchor.constraint(equalTo: headerContainer.topAnchor),
+            headerStack.leadingAnchor.constraint(equalTo: headerContainer.leadingAnchor),
+            headerStack.trailingAnchor.constraint(equalTo: headerContainer.trailingAnchor),
+            headerStack.bottomAnchor.constraint(equalTo: headerContainer.bottomAnchor)
         ])
         tableView.tableHeaderView = headerContainer
     }
@@ -157,6 +186,7 @@ final class RestaurantListViewController: UIViewController {
             case .success:
                 self.showChips()
                 self.applyFilters(animated: false)
+                self.refreshForYou()
             case .failure:
                 self.showError()
             }
@@ -170,6 +200,42 @@ final class RestaurantListViewController: UIViewController {
         snapshot.appendItems(ids)
         dataSource.apply(snapshot, animatingDifferences: animated)
         tableView.backgroundView = ids.isEmpty && catalog.isLoaded ? emptyState : nil
+        refreshForYou()
+    }
+
+    // MARK: For you
+
+    private var isFiltering: Bool {
+        selectedCuisine != nil || isSearchActive || !query.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+    }
+
+    @objc private func forYouInputsDidChange() {
+        refreshForYou()
+    }
+
+    /// The carousel only shows when the list isn't being searched or filtered.
+    private func refreshForYou() {
+        var items: [ForYouItem] = []
+        if !isFiltering, catalog.isLoaded {
+            let recommendations = Recommender.shared.recommendations(history: HistoryStore.shared.orders, limit: 10)
+            items = recommendations.compactMap { recommendation in
+                guard let restaurant = catalog.restaurant(id: recommendation.restaurantID) else { return nil }
+                return ForYouItem(card: RestaurantCardModel(restaurant: restaurant), reason: recommendation.reason)
+            }
+        }
+        forYouCarousel.setItems(items)
+        forYouStack.isHidden = items.isEmpty
+        // The carousel's height can change (text size, reasons wrapping), so measure the header again.
+        headerContainer.setNeedsLayout()
+        headerContainer.layoutIfNeeded()
+        sizeTableHeader()
+    }
+
+    private func openMenu(restaurantID: String) {
+        guard let restaurant = catalog.restaurant(id: restaurantID) else { return }
+        // The Menu screen is a VIPER module. We ask its router to build it for us.
+        let menu = MenuRouter.createModule(restaurant: restaurant, cart: cart)
+        navigationController?.pushViewController(menu, animated: true)
     }
 
     private func didSelectChip(_ title: String?) {
@@ -238,17 +304,26 @@ extension RestaurantListViewController: UISearchResultsUpdating {
     }
 }
 
+extension RestaurantListViewController: UISearchControllerDelegate {
+
+    func willPresentSearchController(_ searchController: UISearchController) {
+        isSearchActive = true
+        refreshForYou()
+    }
+
+    func willDismissSearchController(_ searchController: UISearchController) {
+        isSearchActive = false
+        refreshForYou()
+    }
+}
+
 // MARK: - Table view delegate
 
 extension RestaurantListViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        guard let id = dataSource.itemIdentifier(for: indexPath),
-              let restaurant = catalog.restaurant(id: id) else { return }
-
-        // The Menu screen is a VIPER module. We ask its router to build it for us.
-        let menu = MenuRouter.createModule(restaurant: restaurant, cart: cart)
-        navigationController?.pushViewController(menu, animated: true)
+        guard let id = dataSource.itemIdentifier(for: indexPath) else { return }
+        openMenu(restaurantID: id)
     }
 }

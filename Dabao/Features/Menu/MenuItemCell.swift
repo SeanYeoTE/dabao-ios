@@ -43,7 +43,7 @@ final class MenuItemCell: UITableViewCell {
         style(nameLabel, font: DS.Font.headline, color: DS.Color.textPrimary)
         style(detailLabel, font: DS.Font.footnote, color: DS.Color.textSecondary)
         style(priceLabel, font: DS.Font.subheadline, color: DS.Color.textPrimary)
-        style(soldOutLabel, font: DS.Font.caption, color: DS.Color.textTertiary)
+        style(soldOutLabel, font: DS.Font.caption, color: DS.Color.danger)
         style(quantityLabel, font: DS.Font.bodyBold, color: DS.Color.brand)
         soldOutLabel.text = "Sold out"
         quantityLabel.textAlignment = .center
@@ -136,10 +136,10 @@ final class MenuItemCell: UITableViewCell {
         quantityLabel.isHidden = row.quantityText == nil
         removeButton.isHidden = row.quantityText == nil
 
-        // Sold-out dishes are greyed out.
-        nameLabel.alpha = row.isSoldOut ? 0.5 : 1
-        detailLabel.alpha = row.isSoldOut ? 0.5 : 1
-        priceLabel.alpha = row.isSoldOut ? 0.5 : 1
+        // Sold-out dishes use the quieter text colours. Fading with alpha would drop below readable contrast.
+        nameLabel.textColor = row.isSoldOut ? DS.Color.textSecondary : DS.Color.textPrimary
+        detailLabel.textColor = row.isSoldOut ? DS.Color.textTertiary : DS.Color.textSecondary
+        priceLabel.textColor = row.isSoldOut ? DS.Color.textSecondary : DS.Color.textPrimary
         addButton.isEnabled = !row.isSoldOut
 
         addButton.accessibilityLabel = "Add \(row.name)"

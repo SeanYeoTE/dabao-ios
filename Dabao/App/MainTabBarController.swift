@@ -12,7 +12,7 @@ final class MainTabBarController: UITabBarController {
         let cart = UINavigationController(rootViewController: CartViewController())
         cart.tabBarItem = UITabBarItem(title: "Cart", image: UIImage(systemName: "bag.fill"), tag: 1)
 
-        let orders = UINavigationController(rootViewController: OrdersPlaceholderViewController())
+        let orders = UINavigationController(rootViewController: OrderHistoryRouter.createModule())
         orders.tabBarItem = UITabBarItem(title: "Orders", image: UIImage(systemName: "receipt"), tag: 2)
 
         let about = UINavigationController(rootViewController: AboutViewController())
@@ -26,6 +26,20 @@ final class MainTabBarController: UITabBarController {
                                                name: CartStore.didChangeNotification,
                                                object: nil)
         cartDidChange()
+        // TEMP-DEBUG
+        if let tab = UserDefaults.standard.string(forKey: "dbgTab"), let i = Int(tab) { selectedIndex = i }
+        if let push = UserDefaults.standard.string(forKey: "dbgPush") {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [self] in
+                if push.hasPrefix("r"), let r = CatalogStore.shared.restaurant(id: push) {
+                    (viewControllers?[0] as? UINavigationController)?.pushViewController(MenuRouter.createModule(restaurant: r, cart: .shared), animated: false)
+                }
+                if push == "note", let l = CartStore.shared.lines.first { CartStore.shared.setNotes(lineID: l.id, to: "Please no chilli, extra cucumber, rice on the side and cut the chicken into small pieces for my toddler thanks") }
+                if push == "toast", let nav = viewControllers?[1] as? UINavigationController { Toast.show("Order placed", in: nav.viewControllers[0].view) }
+                if push == "receipt", let o = HistoryStore.shared.orders.first {
+                    (viewControllers?[2] as? UINavigationController)?.pushViewController(ReceiptRouter.createModule(orderID: o.id), animated: false)
+                }
+            }
+        }
     }
 
     @objc private func cartDidChange() {

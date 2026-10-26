@@ -11,6 +11,7 @@ final class MenuHeaderView: UIView {
     private let descriptionLabel = UILabel()
     private let closedLabel = UILabel()
     private let closedBanner = UIView()
+    private let topRow = UIStackView()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -48,9 +49,13 @@ final class MenuHeaderView: UIView {
         textStack.axis = .vertical
         textStack.spacing = DS.Spacing.xs
 
-        let topRow = UIStackView(arrangedSubviews: [tile, textStack])
+        topRow.addArrangedSubview(tile)
+        topRow.addArrangedSubview(textStack)
         topRow.spacing = DS.Spacing.m
-        topRow.alignment = .center
+        updateAxis()
+        registerForTraitChanges([UITraitPreferredContentSizeCategory.self]) { (self: MenuHeaderView, _) in
+            self.updateAxis()
+        }
 
         let stack = UIStackView(arrangedSubviews: [topRow, infoLabel, descriptionLabel, closedBanner])
         stack.axis = .vertical
@@ -76,6 +81,13 @@ final class MenuHeaderView: UIView {
             symbolView.widthAnchor.constraint(equalToConstant: 34),
             symbolView.heightAnchor.constraint(equalToConstant: 34)
         ])
+    }
+
+    /// At the biggest text sizes the tile sits above the name so the name keeps its width.
+    private func updateAxis() {
+        let isLarge = traitCollection.preferredContentSizeCategory.isAccessibilityCategory
+        topRow.axis = isLarge ? .vertical : .horizontal
+        topRow.alignment = isLarge ? .leading : .center
     }
 
     private func configure(_ label: UILabel, font: UIFont, color: UIColor) {

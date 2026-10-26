@@ -48,11 +48,10 @@ final class CartLineCell: UITableViewCell {
 
         var notesConfig = UIButton.Configuration.plain()
         notesConfig.contentInsets = NSDirectionalEdgeInsets(top: DS.Spacing.s, leading: 0, bottom: DS.Spacing.s, trailing: 0)
-        notesConfig.titleLineBreakMode = .byTruncatingTail
+        notesConfig.titleLineBreakMode = .byWordWrapping
+        notesConfig.titleAlignment = .leading
+        notesConfig.background.cornerRadius = DS.Radius.small
         notesButton.configuration = notesConfig
-        notesButton.contentHorizontalAlignment = .leading
-        notesButton.titleLabel?.numberOfLines = 2
-        notesButton.titleLabel?.adjustsFontForContentSizeCategory = true
         notesButton.addAction(UIAction { [weak self] _ in self?.onEditNotes?() }, for: .touchUpInside)
 
         quantityControl.minimumValue = 0
