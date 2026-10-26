@@ -15,7 +15,7 @@ sprint 2 behaviour and the expected ranking example.
 - No `print`. Use `os.Logger(subsystem: "com.tinkercademy.dabao", category: …)`.
 - No force-unwraps on data paths.
 - Keep the existing course style: short doc comments that explain *why*.
-- No foodpanda name, logo or the word "panda". Check with `grep -rIinE '\bpanda\b|foodpanda' --exclude-dir=.git .`.
+- No third-party delivery brand names, logos or mascots. Check with `grep -rIinE '\bp[a]nda\b|foodp[a]nda' --exclude-dir=.git .` (the brackets stop the pattern matching itself; a plain search would also match "Pandan").
 - XCTest is out of scope. Leave `DabaoTests` compiling: keep the memberwise-style initialisers that `MenuPresenterTests` uses.
 
 ## Ownership
