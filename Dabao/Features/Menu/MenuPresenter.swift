@@ -57,10 +57,16 @@ final class MenuPresenter: MenuPresenterProtocol, MenuInteractorOutputProtocol {
         }
 
         if summary.itemCount == 0 {
-            view?.showCartBar(title: nil)
+            view?.showCartBar(nil)
         } else {
-            let noun = summary.itemCount == 1 ? "item" : "items"
-            view?.showCartBar(title: "View cart · \(summary.itemCount) \(noun) · \(PriceFormatter.string(from: summary.total))")
+            view?.showCartBar(CartBarViewModel(itemCount: summary.itemCount,
+                                               totalText: PriceFormatter.string(from: summary.total)))
+        }
+    }
+
+    func didRequestReplaceCart(currentRestaurantName: String, itemID: String) {
+        view?.showReplaceCartConfirmation(currentRestaurantName: currentRestaurantName) { [weak self] in
+            self?.interactor.replaceCart(withItemID: itemID)
         }
     }
 
@@ -78,10 +84,16 @@ final class MenuPresenter: MenuPresenterProtocol, MenuInteractorOutputProtocol {
     // MARK: Building view models
 
     private func makeHeader(for restaurant: Restaurant) -> MenuHeaderViewModel {
-        let rating = String(format: "%.1f", restaurant.rating)
+        let card = RestaurantCardModel(restaurant: restaurant)
         return MenuHeaderViewModel(
             title: restaurant.name,
-            subtitle: "\(restaurant.cuisine) · ★ \(rating) · \(restaurant.deliveryMinutes) min",
+            subtitle: card.subtitle,
+            ratingText: [card.ratingText, card.reviewText].filter { !$0.isEmpty }.joined(separator: " "),
+            etaText: card.etaText,
+            feeText: card.feeText,
+            description: restaurant.description,
+            symbolName: restaurant.imageName,
+            colorHex: restaurant.colorHex,
             isOpen: restaurant.isOpen
         )
     }

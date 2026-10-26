@@ -3,7 +3,7 @@ import Foundation
 /// The Interactor holds the business rules for this screen.
 /// It knows nothing about UIKit, labels or table views.
 @MainActor
-final class MenuInteractor: MenuInteractorInputProtocol {
+final class MenuInteractor: NSObject, MenuInteractorInputProtocol {
 
     weak var output: MenuInteractorOutputProtocol?
 
@@ -13,6 +13,17 @@ final class MenuInteractor: MenuInteractorInputProtocol {
     init(restaurant: Restaurant, cart: CartStore) {
         self.restaurant = restaurant
         self.cart = cart
+        super.init()
+
+        // The cart can change on another tab while this screen is still open.
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(cartDidChange),
+                                               name: CartStore.didChangeNotification,
+                                               object: cart)
+    }
+
+    @objc private func cartDidChange() {
+        output?.didUpdateCart(currentSummary())
     }
 
     func loadMenu() {
@@ -32,25 +43,24 @@ final class MenuInteractor: MenuInteractorInputProtocol {
     func addItem(id: String) {
         guard let item = restaurant.menu.first(where: { $0.id == id }) else { return }
 
-        // Rule: you can't order from a closed restaurant.
-        if !restaurant.isOpen {
+        // The cart enforces the rules: closed, sold out, the per-dish limit, and one restaurant at a time.
+        switch cart.tryAdd(item, from: restaurant) {
+        case .added:
+            output?.didUpdateCart(currentSummary())
+        case .restaurantClosed:
             output?.didFailToAdd(item, reason: .restaurantClosed)
-            return
-        }
-
-        // Rule: sold-out dishes can't be added.
-        if item.isSoldOut {
+        case .soldOut:
             output?.didFailToAdd(item, reason: .soldOut)
-            return
+        case .limitReached(let limit):
+            output?.didFailToAdd(item, reason: .limitReached(limit))
+        case .differentRestaurant(let currentName):
+            output?.didRequestReplaceCart(currentRestaurantName: currentName, itemID: id)
         }
+    }
 
-        // Rule: at most `maxQuantityPerItem` of any one dish.
-        if cart.quantity(of: item) >= CartStore.maxQuantityPerItem {
-            output?.didFailToAdd(item, reason: .limitReached(CartStore.maxQuantityPerItem))
-            return
-        }
-
-        cart.add(item, from: restaurant)
+    func replaceCart(withItemID id: String) {
+        guard let item = restaurant.menu.first(where: { $0.id == id }) else { return }
+        cart.replaceCart(with: item, from: restaurant)
         output?.didUpdateCart(currentSummary())
     }
 

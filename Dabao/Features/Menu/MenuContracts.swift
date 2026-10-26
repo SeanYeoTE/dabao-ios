@@ -21,8 +21,9 @@ protocol MenuViewProtocol: AnyObject {
     func showHeader(_ header: MenuHeaderViewModel)
     func showSections(_ sections: [MenuSectionViewModel])
     func reloadRow(_ row: MenuItemViewModel)
-    func showCartBar(title: String?)
+    func showCartBar(_ bar: CartBarViewModel?)
     func showMessage(title: String, message: String)
+    func showReplaceCartConfirmation(currentRestaurantName: String, onReplace: @escaping () -> Void)
 }
 
 // MARK: Presenter (the view talks to the presenter through this)
@@ -42,6 +43,7 @@ protocol MenuInteractorInputProtocol: AnyObject {
     func loadMenu()
     func addItem(id: String)
     func removeItem(id: String)
+    func replaceCart(withItemID id: String)
 }
 
 // MARK: Interactor output (the interactor reports back to the presenter)
@@ -51,6 +53,7 @@ protocol MenuInteractorOutputProtocol: AnyObject {
     func didLoadMenu(restaurant: Restaurant, items: [MenuItem])
     func didUpdateCart(_ summary: CartSummary)
     func didFailToAdd(_ item: MenuItem, reason: AddToCartFailure)
+    func didRequestReplaceCart(currentRestaurantName: String, itemID: String)
 }
 
 // MARK: Router (the presenter asks the router to navigate)
@@ -78,8 +81,19 @@ enum AddToCartFailure: Equatable {
 
 struct MenuHeaderViewModel: Equatable {
     let title: String
-    let subtitle: String
+    let subtitle: String        // "Peranakan · Katong · $$"
+    let ratingText: String      // "4.6 (1.2k)"
+    let etaText: String         // "25 min"
+    let feeText: String         // "$2.99 delivery"
+    let description: String
+    let symbolName: String      // SF Symbol from the restaurant data
+    let colorHex: String        // "#RRGGBB" from the restaurant data
     let isOpen: Bool
+}
+
+struct CartBarViewModel: Equatable {
+    let itemCount: Int
+    let totalText: String
 }
 
 struct MenuSectionViewModel: Equatable {

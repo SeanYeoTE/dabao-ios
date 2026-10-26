@@ -22,7 +22,7 @@ final class MenuRouter: MenuRouterProtocol {
     }
 
     func showCart() {
-        // The cart is the second tab, so we switch tabs rather than pushing a new screen.
-        viewController?.tabBarController?.selectedIndex = 1
+        // The cart is a tab, so we switch tabs rather than pushing a new screen.
+        viewController?.showCartTab()
     }
 }

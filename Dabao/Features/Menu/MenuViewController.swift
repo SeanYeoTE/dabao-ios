@@ -11,11 +11,11 @@ final class MenuViewController: UIViewController {
     private let tableView = UITableView(frame: .zero, style: .insetGrouped)
     private let spinner = UIActivityIndicatorView(style: .large)
     private let headerView = MenuHeaderView()
-    private let cartBar = UIButton(type: .system)
+    private let cartBar = StickyCartBar()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemGroupedBackground
+        view.backgroundColor = DS.Color.background
         navigationItem.largeTitleDisplayMode = .never
 
         setUpTableView()
@@ -25,11 +25,26 @@ final class MenuViewController: UIViewController {
         presenter.viewDidLoad()
     }
 
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        sizeTableHeader()
+        let bottomInset = cartBar.isHidden ? 0 : cartBar.bounds.height + DS.Spacing.l * 2
+        if tableView.contentInset.bottom != bottomInset {
+            tableView.contentInset.bottom = bottomInset
+            tableView.verticalScrollIndicatorInsets.bottom = bottomInset
+        }
+    }
+
     private func setUpTableView() {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.dataSource = self
+        tableView.delegate = self
         tableView.register(MenuItemCell.self, forCellReuseIdentifier: MenuItemCell.reuseIdentifier)
+        tableView.register(SectionHeaderView.self, forHeaderFooterViewReuseIdentifier: SectionHeaderView.reuseIdentifier)
         tableView.allowsSelection = false
+        tableView.backgroundColor = DS.Color.background
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 88
         view.addSubview(tableView)
 
         NSLayoutConstraint.activate([
@@ -41,22 +56,15 @@ final class MenuViewController: UIViewController {
     }
 
     private func setUpCartBar() {
-        var config = UIButton.Configuration.filled()
-        config.cornerStyle = .capsule
-        config.baseBackgroundColor = UIColor(named: "AccentColor")
-        cartBar.configuration = config
         cartBar.translatesAutoresizingMaskIntoConstraints = false
         cartBar.isHidden = true
-        cartBar.addAction(UIAction { [weak self] _ in
-            self?.presenter.didTapCartBar()
-        }, for: .touchUpInside)
+        cartBar.onTap = { [weak self] in self?.presenter.didTapCartBar() }
         view.addSubview(cartBar)
 
         NSLayoutConstraint.activate([
-            cartBar.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
-            cartBar.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor),
-            cartBar.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -12),
-            cartBar.heightAnchor.constraint(equalToConstant: 50)
+            cartBar.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: DS.Spacing.l),
+            cartBar.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -DS.Spacing.l),
+            cartBar.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -DS.Spacing.l)
         ])
     }
 
@@ -68,6 +76,21 @@ final class MenuViewController: UIViewController {
             spinner.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             spinner.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
+    }
+
+    /// A table header isn't laid out by Auto Layout, so we measure it ourselves.
+    private func sizeTableHeader() {
+        guard tableView.tableHeaderView != nil else { return }
+        let width = tableView.bounds.width
+        guard width > 0 else { return }
+        let height = headerView.systemLayoutSizeFitting(
+            CGSize(width: width, height: UIView.layoutFittingCompressedSize.height),
+            withHorizontalFittingPriority: .required,
+            verticalFittingPriority: .fittingSizeLevel).height
+        if headerView.frame.size != CGSize(width: width, height: height) {
+            headerView.frame = CGRect(x: 0, y: 0, width: width, height: height)
+            tableView.tableHeaderView = headerView
+        }
     }
 
     private func indexPath(forItemID id: String) -> IndexPath? {
@@ -91,9 +114,8 @@ extension MenuViewController: MenuViewProtocol {
     func showHeader(_ header: MenuHeaderViewModel) {
         title = header.title
         headerView.configure(with: header)
-        headerView.frame.size = headerView.systemLayoutSizeFitting(
-            CGSize(width: view.bounds.width, height: UIView.layoutFittingCompressedSize.height))
         tableView.tableHeaderView = headerView
+        view.setNeedsLayout()
     }
 
     func showSections(_ sections: [MenuSectionViewModel]) {
@@ -109,10 +131,12 @@ extension MenuViewController: MenuViewProtocol {
         tableView.reloadRows(at: [indexPath], with: .none)
     }
 
-    func showCartBar(title: String?) {
-        cartBar.isHidden = (title == nil)
-        cartBar.configuration?.title = title
-        tableView.contentInset.bottom = title == nil ? 0 : 74
+    func showCartBar(_ bar: CartBarViewModel?) {
+        cartBar.isHidden = (bar == nil)
+        if let bar {
+            cartBar.configure(itemCount: bar.itemCount, totalText: bar.totalText)
+        }
+        view.setNeedsLayout()
     }
 
     func showMessage(title: String, message: String) {
@@ -120,75 +144,46 @@ extension MenuViewController: MenuViewProtocol {
         alert.addAction(UIAlertAction(title: "OK", style: .default))
         present(alert, animated: true)
     }
+
+    func showReplaceCartConfirmation(currentRestaurantName: String, onReplace: @escaping () -> Void) {
+        let alert = UIAlertController(title: "Start a new cart?",
+                                      message: "Your cart has items from \(currentRestaurantName). Adding this dish will clear it.",
+                                      preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        alert.addAction(UIAlertAction(title: "Replace cart", style: .destructive) { _ in onReplace() })
+        present(alert, animated: true)
+    }
 }
 
-// MARK: - Table view data source
+// MARK: - Table view data source and delegate
 
-extension MenuViewController: UITableViewDataSource {
+extension MenuViewController: UITableViewDataSource, UITableViewDelegate {
 
     func numberOfSections(in tableView: UITableView) -> Int {
         sections.count
-    }
-
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        sections[section].title
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         sections[section].rows.count
     }
 
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: SectionHeaderView.reuseIdentifier)
+        (header as? SectionHeaderView)?.configure(title: sections[section].title)
+        return header
+    }
+
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        UITableView.automaticDimension
+    }
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: MenuItemCell.reuseIdentifier,
-                                                 for: indexPath) as! MenuItemCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: MenuItemCell.reuseIdentifier, for: indexPath)
+        guard let itemCell = cell as? MenuItemCell else { return cell }
         let row = sections[indexPath.section].rows[indexPath.row]
-        cell.configure(with: row)
-        cell.onAdd = { [weak self] in self?.presenter.didTapAdd(itemID: row.id) }
-        cell.onRemove = { [weak self] in self?.presenter.didTapRemove(itemID: row.id) }
-        return cell
-    }
-}
-
-// MARK: - Header
-
-final class MenuHeaderView: UIView {
-
-    private let subtitleLabel = UILabel()
-    private let closedLabel = UILabel()
-
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        subtitleLabel.font = .systemFont(ofSize: 15)
-        subtitleLabel.textColor = .secondaryLabel
-
-        closedLabel.text = "Closed now. You can browse, but not order."
-        closedLabel.font = .systemFont(ofSize: 13, weight: .semibold)
-        closedLabel.textColor = .white
-        closedLabel.backgroundColor = .systemRed
-        closedLabel.textAlignment = .center
-        closedLabel.layer.cornerRadius = 8
-        closedLabel.clipsToBounds = true
-
-        let stack = UIStackView(arrangedSubviews: [subtitleLabel, closedLabel])
-        stack.axis = .vertical
-        stack.spacing = 8
-        stack.translatesAutoresizingMaskIntoConstraints = false
-        addSubview(stack)
-        NSLayoutConstraint.activate([
-            stack.topAnchor.constraint(equalTo: topAnchor, constant: 8),
-            stack.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
-            stack.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
-            stack.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8),
-            closedLabel.heightAnchor.constraint(equalToConstant: 32)
-        ])
-    }
-
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
-    func configure(with header: MenuHeaderViewModel) {
-        subtitleLabel.text = header.subtitle
-        closedLabel.isHidden = header.isOpen
+        itemCell.configure(with: row)
+        itemCell.onAdd = { [weak self] in self?.presenter.didTapAdd(itemID: row.id) }
+        itemCell.onRemove = { [weak self] in self?.presenter.didTapRemove(itemID: row.id) }
+        return itemCell
     }
 }
