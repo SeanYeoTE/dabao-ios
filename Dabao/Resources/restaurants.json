@@ -3868,74 +3868,61 @@
   },
   {
     "id": "r31",
-    "name": "Ah Liang Laksa House",
-    "cuisine": "Hawker",
-    "rating": 4.1,
-    "deliveryMinutes": 15,
-    "deliveryFee": 2.02,
+    "name": "Ah Liang Peranakan Laksa",
+    "cuisine": "Peranakan",
+    "rating": 3.7,
+    "deliveryMinutes": 38,
+    "deliveryFee": 3.18,
     "isOpen": true,
-    "imageName": "fork.knife",
+    "imageName": "flame.fill",
     "tags": [
       "laksa",
-      "hawker",
-      "local favourites",
-      "noodles"
+      "nyonya",
+      "heritage",
+      "rempah",
+      "halal-friendly",
+      "coconut",
+      "chicken"
     ],
-    "description": "Rich coconut curry laksa, simmered daily. Wok-fired and made to order. The Assam Laksa is the one regulars ask for.",
-    "area": "Pasir Ris",
-    "reviewCount": 2574,
-    "priceLevel": 1,
-    "colorHex": "#E8A317",
+    "description": "Rich coconut curry laksa, simmered daily. Heritage Peranakan cooking in Punggol. Start with the Laksa Lemak with Prawns.",
+    "area": "Punggol",
+    "reviewCount": 1075,
+    "priceLevel": 2,
+    "colorHex": "#EF476F",
     "menu": [
       {
         "id": "r31m1",
-        "name": "Carrot Cake (Black)",
-        "description": "Fried radish cake with sweet dark sauce and egg.",
-        "price": 4.15,
+        "name": "Beef Rendang",
+        "description": "Slow-cooked beef in dry coconut spice paste.",
+        "price": 15.6,
         "category": "Mains",
         "isSoldOut": false,
-        "isSpicy": false,
+        "isSpicy": true,
         "tags": [
-          "egg",
-          "radish cake",
-          "wok hei"
+          "beef",
+          "coconut",
+          "spicy"
         ]
       },
       {
         "id": "r31m2",
-        "name": "Assam Laksa",
-        "description": "Tangy tamarind fish broth with thick noodles, pineapple and mint.",
-        "price": 5.3,
-        "category": "Noodles",
+        "name": "Ayam Buah Keluak",
+        "description": "Chicken braised with buah keluak in a tamarind gravy.",
+        "price": 15.8,
+        "category": "Mains",
         "isSoldOut": false,
-        "isSpicy": true,
+        "isSpicy": false,
         "tags": [
-          "fish",
-          "laksa",
-          "noodles",
+          "chicken",
+          "heritage",
           "tamarind"
         ]
       },
       {
         "id": "r31m3",
-        "name": "Curry Laksa",
-        "description": "Thick rice noodles in spicy coconut curry with prawns, tofu puffs and cockles.",
-        "price": 5.0,
-        "category": "Noodles",
-        "isSoldOut": false,
-        "isSpicy": true,
-        "tags": [
-          "coconut",
-          "curry",
-          "laksa",
-          "noodles"
-        ]
-      },
-      {
-        "id": "r31m4",
-        "name": "Prawn Laksa",
-        "description": "Coconut curry laksa with fresh prawns and beansprouts.",
-        "price": 6.8,
+        "name": "Laksa Lemak with Prawns",
+        "description": "Creamy coconut laksa topped with fresh prawns.",
+        "price": 10.6,
         "category": "Noodles",
         "isSoldOut": false,
         "isSpicy": true,
@@ -3947,62 +3934,78 @@
         ]
       },
       {
-        "id": "r31m5",
-        "name": "Hokkien Mee",
-        "description": "Prawn stock noodles fried with squid, egg and crispy pork lard.",
-        "price": 5.9,
+        "id": "r31m4",
+        "name": "Nyonya Curry Laksa",
+        "description": "Thick noodles in a spiced coconut curry with tau pok and egg.",
+        "price": 7.95,
         "category": "Noodles",
         "isSoldOut": false,
-        "isSpicy": false,
+        "isSpicy": true,
         "tags": [
-          "noodles",
-          "prawn",
-          "wok hei"
+          "coconut",
+          "curry",
+          "laksa",
+          "noodles"
         ]
       },
       {
-        "id": "r31m6",
-        "name": "Duck Rice",
-        "description": "Braised duck with herbal gravy over rice.",
-        "price": 6.45,
-        "category": "Rice",
+        "id": "r31m5",
+        "name": "Nasi Kunyit Set",
+        "description": "Turmeric glutinous rice with curry chicken and achar.",
+        "price": 13.5,
+        "category": "Sets",
         "isSoldOut": false,
         "isSpicy": false,
         "tags": [
-          "braised",
-          "duck",
+          "chicken",
+          "curry",
           "rice"
         ]
       },
       {
-        "id": "r31m7",
-        "name": "Blanched Greens",
-        "description": "Choy sum with oyster sauce.",
-        "price": 3.75,
+        "id": "r31m6",
+        "name": "Acar Awak",
+        "description": "Pickled vegetables with peanuts.",
+        "price": 4.4,
         "category": "Sides",
         "isSoldOut": false,
         "isSpicy": false,
         "tags": [
+          "pickle",
           "vegetable"
         ]
       },
       {
-        "id": "r31m8",
-        "name": "Braised Egg",
-        "description": "Soy-braised egg.",
-        "price": 1.35,
+        "id": "r31m7",
+        "name": "Steamed White Rice",
+        "description": "Fragrant jasmine rice.",
+        "price": 1.5,
         "category": "Sides",
         "isSoldOut": false,
         "isSpicy": false,
         "tags": [
-          "egg"
+          "rice"
+        ]
+      },
+      {
+        "id": "r31m8",
+        "name": "Otak-otak (3 pcs)",
+        "description": "Grilled fish paste in banana leaf.",
+        "price": 7.05,
+        "category": "Snacks",
+        "isSoldOut": false,
+        "isSpicy": true,
+        "tags": [
+          "fish",
+          "grilled",
+          "snack"
         ]
       },
       {
         "id": "r31m9",
         "name": "Lime Juice",
         "description": "Freshly squeezed.",
-        "price": 3.0,
+        "price": 2.05,
         "category": "Drinks",
         "isSoldOut": false,
         "isSpicy": false,
@@ -4016,20 +4019,21 @@
     "id": "r32",
     "name": "Ah Tee Toast House",
     "cuisine": "Coffee shop",
-    "rating": 3.6,
-    "deliveryMinutes": 44,
-    "deliveryFee": 3.26,
+    "rating": 4.9,
+    "deliveryMinutes": 29,
+    "deliveryFee": 3.9,
     "isOpen": true,
     "imageName": "cup.and.saucer.fill",
     "tags": [
       "kopitiam",
       "breakfast",
-      "egg",
-      "noodles"
+      "coffee",
+      "kaya",
+      "toast"
     ],
-    "description": "Charcoal-roasted kopi and warm toast. Order the Peanut Butter Toast.",
-    "area": "Chinatown",
-    "reviewCount": 48,
+    "description": "Old-school kopitiam breakfasts in Yishun. Try the Peanut Butter Toast.",
+    "area": "Yishun",
+    "reviewCount": 876,
     "priceLevel": 1,
     "colorHex": "#8B5E3C",
     "menu": [
@@ -4037,7 +4041,7 @@
         "id": "r32m1",
         "name": "Peanut Butter Toast",
         "description": "Thick-cut toast with peanut butter.",
-        "price": 3.8,
+        "price": 2.55,
         "category": "Mains",
         "isSoldOut": false,
         "isSpicy": false,
@@ -4048,59 +4052,19 @@
       },
       {
         "id": "r32m2",
-        "name": "Mee Siam",
-        "description": "Tangy vermicelli with egg and tau pok.",
-        "price": 5.9,
-        "category": "Noodles",
+        "name": "French Toast",
+        "description": "Fried toast with kaya and butter.",
+        "price": 3.4,
+        "category": "Mains",
         "isSoldOut": false,
-        "isSpicy": true,
+        "isSpicy": false,
         "tags": [
-          "egg",
-          "noodles"
+          "kaya",
+          "toast"
         ]
       },
       {
         "id": "r32m3",
-        "name": "Mee Rebus",
-        "description": "Yellow noodles in sweet potato gravy.",
-        "price": 4.3,
-        "category": "Noodles",
-        "isSoldOut": false,
-        "isSpicy": false,
-        "tags": [
-          "egg",
-          "noodles"
-        ]
-      },
-      {
-        "id": "r32m4",
-        "name": "Lor Mee",
-        "description": "Thick noodles in starchy gravy.",
-        "price": 5.0,
-        "category": "Noodles",
-        "isSoldOut": false,
-        "isSpicy": false,
-        "tags": [
-          "gravy",
-          "noodles"
-        ]
-      },
-      {
-        "id": "r32m5",
-        "name": "Nasi Lemak Breakfast",
-        "description": "Coconut rice, ikan bilis and egg.",
-        "price": 3.9,
-        "category": "Rice",
-        "isSoldOut": false,
-        "isSpicy": true,
-        "tags": [
-          "coconut",
-          "egg",
-          "rice"
-        ]
-      },
-      {
-        "id": "r32m6",
         "name": "Kaya Toast Set",
         "description": "Kaya toast, two soft-boiled eggs and a kopi.",
         "price": 4.9,
@@ -4115,19 +4079,7 @@
         ]
       },
       {
-        "id": "r32m7",
-        "name": "Half-boiled Eggs (2)",
-        "description": "Soft-boiled eggs with soy and pepper.",
-        "price": 2.15,
-        "category": "Sides",
-        "isSoldOut": false,
-        "isSpicy": false,
-        "tags": [
-          "egg"
-        ]
-      },
-      {
-        "id": "r32m8",
+        "id": "r32m4",
         "name": "Soft-boiled Egg (1)",
         "description": "Single soft-boiled egg.",
         "price": 1.05,
@@ -4139,10 +4091,10 @@
         ]
       },
       {
-        "id": "r32m9",
+        "id": "r32m5",
         "name": "Curry Puff (2 pcs)",
         "description": "Flaky pastry with curried potato.",
-        "price": 2.9,
+        "price": 3.1,
         "category": "Snacks",
         "isSoldOut": false,
         "isSpicy": true,
@@ -4153,10 +4105,10 @@
         ]
       },
       {
-        "id": "r32m10",
+        "id": "r32m6",
         "name": "Kaya Butter Bun",
         "description": "Soft bun with kaya and butter slab.",
-        "price": 2.9,
+        "price": 2.0,
         "category": "Snacks",
         "isSoldOut": false,
         "isSpicy": false,
@@ -4166,58 +4118,86 @@
         ]
       },
       {
-        "id": "r32m11",
+        "id": "r32m7",
         "name": "Fresh Coconut",
         "description": "Coconut water with flesh.",
-        "price": 3.75,
+        "price": 4.15,
         "category": "Drinks",
         "isSoldOut": false,
         "isSpicy": false,
         "tags": [
           "coconut"
         ]
+      },
+      {
+        "id": "r32m8",
+        "name": "Lime Juice",
+        "description": "Freshly squeezed.",
+        "price": 2.45,
+        "category": "Drinks",
+        "isSoldOut": false,
+        "isSpicy": false,
+        "tags": [
+          "lime"
+        ]
       }
     ]
   },
   {
     "id": "r33",
-    "name": "Pak Hassan Patisserie",
+    "name": "Pak Hassan Sweets",
     "cuisine": "Desserts",
-    "rating": 3.8,
-    "deliveryMinutes": 21,
-    "deliveryFee": 4.03,
+    "rating": 3.9,
+    "deliveryMinutes": 34,
+    "deliveryFee": 1.94,
     "isOpen": true,
-    "imageName": "cup.and.saucer.fill",
+    "imageName": "birthday.cake.fill",
     "tags": [
       "dessert",
       "sweet",
+      "cakes",
       "kueh",
-      "ice cream",
-      "beancurd"
+      "coconut",
+      "pandan"
     ],
-    "description": "Made fresh each morning. Start with the Extra Ice Cream Scoop.",
-    "area": "Jurong East",
-    "reviewCount": 500,
+    "description": "Made fresh each morning. Start with the Ondeh Ondeh (6 pcs).",
+    "area": "Sengkang",
+    "reviewCount": 286,
     "priceLevel": 2,
     "colorHex": "#D70F64",
     "menu": [
       {
         "id": "r33m1",
-        "name": "Extra Ice Cream Scoop",
-        "description": "Vanilla or chocolate.",
-        "price": 2.45,
-        "category": "Sides",
+        "name": "Ondeh Ondeh (6 pcs)",
+        "description": "Pandan balls with gula melaka.",
+        "price": 5.95,
+        "category": "Snacks",
         "isSoldOut": false,
         "isSpicy": false,
         "tags": [
-          "ice cream"
+          "coconut",
+          "kueh",
+          "pandan"
         ]
       },
       {
         "id": "r33m2",
+        "name": "Pandan Chiffon (slice)",
+        "description": "Light and fluffy.",
+        "price": 3.2,
+        "category": "Snacks",
+        "isSoldOut": false,
+        "isSpicy": false,
+        "tags": [
+          "cake",
+          "pandan"
+        ]
+      },
+      {
+        "id": "r33m3",
         "name": "Tau Huay",
         "description": "Warm silken beancurd with ginger syrup.",
-        "price": 2.7,
+        "price": 2.2,
         "category": "Desserts",
         "isSoldOut": false,
         "isSpicy": false,
@@ -4227,23 +4207,10 @@
         ]
       },
       {
-        "id": "r33m3",
-        "name": "Waffle with Ice Cream",
-        "description": "Crisp waffle, two scoops and syrup.",
-        "price": 9.4,
-        "category": "Desserts",
-        "isSoldOut": false,
-        "isSpicy": false,
-        "tags": [
-          "ice cream",
-          "waffle"
-        ]
-      },
-      {
         "id": "r33m4",
         "name": "Chendol",
         "description": "Pandan jelly and coconut milk over shaved ice.",
-        "price": 4.25,
+        "price": 3.4,
         "category": "Desserts",
         "isSoldOut": false,
         "isSpicy": false,
@@ -4257,7 +4224,7 @@
         "id": "r33m5",
         "name": "Orh Nee",
         "description": "Silky yam paste with ginkgo nuts.",
-        "price": 4.8,
+        "price": 4.7,
         "category": "Desserts",
         "isSoldOut": false,
         "isSpicy": false,
@@ -4270,7 +4237,7 @@
         "id": "r33m6",
         "name": "Mango Pomelo Sago",
         "description": "Chilled mango soup with pomelo and sago.",
-        "price": 7.45,
+        "price": 5.1,
         "category": "Desserts",
         "isSoldOut": false,
         "isSpicy": false,
@@ -4284,7 +4251,7 @@
         "id": "r33m7",
         "name": "Lime Juice",
         "description": "Freshly squeezed.",
-        "price": 2.05,
+        "price": 2.4,
         "category": "Drinks",
         "isSoldOut": false,
         "isSpicy": false,
@@ -4294,15 +4261,14 @@
       },
       {
         "id": "r33m8",
-        "name": "Bandung",
-        "description": "Rose syrup milk.",
-        "price": 2.85,
+        "name": "Fresh Coconut",
+        "description": "Coconut water with flesh.",
+        "price": 3.9,
         "category": "Drinks",
         "isSoldOut": false,
         "isSpicy": false,
         "tags": [
-          "milk",
-          "rose"
+          "coconut"
         ]
       }
     ]
@@ -4397,26 +4363,26 @@
       },
       {
         "id": "r34m6",
-        "name": "Lime Juice",
-        "description": "Freshly squeezed.",
-        "price": 2.7,
+        "name": "Soya Bean Milk",
+        "description": "Fresh, hot or cold.",
+        "price": 2.2,
         "category": "Drinks",
         "isSoldOut": true,
         "isSpicy": false,
         "tags": [
-          "lime"
+          "soya"
         ]
       },
       {
         "id": "r34m7",
-        "name": "Kopi",
-        "description": "Coffee with condensed milk.",
-        "price": 1.5,
+        "name": "Lime Juice",
+        "description": "Freshly squeezed.",
+        "price": 2.1,
         "category": "Drinks",
         "isSoldOut": false,
         "isSpicy": false,
         "tags": [
-          "coffee"
+          "lime"
         ]
       }
     ]
@@ -5138,30 +5104,46 @@
   },
   {
     "id": "r40",
-    "name": "Uncle Paul Nyonya Laksa House",
-    "cuisine": "Peranakan",
-    "rating": 4.5,
-    "deliveryMinutes": 19,
-    "deliveryFee": 1.37,
+    "name": "Uncle Paul's Laksa",
+    "cuisine": "Hawker",
+    "rating": 4.8,
+    "deliveryMinutes": 45,
+    "deliveryFee": 1.5,
     "isOpen": true,
-    "imageName": "leaf.fill",
+    "imageName": "fork.knife",
     "tags": [
       "laksa",
-      "nyonya",
-      "heritage",
-      "coconut"
+      "hawker",
+      "local favourites",
+      "wok hei",
+      "fish"
     ],
-    "description": "Rich coconut curry laksa, simmered daily. Spice pastes ground by hand each morning. The Laksa Lemak with Prawns is a house favourite.",
-    "area": "Geylang",
-    "reviewCount": 21,
-    "priceLevel": 2,
-    "colorHex": "#17A398",
+    "description": "Rich coconut curry laksa, simmered daily. A neighbourhood stall known for Assam Laksa, served the way it was in the old hawker centres.",
+    "area": "Holland Village",
+    "reviewCount": 293,
+    "priceLevel": 1,
+    "colorHex": "#E4572E",
     "menu": [
       {
         "id": "r40m1",
-        "name": "Laksa Lemak with Prawns",
-        "description": "Creamy coconut laksa topped with fresh prawns.",
-        "price": 10.9,
+        "name": "Assam Laksa",
+        "description": "Tangy tamarind fish broth with thick noodles, pineapple and mint.",
+        "price": 5.95,
+        "category": "Noodles",
+        "isSoldOut": false,
+        "isSpicy": true,
+        "tags": [
+          "fish",
+          "laksa",
+          "noodles",
+          "tamarind"
+        ]
+      },
+      {
+        "id": "r40m2",
+        "name": "Prawn Laksa",
+        "description": "Coconut curry laksa with fresh prawns and beansprouts.",
+        "price": 6.05,
         "category": "Noodles",
         "isSoldOut": false,
         "isSpicy": true,
@@ -5173,93 +5155,74 @@
         ]
       },
       {
-        "id": "r40m2",
-        "name": "Katong Laksa",
-        "description": "Short rice noodles in rich coconut curry broth with prawns, cockles and fishcake.",
-        "price": 7.6,
-        "category": "Noodles",
-        "isSoldOut": false,
-        "isSpicy": true,
-        "tags": [
-          "coconut",
-          "curry",
-          "laksa",
-          "noodles"
-        ]
-      },
-      {
         "id": "r40m3",
-        "name": "Sambal Belacan",
-        "description": "Fiery shrimp paste chilli.",
-        "price": 1.3,
+        "name": "Fried Fishcake (4 pcs)",
+        "description": "Bouncy fried fishcake slices.",
+        "price": 2.6,
         "category": "Sides",
         "isSoldOut": false,
-        "isSpicy": true,
+        "isSpicy": false,
         "tags": [
-          "chilli",
-          "sambal"
+          "fish"
         ]
       },
       {
         "id": "r40m4",
-        "name": "Acar Awak",
-        "description": "Pickled vegetables with peanuts.",
-        "price": 3.3,
+        "name": "Braised Egg",
+        "description": "Soy-braised egg.",
+        "price": 1.05,
         "category": "Sides",
         "isSoldOut": false,
         "isSpicy": false,
         "tags": [
-          "pickle",
-          "vegetable"
+          "egg"
         ]
       },
       {
         "id": "r40m5",
-        "name": "Kueh Salat (slice)",
-        "description": "Pandan custard on glutinous rice.",
-        "price": 3.55,
-        "category": "Desserts",
-        "isSoldOut": false,
-        "isSpicy": false,
-        "tags": [
-          "kueh",
-          "pandan"
-        ]
-      },
-      {
-        "id": "r40m6",
-        "name": "Fresh Coconut",
-        "description": "Coconut water with flesh.",
-        "price": 3.3,
+        "name": "Kopi",
+        "description": "Coffee with condensed milk.",
+        "price": 1.95,
         "category": "Drinks",
         "isSoldOut": false,
         "isSpicy": false,
         "tags": [
-          "coconut"
+          "coffee"
+        ]
+      },
+      {
+        "id": "r40m6",
+        "name": "Soya Bean Milk",
+        "description": "Fresh, hot or cold.",
+        "price": 1.65,
+        "category": "Drinks",
+        "isSoldOut": false,
+        "isSpicy": false,
+        "tags": [
+          "soya"
         ]
       }
     ]
   },
   {
     "id": "r41",
-    "name": "Ah Soon Bangkok Corner",
+    "name": "Ah Soon Thai Street Food",
     "cuisine": "Thai",
-    "rating": 4.0,
-    "deliveryMinutes": 24,
-    "deliveryFee": 4.17,
+    "rating": 4.6,
+    "deliveryMinutes": 38,
+    "deliveryFee": 1.88,
     "isOpen": true,
     "imageName": "flame.fill",
     "tags": [
       "thai",
       "tom yum",
-      "street food",
       "herbs",
-      "prawn",
-      "rice"
+      "spicy",
+      "chicken"
     ],
-    "description": "Bangkok street flavours in Clementi. The Tom Yum Soup is the favourite.",
-    "area": "Clementi",
-    "reviewCount": 1104,
+    "description": "Bangkok street flavours in Little India. The Tom Yum Soup is the favourite.",
+    "area": "Little India",
+    "reviewCount": 2828,
     "priceLevel": 2,
     "colorHex": "#2A9D6F",
     "menu": [
@@ -5267,7 +5230,7 @@
         "id": "r41m1",
         "name": "Tom Yum Soup",
         "description": "Hot and sour soup with prawns and mushrooms.",
-        "price": 10.75,
+        "price": 12.65,
         "category": "Mains",
         "isSoldOut": false,
         "isSpicy": true,
@@ -5279,66 +5242,9 @@
       },
       {
         "id": "r41m2",
-        "name": "Pad Thai",
-        "description": "Wok-fried rice noodles with prawns and peanuts.",
-        "price": 9.1,
-        "category": "Noodles",
-        "isSoldOut": false,
-        "isSpicy": false,
-        "tags": [
-          "noodles",
-          "peanut",
-          "prawn"
-        ]
-      },
-      {
-        "id": "r41m3",
-        "name": "Boat Noodles",
-        "description": "Rich, dark beef broth with rice noodles.",
-        "price": 7.15,
-        "category": "Noodles",
-        "isSoldOut": false,
-        "isSpicy": true,
-        "tags": [
-          "beef",
-          "noodles",
-          "soup"
-        ]
-      },
-      {
-        "id": "r41m4",
-        "name": "Basil Pork Rice (Pad Kra Pao)",
-        "description": "Minced pork with holy basil and fried egg.",
-        "price": 7.65,
-        "category": "Rice",
-        "isSoldOut": false,
-        "isSpicy": true,
-        "tags": [
-          "basil",
-          "egg",
-          "pork",
-          "rice"
-        ]
-      },
-      {
-        "id": "r41m5",
-        "name": "Pineapple Fried Rice",
-        "description": "Fried rice with pineapple, cashews and prawns.",
-        "price": 10.1,
-        "category": "Rice",
-        "isSoldOut": false,
-        "isSpicy": false,
-        "tags": [
-          "pineapple",
-          "prawn",
-          "rice"
-        ]
-      },
-      {
-        "id": "r41m6",
         "name": "Som Tam",
         "description": "Green papaya salad with chilli and lime.",
-        "price": 6.35,
+        "price": 7.05,
         "category": "Sides",
         "isSoldOut": false,
         "isSpicy": true,
@@ -5349,22 +5255,10 @@
         ]
       },
       {
-        "id": "r41m7",
-        "name": "Jasmine Rice",
-        "description": "Steamed Thai jasmine rice.",
-        "price": 1.2,
-        "category": "Sides",
-        "isSoldOut": false,
-        "isSpicy": false,
-        "tags": [
-          "rice"
-        ]
-      },
-      {
-        "id": "r41m8",
+        "id": "r41m3",
         "name": "Fried Egg",
         "description": "Crispy-edged fried egg.",
-        "price": 1.1,
+        "price": 1.0,
         "category": "Sides",
         "isSoldOut": false,
         "isSpicy": false,
@@ -5373,42 +5267,41 @@
         ]
       },
       {
-        "id": "r41m9",
-        "name": "Thai Fish Cake (4 pcs)",
-        "description": "Spiced fish cakes with cucumber relish.",
-        "price": 8.45,
+        "id": "r41m4",
+        "name": "Chicken Satay (4 sticks)",
+        "description": "Grilled satay with peanut sauce.",
+        "price": 6.15,
         "category": "Snacks",
-        "isSoldOut": false,
-        "isSpicy": true,
-        "tags": [
-          "fish",
-          "snack"
-        ]
-      },
-      {
-        "id": "r41m10",
-        "name": "Mango Sticky Rice",
-        "description": "Sweet glutinous rice with ripe mango.",
-        "price": 5.2,
-        "category": "Desserts",
         "isSoldOut": false,
         "isSpicy": false,
         "tags": [
-          "coconut",
-          "dessert",
-          "mango"
+          "chicken",
+          "satay"
         ]
       },
       {
-        "id": "r41m11",
-        "name": "Soya Bean Milk",
-        "description": "Fresh, hot or cold.",
-        "price": 1.9,
+        "id": "r41m5",
+        "name": "Lemongrass Drink",
+        "description": "Cold lemongrass with honey.",
+        "price": 3.35,
         "category": "Drinks",
         "isSoldOut": false,
         "isSpicy": false,
         "tags": [
-          "soya"
+          "lemongrass"
+        ]
+      },
+      {
+        "id": "r41m6",
+        "name": "Iced Lemon Tea",
+        "description": "Freshly brewed.",
+        "price": 2.15,
+        "category": "Drinks",
+        "isSoldOut": false,
+        "isSpicy": false,
+        "tags": [
+          "lemon",
+          "tea"
         ]
       }
     ]
@@ -5417,29 +5310,29 @@
     "id": "r42",
     "name": "Ah Bee Greens",
     "cuisine": "Salads",
-    "rating": 4.9,
-    "deliveryMinutes": 18,
-    "deliveryFee": 0.99,
+    "rating": 4.8,
+    "deliveryMinutes": 39,
+    "deliveryFee": 1.13,
     "isOpen": false,
     "imageName": "leaf.fill",
     "tags": [
       "healthy",
       "salads",
-      "vegetarian",
+      "bowls",
       "bowl",
-      "chicken"
+      "vegetarian"
     ],
     "description": "Lighter plates, big flavours. Try the Avocado Wrap.",
-    "area": "Joo Chiat",
-    "reviewCount": 1217,
+    "area": "Marine Parade",
+    "reviewCount": 281,
     "priceLevel": 2,
-    "colorHex": "#7A8B2E",
+    "colorHex": "#2A9D6F",
     "menu": [
       {
         "id": "r42m1",
         "name": "Avocado Wrap",
         "description": "Avocado, hummus and greens in a wrap.",
-        "price": 9.2,
+        "price": 9.8,
         "category": "Mains",
         "isSoldOut": false,
         "isSpicy": false,
@@ -5451,23 +5344,23 @@
       },
       {
         "id": "r42m2",
-        "name": "Salmon Poke Bowl",
-        "description": "Salmon, avocado and edamame over rice.",
-        "price": 14.15,
+        "name": "Quinoa Falafel Bowl",
+        "description": "Quinoa, falafel and hummus.",
+        "price": 11.5,
         "category": "Mains",
         "isSoldOut": false,
         "isSpicy": false,
         "tags": [
           "bowl",
-          "rice",
-          "salmon"
+          "quinoa",
+          "vegetarian"
         ]
       },
       {
         "id": "r42m3",
         "name": "Tofu Teriyaki Bowl",
         "description": "Teriyaki tofu with sesame greens.",
-        "price": 10.1,
+        "price": 12.85,
         "category": "Mains",
         "isSoldOut": false,
         "isSpicy": false,
@@ -5479,22 +5372,9 @@
       },
       {
         "id": "r42m4",
-        "name": "Caesar Chicken Salad",
-        "description": "Romaine, chicken and parmesan.",
-        "price": 10.3,
-        "category": "Mains",
-        "isSoldOut": true,
-        "isSpicy": false,
-        "tags": [
-          "chicken",
-          "salad"
-        ]
-      },
-      {
-        "id": "r42m5",
         "name": "Grilled Chicken Bowl",
         "description": "Brown rice, grilled chicken and greens.",
-        "price": 12.5,
+        "price": 14.85,
         "category": "Mains",
         "isSoldOut": false,
         "isSpicy": false,
@@ -5505,10 +5385,23 @@
         ]
       },
       {
+        "id": "r42m5",
+        "name": "Caesar Chicken Salad",
+        "description": "Romaine, chicken and parmesan.",
+        "price": 11.75,
+        "category": "Mains",
+        "isSoldOut": false,
+        "isSpicy": false,
+        "tags": [
+          "chicken",
+          "salad"
+        ]
+      },
+      {
         "id": "r42m6",
         "name": "Sweet Potato Fries",
         "description": "Baked sweet potato wedges.",
-        "price": 4.5,
+        "price": 5.0,
         "category": "Sides",
         "isSoldOut": false,
         "isSpicy": false,
@@ -5520,7 +5413,7 @@
         "id": "r42m7",
         "name": "Boiled Egg (2)",
         "description": "Protein add-on.",
-        "price": 2.7,
+        "price": 2.15,
         "category": "Sides",
         "isSoldOut": false,
         "isSpicy": false,
@@ -5530,66 +5423,67 @@
       },
       {
         "id": "r42m8",
-        "name": "Fruit Cup",
-        "description": "Seasonal fruit.",
-        "price": 3.9,
-        "category": "Sides",
+        "name": "Kopi",
+        "description": "Coffee with condensed milk.",
+        "price": 2.0,
+        "category": "Drinks",
         "isSoldOut": false,
         "isSpicy": false,
         "tags": [
-          "fruit"
+          "coffee"
         ]
       },
       {
         "id": "r42m9",
         "name": "Green Smoothie",
         "description": "Spinach, apple and banana.",
-        "price": 5.75,
+        "price": 6.95,
         "category": "Drinks",
         "isSoldOut": false,
         "isSpicy": false,
         "tags": [
           "smoothie"
         ]
-      },
-      {
-        "id": "r42m10",
-        "name": "Lime Juice",
-        "description": "Freshly squeezed.",
-        "price": 2.6,
-        "category": "Drinks",
-        "isSoldOut": false,
-        "isSpicy": false,
-        "tags": [
-          "lime"
-        ]
       }
     ]
   },
   {
     "id": "r43",
-    "name": "Ah Hui Dosa Corner",
+    "name": "Ah Hui Curry Point",
     "cuisine": "Indian",
-    "rating": 4.3,
-    "deliveryMinutes": 43,
-    "deliveryFee": 4.28,
+    "rating": 4.0,
+    "deliveryMinutes": 34,
+    "deliveryFee": 3.93,
     "isOpen": true,
-    "imageName": "leaf.fill",
+    "imageName": "flame.fill",
     "tags": [
       "north indian",
       "south indian",
-      "curry",
-      "halal-friendly",
-      "chicken"
+      "vegetarian",
+      "curry"
     ],
-    "description": "Fragrant spices, generous portions. Try the Palak Paneer.",
-    "area": "Bishan",
-    "reviewCount": 1496,
-    "priceLevel": 1,
-    "colorHex": "#E8A317",
+    "description": "Slow-cooked curries and fresh-off-the-tawa breads in Chinatown. Order the Butter Chicken.",
+    "area": "Chinatown",
+    "reviewCount": 1873,
+    "priceLevel": 2,
+    "colorHex": "#C8312B",
     "menu": [
       {
         "id": "r43m1",
+        "name": "Butter Chicken",
+        "description": "Tandoori chicken in creamy tomato gravy.",
+        "price": 10.6,
+        "category": "Mains",
+        "isSoldOut": false,
+        "isSpicy": false,
+        "tags": [
+          "chicken",
+          "creamy",
+          "curry"
+        ]
+      },
+      {
+        "id": "r43m2",
         "name": "Palak Paneer",
         "description": "Cottage cheese in spinach gravy.",
         "price": 9.8,
@@ -5603,37 +5497,10 @@
         ]
       },
       {
-        "id": "r43m2",
-        "name": "Butter Chicken",
-        "description": "Tandoori chicken in creamy tomato gravy.",
-        "price": 10.75,
-        "category": "Mains",
-        "isSoldOut": false,
-        "isSpicy": false,
-        "tags": [
-          "chicken",
-          "creamy",
-          "curry"
-        ]
-      },
-      {
         "id": "r43m3",
-        "name": "Roti Prata (2 pcs)",
-        "description": "Flaky flatbread with dhal.",
-        "price": 4.25,
-        "category": "Mains",
-        "isSoldOut": false,
-        "isSpicy": false,
-        "tags": [
-          "flatbread",
-          "prata"
-        ]
-      },
-      {
-        "id": "r43m4",
         "name": "Chana Masala",
         "description": "Chickpeas in tomato and onion gravy.",
-        "price": 8.95,
+        "price": 7.95,
         "category": "Mains",
         "isSoldOut": false,
         "isSpicy": true,
@@ -5644,38 +5511,51 @@
         ]
       },
       {
+        "id": "r43m4",
+        "name": "Masala Dosa",
+        "description": "Crisp crepe with spiced potato filling.",
+        "price": 4.9,
+        "category": "Mains",
+        "isSoldOut": false,
+        "isSpicy": false,
+        "tags": [
+          "dosa",
+          "potato",
+          "vegetarian"
+        ]
+      },
+      {
         "id": "r43m5",
-        "name": "Chicken Biryani",
-        "description": "Basmati rice layered with spiced chicken and raita.",
-        "price": 10.6,
-        "category": "Rice",
+        "name": "Tandoori Chicken Set",
+        "description": "Half tandoori chicken, naan and salad.",
+        "price": 15.8,
+        "category": "Sets",
         "isSoldOut": false,
         "isSpicy": true,
         "tags": [
-          "biryani",
           "chicken",
-          "rice"
+          "naan",
+          "tandoori"
         ]
       },
       {
         "id": "r43m6",
-        "name": "Mutton Biryani",
-        "description": "Slow-cooked mutton biryani with egg.",
-        "price": 11.8,
-        "category": "Rice",
+        "name": "Mutton Briyani Set",
+        "description": "Mutton biryani with papadum and dalcha.",
+        "price": 13.65,
+        "category": "Sets",
         "isSoldOut": false,
         "isSpicy": true,
         "tags": [
           "biryani",
-          "mutton",
-          "rice"
+          "mutton"
         ]
       },
       {
         "id": "r43m7",
         "name": "Thosai Set",
         "description": "Thosai with sambar, coconut and tomato chutney.",
-        "price": 6.2,
+        "price": 6.3,
         "category": "Sets",
         "isSoldOut": false,
         "isSpicy": false,
@@ -5687,23 +5567,9 @@
       },
       {
         "id": "r43m8",
-        "name": "Tandoori Chicken Set",
-        "description": "Half tandoori chicken, naan and salad.",
-        "price": 16.9,
-        "category": "Sets",
-        "isSoldOut": false,
-        "isSpicy": true,
-        "tags": [
-          "chicken",
-          "naan",
-          "tandoori"
-        ]
-      },
-      {
-        "id": "r43m9",
         "name": "Garlic Naan",
         "description": "Tandoor-baked garlic flatbread.",
-        "price": 2.8,
+        "price": 3.65,
         "category": "Sides",
         "isSoldOut": false,
         "isSpicy": false,
@@ -5713,77 +5579,90 @@
         ]
       },
       {
-        "id": "r43m10",
-        "name": "Samosa (2 pcs)",
-        "description": "Potato and pea pastries.",
-        "price": 2.75,
-        "category": "Snacks",
-        "isSoldOut": true,
+        "id": "r43m9",
+        "name": "Papadum",
+        "description": "Crisp lentil wafers.",
+        "price": 2.25,
+        "category": "Sides",
+        "isSoldOut": false,
         "isSpicy": false,
         "tags": [
-          "potato",
           "snack"
         ]
       },
       {
-        "id": "r43m11",
-        "name": "Sugarcane Juice",
-        "description": "Freshly pressed.",
-        "price": 2.15,
-        "category": "Drinks",
+        "id": "r43m10",
+        "name": "Raita",
+        "description": "Cooling yoghurt with cucumber.",
+        "price": 2.05,
+        "category": "Sides",
         "isSoldOut": false,
         "isSpicy": false,
         "tags": [
-          "sugarcane"
+          "yoghurt"
+        ]
+      },
+      {
+        "id": "r43m11",
+        "name": "Gulab Jamun (2 pcs)",
+        "description": "Warm milk dumplings in syrup.",
+        "price": 4.45,
+        "category": "Desserts",
+        "isSoldOut": false,
+        "isSpicy": false,
+        "tags": [
+          "dessert",
+          "syrup"
         ]
       },
       {
         "id": "r43m12",
-        "name": "Soya Bean Milk",
-        "description": "Fresh, hot or cold.",
-        "price": 2.15,
+        "name": "Teh Peng",
+        "description": "Iced milk tea.",
+        "price": 2.3,
         "category": "Drinks",
         "isSoldOut": false,
         "isSpicy": false,
         "tags": [
-          "soya"
+          "tea"
         ]
       }
     ]
   },
   {
     "id": "r44",
-    "name": "Chef Park Curry Point",
+    "name": "Chef Park Dosa Corner",
     "cuisine": "Indian",
-    "rating": 4.8,
-    "deliveryMinutes": 18,
-    "deliveryFee": 4.91,
+    "rating": 4.4,
+    "deliveryMinutes": 26,
+    "deliveryFee": 3.96,
     "isOpen": true,
-    "imageName": "leaf.fill",
+    "imageName": "fork.knife",
     "tags": [
       "north indian",
       "south indian",
-      "halal-friendly",
       "curry",
-      "chicken"
+      "halal-friendly",
+      "dosa",
+      "potato"
     ],
-    "description": "Little India flavours, delivered hot. The Chana Masala is a crowd pleaser.",
-    "area": "Katong",
-    "reviewCount": 82,
-    "priceLevel": 2,
-    "colorHex": "#E8A317",
+    "description": "Little India flavours, delivered hot. The Masala Dosa is a crowd pleaser.",
+    "area": "Woodlands",
+    "reviewCount": 2038,
+    "priceLevel": 1,
+    "colorHex": "#E76F51",
     "menu": [
       {
         "id": "r44m1",
-        "name": "Chana Masala",
-        "description": "Chickpeas in tomato and onion gravy.",
-        "price": 8.0,
+        "name": "Masala Dosa",
+        "description": "Crisp crepe with spiced potato filling.",
+        "price": 4.9,
         "category": "Mains",
         "isSoldOut": false,
-        "isSpicy": true,
+        "isSpicy": false,
         "tags": [
-          "chickpea",
-          "curry",
+          "dosa",
+          "potato",
           "vegetarian"
         ]
       },
@@ -5791,7 +5670,7 @@
         "id": "r44m2",
         "name": "Roti Prata (2 pcs)",
         "description": "Flaky flatbread with dhal.",
-        "price": 3.95,
+        "price": 4.05,
         "category": "Mains",
         "isSoldOut": false,
         "isSpicy": false,
@@ -5802,9 +5681,244 @@
       },
       {
         "id": "r44m3",
+        "name": "Thosai Set",
+        "description": "Thosai with sambar, coconut and tomato chutney.",
+        "price": 5.65,
+        "category": "Sets",
+        "isSoldOut": false,
+        "isSpicy": false,
+        "tags": [
+          "coconut",
+          "dosa",
+          "vegetarian"
+        ]
+      },
+      {
+        "id": "r44m4",
+        "name": "Samosa (2 pcs)",
+        "description": "Potato and pea pastries.",
+        "price": 3.5,
+        "category": "Snacks",
+        "isSoldOut": false,
+        "isSpicy": false,
+        "tags": [
+          "potato",
+          "snack"
+        ]
+      },
+      {
+        "id": "r44m5",
+        "name": "Gulab Jamun (2 pcs)",
+        "description": "Warm milk dumplings in syrup.",
+        "price": 4.05,
+        "category": "Desserts",
+        "isSoldOut": false,
+        "isSpicy": false,
+        "tags": [
+          "dessert",
+          "syrup"
+        ]
+      },
+      {
+        "id": "r44m6",
+        "name": "Soya Bean Milk",
+        "description": "Fresh, hot or cold.",
+        "price": 1.85,
+        "category": "Drinks",
+        "isSoldOut": true,
+        "isSpicy": false,
+        "tags": [
+          "soya"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "r45",
+    "name": "Pak Samad Kitchen",
+    "cuisine": "Hawker",
+    "rating": 4.4,
+    "deliveryMinutes": 41,
+    "deliveryFee": 2.22,
+    "isOpen": true,
+    "imageName": "fork.knife",
+    "tags": [
+      "hawker",
+      "local favourites",
+      "halal-friendly",
+      "wok hei",
+      "noodles",
+      "pork"
+    ],
+    "description": "Family-run for decades. Come for the Satay (10 sticks), stay for the chilli.",
+    "area": "Little India",
+    "reviewCount": 657,
+    "priceLevel": 1,
+    "colorHex": "#E8A317",
+    "menu": [
+      {
+        "id": "r45m1",
+        "name": "Satay (10 sticks)",
+        "description": "Charcoal-grilled chicken satay with peanut sauce.",
+        "price": 8.75,
+        "category": "Mains",
+        "isSoldOut": false,
+        "isSpicy": false,
+        "tags": [
+          "chicken",
+          "grilled",
+          "satay"
+        ]
+      },
+      {
+        "id": "r45m2",
+        "name": "Oyster Omelette",
+        "description": "Crispy egg and starch omelette with fresh oysters.",
+        "price": 7.85,
+        "category": "Mains",
+        "isSoldOut": false,
+        "isSpicy": true,
+        "tags": [
+          "egg",
+          "oyster",
+          "seafood"
+        ]
+      },
+      {
+        "id": "r45m3",
+        "name": "Bak Chor Mee",
+        "description": "Minced pork noodles tossed in vinegar and chilli.",
+        "price": 5.35,
+        "category": "Noodles",
+        "isSoldOut": false,
+        "isSpicy": true,
+        "tags": [
+          "noodles",
+          "pork",
+          "vinegar"
+        ]
+      },
+      {
+        "id": "r45m4",
+        "name": "Wanton Mee",
+        "description": "Springy noodles with char siu and fried wontons.",
+        "price": 5.15,
+        "category": "Noodles",
+        "isSoldOut": false,
+        "isSpicy": false,
+        "tags": [
+          "noodles",
+          "pork",
+          "wanton"
+        ]
+      },
+      {
+        "id": "r45m5",
+        "name": "Fishball Noodles",
+        "description": "Handmade fishballs with dry noodles and chilli.",
+        "price": 4.7,
+        "category": "Noodles",
+        "isSoldOut": false,
+        "isSpicy": true,
+        "tags": [
+          "fish",
+          "noodles"
+        ]
+      },
+      {
+        "id": "r45m6",
+        "name": "Nasi Lemak Set",
+        "description": "Coconut rice with fried chicken wing, egg and sambal.",
+        "price": 5.35,
+        "category": "Rice",
+        "isSoldOut": false,
+        "isSpicy": true,
+        "tags": [
+          "coconut",
+          "rice",
+          "sambal"
+        ]
+      },
+      {
+        "id": "r45m7",
+        "name": "Roast Pork Rice",
+        "description": "Crackling roast pork belly with rice and sambal.",
+        "price": 5.5,
+        "category": "Rice",
+        "isSoldOut": false,
+        "isSpicy": false,
+        "tags": [
+          "pork",
+          "rice",
+          "roast"
+        ]
+      },
+      {
+        "id": "r45m8",
+        "name": "Chilli Sauce (extra)",
+        "description": "House chilli, extra garlicky.",
+        "price": 0.8,
+        "category": "Sides",
+        "isSoldOut": false,
+        "isSpicy": true,
+        "tags": [
+          "chilli"
+        ]
+      },
+      {
+        "id": "r45m9",
+        "name": "Kopi",
+        "description": "Coffee with condensed milk.",
+        "price": 1.9,
+        "category": "Drinks",
+        "isSoldOut": false,
+        "isSpicy": false,
+        "tags": [
+          "coffee"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "r46",
+    "name": "Kak Yati Indian Kitchen",
+    "cuisine": "Indian",
+    "rating": 4.2,
+    "deliveryMinutes": 36,
+    "deliveryFee": 4.39,
+    "isOpen": true,
+    "imageName": "flame.fill",
+    "tags": [
+      "north indian",
+      "south indian",
+      "curry",
+      "vegetarian"
+    ],
+    "description": "Little India flavours, delivered hot. The Masala Dosa is a crowd pleaser.",
+    "area": "Telok Ayer",
+    "reviewCount": 33,
+    "priceLevel": 2,
+    "colorHex": "#C8312B",
+    "menu": [
+      {
+        "id": "r46m1",
+        "name": "Masala Dosa",
+        "description": "Crisp crepe with spiced potato filling.",
+        "price": 5.6,
+        "category": "Mains",
+        "isSoldOut": false,
+        "isSpicy": false,
+        "tags": [
+          "dosa",
+          "potato",
+          "vegetarian"
+        ]
+      },
+      {
+        "id": "r46m2",
         "name": "Butter Chicken",
         "description": "Tandoori chicken in creamy tomato gravy.",
-        "price": 11.15,
+        "price": 10.35,
         "category": "Mains",
         "isSoldOut": false,
         "isSpicy": false,
@@ -5815,21 +5929,21 @@
         ]
       },
       {
-        "id": "r44m4",
-        "name": "Palak Paneer",
-        "description": "Cottage cheese in spinach gravy.",
-        "price": 10.55,
+        "id": "r46m3",
+        "name": "Chana Masala",
+        "description": "Chickpeas in tomato and onion gravy.",
+        "price": 6.15,
         "category": "Mains",
         "isSoldOut": false,
-        "isSpicy": false,
+        "isSpicy": true,
         "tags": [
+          "chickpea",
           "curry",
-          "paneer",
           "vegetarian"
         ]
       },
       {
-        "id": "r44m5",
+        "id": "r46m4",
         "name": "Fish Head Curry",
         "description": "Red snapper head in tangy tamarind curry.",
         "price": 28.0,
@@ -5843,256 +5957,10 @@
         ]
       },
       {
-        "id": "r44m6",
-        "name": "Chicken Biryani",
-        "description": "Basmati rice layered with spiced chicken and raita.",
-        "price": 7.65,
-        "category": "Rice",
-        "isSoldOut": false,
-        "isSpicy": true,
-        "tags": [
-          "biryani",
-          "chicken",
-          "rice"
-        ]
-      },
-      {
-        "id": "r44m7",
-        "name": "Tandoori Chicken Set",
-        "description": "Half tandoori chicken, naan and salad.",
-        "price": 13.65,
-        "category": "Sets",
-        "isSoldOut": false,
-        "isSpicy": true,
-        "tags": [
-          "chicken",
-          "naan",
-          "tandoori"
-        ]
-      },
-      {
-        "id": "r44m8",
-        "name": "Thosai Set",
-        "description": "Thosai with sambar, coconut and tomato chutney.",
-        "price": 5.75,
-        "category": "Sets",
-        "isSoldOut": false,
-        "isSpicy": false,
-        "tags": [
-          "coconut",
-          "dosa",
-          "vegetarian"
-        ]
-      },
-      {
-        "id": "r44m9",
-        "name": "Garlic Naan",
-        "description": "Tandoor-baked garlic flatbread.",
-        "price": 3.85,
-        "category": "Sides",
-        "isSoldOut": false,
-        "isSpicy": false,
-        "tags": [
-          "flatbread",
-          "naan"
-        ]
-      },
-      {
-        "id": "r44m10",
-        "name": "Samosa (2 pcs)",
-        "description": "Potato and pea pastries.",
-        "price": 2.9,
-        "category": "Snacks",
-        "isSoldOut": false,
-        "isSpicy": false,
-        "tags": [
-          "potato",
-          "snack"
-        ]
-      },
-      {
-        "id": "r44m11",
-        "name": "Lime Juice",
-        "description": "Freshly squeezed.",
-        "price": 2.15,
-        "category": "Drinks",
-        "isSoldOut": false,
-        "isSpicy": false,
-        "tags": [
-          "lime"
-        ]
-      }
-    ]
-  },
-  {
-    "id": "r45",
-    "name": "Pak Samad Kitchen",
-    "cuisine": "Hawker",
-    "rating": 4.7,
-    "deliveryMinutes": 22,
-    "deliveryFee": 1.17,
-    "isOpen": true,
-    "imageName": "takeoutbag.and.cup.and.straw.fill",
-    "tags": [
-      "hawker",
-      "local favourites",
-      "halal-friendly",
-      "wok hei",
-      "barley"
-    ],
-    "description": "Wok-fired and made to order. The Carrot Cake (Black) is the one regulars ask for.",
-    "area": "Little India",
-    "reviewCount": 34,
-    "priceLevel": 1,
-    "colorHex": "#C8312B",
-    "menu": [
-      {
-        "id": "r45m1",
-        "name": "Carrot Cake (Black)",
-        "description": "Fried radish cake with sweet dark sauce and egg.",
-        "price": 5.2,
-        "category": "Mains",
-        "isSoldOut": false,
-        "isSpicy": false,
-        "tags": [
-          "egg",
-          "radish cake",
-          "wok hei"
-        ]
-      },
-      {
-        "id": "r45m2",
-        "name": "Hokkien Mee",
-        "description": "Prawn stock noodles fried with squid, egg and crispy pork lard.",
-        "price": 7.75,
-        "category": "Noodles",
-        "isSoldOut": false,
-        "isSpicy": false,
-        "tags": [
-          "noodles",
-          "prawn",
-          "wok hei"
-        ]
-      },
-      {
-        "id": "r45m3",
-        "name": "Nasi Lemak Set",
-        "description": "Coconut rice with fried chicken wing, egg and sambal.",
-        "price": 5.55,
-        "category": "Rice",
-        "isSoldOut": false,
-        "isSpicy": true,
-        "tags": [
-          "coconut",
-          "rice",
-          "sambal"
-        ]
-      },
-      {
-        "id": "r45m4",
-        "name": "Chilli Sauce (extra)",
-        "description": "House chilli, extra garlicky.",
-        "price": 0.8,
-        "category": "Sides",
-        "isSoldOut": false,
-        "isSpicy": true,
-        "tags": [
-          "chilli"
-        ]
-      },
-      {
-        "id": "r45m5",
-        "name": "Blanched Greens",
-        "description": "Choy sum with oyster sauce.",
-        "price": 4.35,
-        "category": "Sides",
-        "isSoldOut": false,
-        "isSpicy": false,
-        "tags": [
-          "vegetable"
-        ]
-      },
-      {
-        "id": "r45m6",
-        "name": "Iced Lemon Tea",
-        "description": "Freshly brewed.",
-        "price": 2.3,
-        "category": "Drinks",
-        "isSoldOut": false,
-        "isSpicy": false,
-        "tags": [
-          "lemon",
-          "tea"
-        ]
-      },
-      {
-        "id": "r45m7",
-        "name": "Barley Water",
-        "description": "Homemade, lightly sweetened.",
-        "price": 1.85,
-        "category": "Drinks",
-        "isSoldOut": false,
-        "isSpicy": false,
-        "tags": [
-          "barley"
-        ]
-      }
-    ]
-  },
-  {
-    "id": "r46",
-    "name": "Kak Yati Curry Point",
-    "cuisine": "Indian",
-    "rating": 4.0,
-    "deliveryMinutes": 25,
-    "deliveryFee": 4.94,
-    "isOpen": true,
-    "imageName": "leaf.fill",
-    "tags": [
-      "north indian",
-      "south indian",
-      "curry",
-      "halal-friendly",
-      "chicken"
-    ],
-    "description": "Little India flavours, delivered hot. The Roti Prata (2 pcs) is a crowd pleaser.",
-    "area": "Chinatown",
-    "reviewCount": 139,
-    "priceLevel": 2,
-    "colorHex": "#E76F51",
-    "menu": [
-      {
-        "id": "r46m1",
-        "name": "Roti Prata (2 pcs)",
-        "description": "Flaky flatbread with dhal.",
-        "price": 4.25,
-        "category": "Mains",
-        "isSoldOut": false,
-        "isSpicy": false,
-        "tags": [
-          "flatbread",
-          "prata"
-        ]
-      },
-      {
-        "id": "r46m2",
-        "name": "Chana Masala",
-        "description": "Chickpeas in tomato and onion gravy.",
-        "price": 8.15,
-        "category": "Mains",
-        "isSoldOut": false,
-        "isSpicy": true,
-        "tags": [
-          "chickpea",
-          "curry",
-          "vegetarian"
-        ]
-      },
-      {
-        "id": "r46m3",
+        "id": "r46m5",
         "name": "Palak Paneer",
         "description": "Cottage cheese in spinach gravy.",
-        "price": 10.95,
+        "price": 11.75,
         "category": "Mains",
         "isSoldOut": false,
         "isSpicy": false,
@@ -6103,168 +5971,38 @@
         ]
       },
       {
-        "id": "r46m4",
-        "name": "Butter Chicken",
-        "description": "Tandoori chicken in creamy tomato gravy.",
-        "price": 9.35,
-        "category": "Mains",
+        "id": "r46m6",
+        "name": "Thosai Set",
+        "description": "Thosai with sambar, coconut and tomato chutney.",
+        "price": 6.45,
+        "category": "Sets",
         "isSoldOut": false,
         "isSpicy": false,
         "tags": [
-          "chicken",
-          "creamy",
-          "curry"
-        ]
-      },
-      {
-        "id": "r46m5",
-        "name": "Tandoori Chicken Set",
-        "description": "Half tandoori chicken, naan and salad.",
-        "price": 16.0,
-        "category": "Sets",
-        "isSoldOut": false,
-        "isSpicy": true,
-        "tags": [
-          "chicken",
-          "naan",
-          "tandoori"
-        ]
-      },
-      {
-        "id": "r46m6",
-        "name": "Mutton Briyani Set",
-        "description": "Mutton biryani with papadum and dalcha.",
-        "price": 12.3,
-        "category": "Sets",
-        "isSoldOut": false,
-        "isSpicy": true,
-        "tags": [
-          "biryani",
-          "mutton"
+          "coconut",
+          "dosa",
+          "vegetarian"
         ]
       },
       {
         "id": "r46m7",
-        "name": "Samosa (2 pcs)",
-        "description": "Potato and pea pastries.",
-        "price": 3.25,
-        "category": "Snacks",
+        "name": "Garlic Naan",
+        "description": "Tandoor-baked garlic flatbread.",
+        "price": 2.55,
+        "category": "Sides",
         "isSoldOut": false,
         "isSpicy": false,
         "tags": [
-          "potato",
-          "snack"
+          "flatbread",
+          "naan"
         ]
       },
       {
         "id": "r46m8",
-        "name": "Teh Tarik",
-        "description": "Frothy pulled milk tea.",
-        "price": 2.55,
-        "category": "Drinks",
-        "isSoldOut": false,
-        "isSpicy": false,
-        "tags": [
-          "tea"
-        ]
-      },
-      {
-        "id": "r46m9",
-        "name": "Mango Lassi",
-        "description": "Chilled yoghurt and mango drink.",
-        "price": 3.85,
-        "category": "Drinks",
-        "isSoldOut": false,
-        "isSpicy": false,
-        "tags": [
-          "mango",
-          "yoghurt"
-        ]
-      }
-    ]
-  },
-  {
-    "id": "r47",
-    "name": "Uncle Roy Chuan Cai",
-    "cuisine": "Sichuan",
-    "rating": 4.9,
-    "deliveryMinutes": 36,
-    "deliveryFee": 1.17,
-    "isOpen": false,
-    "imageName": "flame.fill",
-    "tags": [
-      "sichuan",
-      "mala",
-      "numbing spicy",
-      "spicy",
-      "chilli oil"
-    ],
-    "description": "Heat that builds slowly in Serangoon. Start with the Boiled Fish in Chilli Oil.",
-    "area": "Serangoon",
-    "reviewCount": 53,
-    "priceLevel": 2,
-    "colorHex": "#E76F51",
-    "menu": [
-      {
-        "id": "r47m1",
-        "name": "Boiled Fish in Chilli Oil",
-        "description": "Fish fillets poached in numbing chilli oil.",
-        "price": 28.0,
-        "category": "Mains",
-        "isSoldOut": false,
-        "isSpicy": true,
-        "tags": [
-          "chilli oil",
-          "fish",
-          "spicy"
-        ]
-      },
-      {
-        "id": "r47m2",
-        "name": "Mapo Tofu",
-        "description": "Silken tofu in chilli bean sauce with minced pork.",
-        "price": 11.9,
-        "category": "Mains",
-        "isSoldOut": false,
-        "isSpicy": true,
-        "tags": [
-          "pork",
-          "spicy",
-          "tofu"
-        ]
-      },
-      {
-        "id": "r47m3",
-        "name": "Mala Tang",
-        "description": "Spicy peppercorn soup with your pick of skewers.",
-        "price": 11.5,
-        "category": "Mains",
-        "isSoldOut": false,
-        "isSpicy": true,
-        "tags": [
-          "mala",
-          "soup",
-          "spicy"
-        ]
-      },
-      {
-        "id": "r47m4",
-        "name": "Steamed Rice",
-        "description": "Plain white rice.",
-        "price": 1.35,
+        "name": "Papadum",
+        "description": "Crisp lentil wafers.",
+        "price": 2.3,
         "category": "Sides",
-        "isSoldOut": false,
-        "isSpicy": false,
-        "tags": [
-          "rice"
-        ]
-      },
-      {
-        "id": "r47m5",
-        "name": "Spring Onion Pancake",
-        "description": "Flaky pan-fried pancake.",
-        "price": 5.6,
-        "category": "Snacks",
         "isSoldOut": false,
         "isSpicy": false,
         "tags": [
@@ -6272,280 +6010,23 @@
         ]
       },
       {
-        "id": "r47m6",
-        "name": "Lime Juice",
-        "description": "Freshly squeezed.",
-        "price": 2.6,
-        "category": "Drinks",
+        "id": "r46m9",
+        "name": "Gulab Jamun (2 pcs)",
+        "description": "Warm milk dumplings in syrup.",
+        "price": 3.7,
+        "category": "Desserts",
         "isSoldOut": false,
         "isSpicy": false,
         "tags": [
-          "lime"
+          "dessert",
+          "syrup"
         ]
       },
       {
-        "id": "r47m7",
-        "name": "Soya Bean Milk",
-        "description": "Fresh, hot or cold.",
-        "price": 2.15,
-        "category": "Drinks",
-        "isSoldOut": false,
-        "isSpicy": false,
-        "tags": [
-          "soya"
-        ]
-      }
-    ]
-  },
-  {
-    "id": "r48",
-    "name": "Old Tan Food Stall",
-    "cuisine": "Hawker",
-    "rating": 4.0,
-    "deliveryMinutes": 43,
-    "deliveryFee": 2.58,
-    "isOpen": true,
-    "imageName": "fork.knife",
-    "tags": [
-      "hawker",
-      "local favourites",
-      "wok hei",
-      "noodles",
-      "pork"
-    ],
-    "description": "Wok-fired and made to order. The Hokkien Mee is the one regulars ask for.",
-    "area": "Yishun",
-    "reviewCount": 984,
-    "priceLevel": 1,
-    "colorHex": "#E4572E",
-    "menu": [
-      {
-        "id": "r48m1",
-        "name": "Hokkien Mee",
-        "description": "Prawn stock noodles fried with squid, egg and crispy pork lard.",
-        "price": 5.95,
-        "category": "Noodles",
-        "isSoldOut": false,
-        "isSpicy": false,
-        "tags": [
-          "noodles",
-          "prawn",
-          "wok hei"
-        ]
-      },
-      {
-        "id": "r48m2",
-        "name": "Bak Chor Mee",
-        "description": "Minced pork noodles tossed in vinegar and chilli.",
-        "price": 4.8,
-        "category": "Noodles",
-        "isSoldOut": false,
-        "isSpicy": true,
-        "tags": [
-          "noodles",
-          "pork",
-          "vinegar"
-        ]
-      },
-      {
-        "id": "r48m3",
-        "name": "Wanton Mee",
-        "description": "Springy noodles with char siu and fried wontons.",
-        "price": 6.45,
-        "category": "Noodles",
-        "isSoldOut": false,
-        "isSpicy": false,
-        "tags": [
-          "noodles",
-          "pork",
-          "wanton"
-        ]
-      },
-      {
-        "id": "r48m4",
-        "name": "Roast Pork Rice",
-        "description": "Crackling roast pork belly with rice and sambal.",
-        "price": 7.85,
-        "category": "Rice",
-        "isSoldOut": false,
-        "isSpicy": false,
-        "tags": [
-          "pork",
-          "rice",
-          "roast"
-        ]
-      },
-      {
-        "id": "r48m5",
-        "name": "Chilli Sauce (extra)",
-        "description": "House chilli, extra garlicky.",
-        "price": 0.8,
-        "category": "Sides",
-        "isSoldOut": false,
-        "isSpicy": true,
-        "tags": [
-          "chilli"
-        ]
-      },
-      {
-        "id": "r48m6",
-        "name": "Fried Fishcake (4 pcs)",
-        "description": "Bouncy fried fishcake slices.",
-        "price": 2.8,
-        "category": "Sides",
-        "isSoldOut": false,
-        "isSpicy": false,
-        "tags": [
-          "fish"
-        ]
-      },
-      {
-        "id": "r48m7",
-        "name": "Iced Lemon Tea",
-        "description": "Freshly brewed.",
-        "price": 2.15,
-        "category": "Drinks",
-        "isSoldOut": false,
-        "isSpicy": false,
-        "tags": [
-          "lemon",
-          "tea"
-        ]
-      },
-      {
-        "id": "r48m8",
-        "name": "Kopi",
-        "description": "Coffee with condensed milk.",
-        "price": 1.85,
-        "category": "Drinks",
-        "isSoldOut": false,
-        "isSpicy": false,
-        "tags": [
-          "coffee"
-        ]
-      }
-    ]
-  },
-  {
-    "id": "r49",
-    "name": "Mr Teo Kitchen",
-    "cuisine": "Hawker",
-    "rating": 4.4,
-    "deliveryMinutes": 41,
-    "deliveryFee": 4.34,
-    "isOpen": true,
-    "imageName": "fork.knife",
-    "tags": [
-      "hawker",
-      "local favourites",
-      "halal-friendly",
-      "noodles",
-      "pork"
-    ],
-    "description": "Family-run for decades. Come for the Satay (10 sticks), stay for the chilli.",
-    "area": "Bukit Timah",
-    "reviewCount": 410,
-    "priceLevel": 1,
-    "colorHex": "#C8312B",
-    "menu": [
-      {
-        "id": "r49m1",
-        "name": "Satay (10 sticks)",
-        "description": "Charcoal-grilled chicken satay with peanut sauce.",
-        "price": 8.2,
-        "category": "Mains",
-        "isSoldOut": false,
-        "isSpicy": false,
-        "tags": [
-          "chicken",
-          "grilled",
-          "satay"
-        ]
-      },
-      {
-        "id": "r49m2",
-        "name": "Bak Chor Mee",
-        "description": "Minced pork noodles tossed in vinegar and chilli.",
-        "price": 6.15,
-        "category": "Noodles",
-        "isSoldOut": false,
-        "isSpicy": true,
-        "tags": [
-          "noodles",
-          "pork",
-          "vinegar"
-        ]
-      },
-      {
-        "id": "r49m3",
-        "name": "Fishball Noodles",
-        "description": "Handmade fishballs with dry noodles and chilli.",
-        "price": 5.85,
-        "category": "Noodles",
-        "isSoldOut": false,
-        "isSpicy": true,
-        "tags": [
-          "fish",
-          "noodles"
-        ]
-      },
-      {
-        "id": "r49m4",
-        "name": "Wanton Mee",
-        "description": "Springy noodles with char siu and fried wontons.",
-        "price": 4.7,
-        "category": "Noodles",
-        "isSoldOut": false,
-        "isSpicy": false,
-        "tags": [
-          "noodles",
-          "pork",
-          "wanton"
-        ]
-      },
-      {
-        "id": "r49m5",
-        "name": "Duck Rice",
-        "description": "Braised duck with herbal gravy over rice.",
-        "price": 5.0,
-        "category": "Rice",
-        "isSoldOut": false,
-        "isSpicy": false,
-        "tags": [
-          "braised",
-          "duck",
-          "rice"
-        ]
-      },
-      {
-        "id": "r49m6",
-        "name": "Braised Egg",
-        "description": "Soy-braised egg.",
-        "price": 1.1,
-        "category": "Sides",
-        "isSoldOut": false,
-        "isSpicy": false,
-        "tags": [
-          "egg"
-        ]
-      },
-      {
-        "id": "r49m7",
-        "name": "Chilli Sauce (extra)",
-        "description": "House chilli, extra garlicky.",
-        "price": 0.8,
-        "category": "Sides",
-        "isSoldOut": false,
-        "isSpicy": true,
-        "tags": [
-          "chilli"
-        ]
-      },
-      {
-        "id": "r49m8",
+        "id": "r46m10",
         "name": "Barley Water",
         "description": "Homemade, lightly sweetened.",
-        "price": 2.05,
+        "price": 1.75,
         "category": "Drinks",
         "isSoldOut": false,
         "isSpicy": false,
@@ -6556,353 +6037,42 @@
     ]
   },
   {
-    "id": "r50",
-    "name": "Mdm Ong Ramen-ya",
-    "cuisine": "Japanese",
-    "rating": 4.8,
-    "deliveryMinutes": 16,
-    "deliveryFee": 2.85,
-    "isOpen": true,
-    "imageName": "fish.fill",
-    "tags": [
-      "japanese",
-      "sushi",
-      "rice",
-      "chicken"
-    ],
-    "description": "Counter-style Japanese comfort food. Order the Spicy Miso Ramen.",
-    "area": "Tampines",
-    "reviewCount": 1569,
-    "priceLevel": 2,
-    "colorHex": "#C8312B",
-    "menu": [
-      {
-        "id": "r50m1",
-        "name": "Spicy Miso Ramen",
-        "description": "Miso broth with chilli mince.",
-        "price": 12.7,
-        "category": "Noodles",
-        "isSoldOut": false,
-        "isSpicy": true,
-        "tags": [
-          "miso",
-          "noodles",
-          "ramen"
-        ]
-      },
-      {
-        "id": "r50m2",
-        "name": "Tonkotsu Ramen",
-        "description": "Pork bone broth ramen with chashu and egg.",
-        "price": 13.15,
-        "category": "Noodles",
-        "isSoldOut": false,
-        "isSpicy": false,
-        "tags": [
-          "noodles",
-          "pork",
-          "ramen"
-        ]
-      },
-      {
-        "id": "r50m3",
-        "name": "Chirashi Don",
-        "description": "Assorted sashimi over sushi rice.",
-        "price": 26.25,
-        "category": "Rice",
-        "isSoldOut": false,
-        "isSpicy": false,
-        "tags": [
-          "rice",
-          "sashimi"
-        ]
-      },
-      {
-        "id": "r50m4",
-        "name": "Salmon Sashimi Don",
-        "description": "Fresh salmon slices over seasoned rice.",
-        "price": 17.7,
-        "category": "Rice",
-        "isSoldOut": false,
-        "isSpicy": false,
-        "tags": [
-          "rice",
-          "salmon",
-          "sashimi"
-        ]
-      },
-      {
-        "id": "r50m5",
-        "name": "Gyudon",
-        "description": "Sliced beef and onions simmered in sweet soy.",
-        "price": 9.55,
-        "category": "Rice",
-        "isSoldOut": false,
-        "isSpicy": false,
-        "tags": [
-          "beef",
-          "rice"
-        ]
-      },
-      {
-        "id": "r50m6",
-        "name": "Chicken Katsu Curry",
-        "description": "Panko chicken cutlet with Japanese curry.",
-        "price": 10.75,
-        "category": "Rice",
-        "isSoldOut": false,
-        "isSpicy": false,
-        "tags": [
-          "chicken",
-          "curry",
-          "fried"
-        ]
-      },
-      {
-        "id": "r50m7",
-        "name": "Assorted Sushi (10 pcs)",
-        "description": "Chef's selection of nigiri.",
-        "price": 25.85,
-        "category": "Sets",
-        "isSoldOut": false,
-        "isSpicy": false,
-        "tags": [
-          "fish",
-          "sushi"
-        ]
-      },
-      {
-        "id": "r50m8",
-        "name": "Karaage Set",
-        "description": "Japanese fried chicken with rice and miso soup.",
-        "price": 13.3,
-        "category": "Sets",
-        "isSoldOut": false,
-        "isSpicy": false,
-        "tags": [
-          "chicken",
-          "fried",
-          "rice"
-        ]
-      },
-      {
-        "id": "r50m9",
-        "name": "Miso Soup",
-        "description": "Tofu and seaweed miso soup.",
-        "price": 2.75,
-        "category": "Sides",
-        "isSoldOut": false,
-        "isSpicy": false,
-        "tags": [
-          "soup",
-          "tofu"
-        ]
-      },
-      {
-        "id": "r50m10",
-        "name": "Takoyaki (6 pcs)",
-        "description": "Octopus balls with mayo and bonito.",
-        "price": 5.55,
-        "category": "Snacks",
-        "isSoldOut": false,
-        "isSpicy": false,
-        "tags": [
-          "octopus",
-          "snack"
-        ]
-      },
-      {
-        "id": "r50m11",
-        "name": "Lime Juice",
-        "description": "Freshly squeezed.",
-        "price": 3.0,
-        "category": "Drinks",
-        "isSoldOut": false,
-        "isSpicy": false,
-        "tags": [
-          "lime"
-        ]
-      }
-    ]
-  },
-  {
-    "id": "r51",
-    "name": "Mdm Chua Salad Bar",
-    "cuisine": "Salads",
-    "rating": 4.5,
-    "deliveryMinutes": 22,
-    "deliveryFee": 1.11,
-    "isOpen": true,
-    "imageName": "leaf.fill",
-    "tags": [
-      "healthy",
-      "salads",
-      "bowl",
-      "chicken"
-    ],
-    "description": "Fresh bowls built your way in Clementi. The Grilled Chicken Bowl is popular.",
-    "area": "Clementi",
-    "reviewCount": 20,
-    "priceLevel": 3,
-    "colorHex": "#2A9D6F",
-    "menu": [
-      {
-        "id": "r51m1",
-        "name": "Grilled Chicken Bowl",
-        "description": "Brown rice, grilled chicken and greens.",
-        "price": 11.85,
-        "category": "Mains",
-        "isSoldOut": false,
-        "isSpicy": false,
-        "tags": [
-          "bowl",
-          "chicken",
-          "healthy"
-        ]
-      },
-      {
-        "id": "r51m2",
-        "name": "Quinoa Falafel Bowl",
-        "description": "Quinoa, falafel and hummus.",
-        "price": 13.05,
-        "category": "Mains",
-        "isSoldOut": false,
-        "isSpicy": false,
-        "tags": [
-          "bowl",
-          "quinoa",
-          "vegetarian"
-        ]
-      },
-      {
-        "id": "r51m3",
-        "name": "Salmon Poke Bowl",
-        "description": "Salmon, avocado and edamame over rice.",
-        "price": 16.65,
-        "category": "Mains",
-        "isSoldOut": false,
-        "isSpicy": false,
-        "tags": [
-          "bowl",
-          "rice",
-          "salmon"
-        ]
-      },
-      {
-        "id": "r51m4",
-        "name": "Caesar Chicken Salad",
-        "description": "Romaine, chicken and parmesan.",
-        "price": 10.95,
-        "category": "Mains",
-        "isSoldOut": false,
-        "isSpicy": false,
-        "tags": [
-          "chicken",
-          "salad"
-        ]
-      },
-      {
-        "id": "r51m5",
-        "name": "Tofu Teriyaki Bowl",
-        "description": "Teriyaki tofu with sesame greens.",
-        "price": 13.35,
-        "category": "Mains",
-        "isSoldOut": false,
-        "isSpicy": false,
-        "tags": [
-          "bowl",
-          "tofu",
-          "vegetarian"
-        ]
-      },
-      {
-        "id": "r51m6",
-        "name": "Sweet Potato Fries",
-        "description": "Baked sweet potato wedges.",
-        "price": 4.9,
-        "category": "Sides",
-        "isSoldOut": false,
-        "isSpicy": false,
-        "tags": [
-          "sweet potato"
-        ]
-      },
-      {
-        "id": "r51m7",
-        "name": "Fruit Cup",
-        "description": "Seasonal fruit.",
-        "price": 4.55,
-        "category": "Sides",
-        "isSoldOut": false,
-        "isSpicy": false,
-        "tags": [
-          "fruit"
-        ]
-      },
-      {
-        "id": "r51m8",
-        "name": "Boiled Egg (2)",
-        "description": "Protein add-on.",
-        "price": 3.0,
-        "category": "Sides",
-        "isSoldOut": false,
-        "isSpicy": false,
-        "tags": [
-          "egg"
-        ]
-      },
-      {
-        "id": "r51m9",
-        "name": "Sugarcane Juice",
-        "description": "Freshly pressed.",
-        "price": 2.7,
-        "category": "Drinks",
-        "isSoldOut": false,
-        "isSpicy": false,
-        "tags": [
-          "sugarcane"
-        ]
-      }
-    ]
-  },
-  {
-    "id": "r52",
-    "name": "Mr Koh Spicy House",
+    "id": "r47",
+    "name": "Uncle Roy Spicy House",
     "cuisine": "Sichuan",
-    "rating": 4.8,
+    "rating": 3.7,
     "deliveryMinutes": 31,
-    "deliveryFee": 3.0,
-    "isOpen": true,
-    "imageName": "flame.fill",
+    "deliveryFee": 4.24,
+    "isOpen": false,
+    "imageName": "fork.knife",
     "tags": [
       "sichuan",
       "mala",
-      "numbing spicy",
       "hotpot",
       "spicy"
     ],
-    "description": "Heat that builds slowly in Telok Ayer. Start with the Kung Pao Chicken.",
-    "area": "Telok Ayer",
-    "reviewCount": 37,
+    "description": "Sichuan peppercorns, dried chillies and a lot of wok. Order the Mala Tang.",
+    "area": "Bukit Timah",
+    "reviewCount": 368,
     "priceLevel": 3,
-    "colorHex": "#D70F64",
+    "colorHex": "#E76F51",
     "menu": [
       {
-        "id": "r52m1",
-        "name": "Kung Pao Chicken",
-        "description": "Chicken with peanuts and dried chillies.",
-        "price": 14.5,
+        "id": "r47m1",
+        "name": "Mala Tang",
+        "description": "Spicy peppercorn soup with your pick of skewers.",
+        "price": 10.85,
         "category": "Mains",
         "isSoldOut": false,
         "isSpicy": true,
         "tags": [
-          "chicken",
-          "peanut",
+          "mala",
+          "soup",
           "spicy"
         ]
       },
       {
-        "id": "r52m2",
+        "id": "r47m2",
         "name": "Boiled Fish in Chilli Oil",
         "description": "Fish fillets poached in numbing chilli oil.",
         "price": 28.0,
@@ -6916,24 +6086,23 @@
         ]
       },
       {
-        "id": "r52m3",
-        "name": "Mapo Tofu",
-        "description": "Silken tofu in chilli bean sauce with minced pork.",
-        "price": 9.5,
+        "id": "r47m3",
+        "name": "Twice-cooked Pork",
+        "description": "Pork belly stir-fried with leeks and chilli bean paste.",
+        "price": 15.4,
         "category": "Mains",
         "isSoldOut": false,
         "isSpicy": true,
         "tags": [
           "pork",
-          "spicy",
-          "tofu"
+          "spicy"
         ]
       },
       {
-        "id": "r52m4",
+        "id": "r47m4",
         "name": "Mala Xiang Guo (Small)",
         "description": "Pick-your-own dry stir-fry, small.",
-        "price": 13.2,
+        "price": 11.1,
         "category": "Mains",
         "isSoldOut": false,
         "isSpicy": true,
@@ -6944,21 +6113,21 @@
         ]
       },
       {
-        "id": "r52m5",
-        "name": "Mala Tang",
-        "description": "Spicy peppercorn soup with your pick of skewers.",
-        "price": 14.65,
+        "id": "r47m5",
+        "name": "Chongqing Chicken",
+        "description": "Crispy chicken buried in dried chillies.",
+        "price": 16.55,
         "category": "Mains",
         "isSoldOut": false,
         "isSpicy": true,
         "tags": [
-          "mala",
-          "soup",
+          "chicken",
+          "fried",
           "spicy"
         ]
       },
       {
-        "id": "r52m6",
+        "id": "r47m6",
         "name": "Dan Dan Noodles",
         "description": "Noodles in a sesame chilli sauce.",
         "price": 9.05,
@@ -6972,22 +6141,809 @@
         ]
       },
       {
-        "id": "r52m7",
-        "name": "Steamed Rice",
-        "description": "Plain white rice.",
-        "price": 1.1,
+        "id": "r47m7",
+        "name": "Smashed Cucumber",
+        "description": "Cold cucumber with garlic and vinegar.",
+        "price": 5.7,
         "category": "Sides",
         "isSoldOut": false,
         "isSpicy": false,
         "tags": [
+          "cucumber",
+          "vegetable"
+        ]
+      },
+      {
+        "id": "r47m8",
+        "name": "Cumin Lamb Skewers (5 pcs)",
+        "description": "Grilled lamb skewers dusted with cumin.",
+        "price": 9.45,
+        "category": "Snacks",
+        "isSoldOut": false,
+        "isSpicy": true,
+        "tags": [
+          "grilled",
+          "lamb",
+          "skewer"
+        ]
+      },
+      {
+        "id": "r47m9",
+        "name": "Iced Lemon Tea",
+        "description": "Freshly brewed.",
+        "price": 2.95,
+        "category": "Drinks",
+        "isSoldOut": false,
+        "isSpicy": false,
+        "tags": [
+          "lemon",
+          "tea"
+        ]
+      },
+      {
+        "id": "r47m10",
+        "name": "Barley Water",
+        "description": "Homemade, lightly sweetened.",
+        "price": 2.3,
+        "category": "Drinks",
+        "isSoldOut": false,
+        "isSpicy": false,
+        "tags": [
+          "barley"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "r48",
+    "name": "Old Tan Food Stall",
+    "cuisine": "Hawker",
+    "rating": 4.9,
+    "deliveryMinutes": 36,
+    "deliveryFee": 1.7,
+    "isOpen": true,
+    "imageName": "fork.knife",
+    "tags": [
+      "hawker",
+      "local favourites",
+      "halal-friendly",
+      "wok hei",
+      "rice",
+      "noodles"
+    ],
+    "description": "A neighbourhood stall known for Carrot Cake (Black), served the way it was in the old hawker centres.",
+    "area": "Holland Village",
+    "reviewCount": 385,
+    "priceLevel": 1,
+    "colorHex": "#C8312B",
+    "menu": [
+      {
+        "id": "r48m1",
+        "name": "Carrot Cake (Black)",
+        "description": "Fried radish cake with sweet dark sauce and egg.",
+        "price": 5.05,
+        "category": "Mains",
+        "isSoldOut": false,
+        "isSpicy": false,
+        "tags": [
+          "egg",
+          "radish cake",
+          "wok hei"
+        ]
+      },
+      {
+        "id": "r48m2",
+        "name": "Satay (10 sticks)",
+        "description": "Charcoal-grilled chicken satay with peanut sauce.",
+        "price": 10.45,
+        "category": "Mains",
+        "isSoldOut": false,
+        "isSpicy": false,
+        "tags": [
+          "chicken",
+          "grilled",
+          "satay"
+        ]
+      },
+      {
+        "id": "r48m3",
+        "name": "Bak Chor Mee",
+        "description": "Minced pork noodles tossed in vinegar and chilli.",
+        "price": 6.0,
+        "category": "Noodles",
+        "isSoldOut": false,
+        "isSpicy": true,
+        "tags": [
+          "noodles",
+          "pork",
+          "vinegar"
+        ]
+      },
+      {
+        "id": "r48m4",
+        "name": "Wanton Mee",
+        "description": "Springy noodles with char siu and fried wontons.",
+        "price": 5.85,
+        "category": "Noodles",
+        "isSoldOut": false,
+        "isSpicy": false,
+        "tags": [
+          "noodles",
+          "pork",
+          "wanton"
+        ]
+      },
+      {
+        "id": "r48m5",
+        "name": "Char Kway Teow",
+        "description": "Flat rice noodles wok-fried with cockles, lap cheong and egg.",
+        "price": 5.1,
+        "category": "Noodles",
+        "isSoldOut": false,
+        "isSpicy": true,
+        "tags": [
+          "cockles",
+          "noodles",
+          "wok hei"
+        ]
+      },
+      {
+        "id": "r48m6",
+        "name": "Chicken Rice",
+        "description": "Poached chicken, fragrant rice and ginger chilli.",
+        "price": 6.25,
+        "category": "Rice",
+        "isSoldOut": false,
+        "isSpicy": false,
+        "tags": [
+          "chicken",
           "rice"
+        ]
+      },
+      {
+        "id": "r48m7",
+        "name": "Roast Pork Rice",
+        "description": "Crackling roast pork belly with rice and sambal.",
+        "price": 6.25,
+        "category": "Rice",
+        "isSoldOut": false,
+        "isSpicy": false,
+        "tags": [
+          "pork",
+          "rice",
+          "roast"
+        ]
+      },
+      {
+        "id": "r48m8",
+        "name": "Duck Rice",
+        "description": "Braised duck with herbal gravy over rice.",
+        "price": 6.95,
+        "category": "Rice",
+        "isSoldOut": false,
+        "isSpicy": false,
+        "tags": [
+          "braised",
+          "duck",
+          "rice"
+        ]
+      },
+      {
+        "id": "r48m9",
+        "name": "Nasi Lemak Set",
+        "description": "Coconut rice with fried chicken wing, egg and sambal.",
+        "price": 6.55,
+        "category": "Rice",
+        "isSoldOut": false,
+        "isSpicy": true,
+        "tags": [
+          "coconut",
+          "rice",
+          "sambal"
+        ]
+      },
+      {
+        "id": "r48m10",
+        "name": "Braised Egg",
+        "description": "Soy-braised egg.",
+        "price": 1.4,
+        "category": "Sides",
+        "isSoldOut": false,
+        "isSpicy": false,
+        "tags": [
+          "egg"
+        ]
+      },
+      {
+        "id": "r48m11",
+        "name": "Fresh Coconut",
+        "description": "Coconut water with flesh.",
+        "price": 4.4,
+        "category": "Drinks",
+        "isSoldOut": false,
+        "isSpicy": false,
+        "tags": [
+          "coconut"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "r49",
+    "name": "Mr Teo Delights",
+    "cuisine": "Hawker",
+    "rating": 4.0,
+    "deliveryMinutes": 26,
+    "deliveryFee": 1.85,
+    "isOpen": true,
+    "imageName": "fork.knife",
+    "tags": [
+      "hawker",
+      "local favourites",
+      "wok hei",
+      "fish",
+      "barley"
+    ],
+    "description": "Wok-fired and made to order. The Carrot Cake (Black) is the one regulars ask for.",
+    "area": "Geylang",
+    "reviewCount": 2571,
+    "priceLevel": 1,
+    "colorHex": "#E4572E",
+    "menu": [
+      {
+        "id": "r49m1",
+        "name": "Carrot Cake (Black)",
+        "description": "Fried radish cake with sweet dark sauce and egg.",
+        "price": 5.4,
+        "category": "Mains",
+        "isSoldOut": false,
+        "isSpicy": false,
+        "tags": [
+          "egg",
+          "radish cake",
+          "wok hei"
+        ]
+      },
+      {
+        "id": "r49m2",
+        "name": "Fishball Noodles",
+        "description": "Handmade fishballs with dry noodles and chilli.",
+        "price": 4.4,
+        "category": "Noodles",
+        "isSoldOut": false,
+        "isSpicy": true,
+        "tags": [
+          "fish",
+          "noodles"
+        ]
+      },
+      {
+        "id": "r49m3",
+        "name": "Roast Pork Rice",
+        "description": "Crackling roast pork belly with rice and sambal.",
+        "price": 7.95,
+        "category": "Rice",
+        "isSoldOut": false,
+        "isSpicy": false,
+        "tags": [
+          "pork",
+          "rice",
+          "roast"
+        ]
+      },
+      {
+        "id": "r49m4",
+        "name": "Fried Fishcake (4 pcs)",
+        "description": "Bouncy fried fishcake slices.",
+        "price": 2.8,
+        "category": "Sides",
+        "isSoldOut": false,
+        "isSpicy": false,
+        "tags": [
+          "fish"
+        ]
+      },
+      {
+        "id": "r49m5",
+        "name": "Sugarcane Juice",
+        "description": "Freshly pressed.",
+        "price": 3.05,
+        "category": "Drinks",
+        "isSoldOut": false,
+        "isSpicy": false,
+        "tags": [
+          "sugarcane"
+        ]
+      },
+      {
+        "id": "r49m6",
+        "name": "Barley Water",
+        "description": "Homemade, lightly sweetened.",
+        "price": 2.1,
+        "category": "Drinks",
+        "isSoldOut": false,
+        "isSpicy": false,
+        "tags": [
+          "barley"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "r50",
+    "name": "Mdm Ong Washoku Kitchen",
+    "cuisine": "Japanese",
+    "rating": 4.0,
+    "deliveryMinutes": 30,
+    "deliveryFee": 4.26,
+    "isOpen": true,
+    "imageName": "takeoutbag.and.cup.and.straw.fill",
+    "tags": [
+      "japanese",
+      "sushi",
+      "donburi",
+      "rice",
+      "chicken"
+    ],
+    "description": "Rice bowls and noodles made to order. Try the Tempura Udon.",
+    "area": "Kallang",
+    "reviewCount": 510,
+    "priceLevel": 3,
+    "colorHex": "#8338EC",
+    "menu": [
+      {
+        "id": "r50m1",
+        "name": "Tempura Udon",
+        "description": "Udon in dashi with prawn tempura.",
+        "price": 11.55,
+        "category": "Noodles",
+        "isSoldOut": false,
+        "isSpicy": false,
+        "tags": [
+          "noodles",
+          "prawn",
+          "udon"
+        ]
+      },
+      {
+        "id": "r50m2",
+        "name": "Tonkotsu Ramen",
+        "description": "Pork bone broth ramen with chashu and egg.",
+        "price": 15.5,
+        "category": "Noodles",
+        "isSoldOut": false,
+        "isSpicy": false,
+        "tags": [
+          "noodles",
+          "pork",
+          "ramen"
+        ]
+      },
+      {
+        "id": "r50m3",
+        "name": "Chicken Katsu Curry",
+        "description": "Panko chicken cutlet with Japanese curry.",
+        "price": 11.35,
+        "category": "Rice",
+        "isSoldOut": false,
+        "isSpicy": false,
+        "tags": [
+          "chicken",
+          "curry",
+          "fried"
+        ]
+      },
+      {
+        "id": "r50m4",
+        "name": "Chirashi Don",
+        "description": "Assorted sashimi over sushi rice.",
+        "price": 24.55,
+        "category": "Rice",
+        "isSoldOut": false,
+        "isSpicy": false,
+        "tags": [
+          "rice",
+          "sashimi"
+        ]
+      },
+      {
+        "id": "r50m5",
+        "name": "Salmon Sashimi Don",
+        "description": "Fresh salmon slices over seasoned rice.",
+        "price": 17.65,
+        "category": "Rice",
+        "isSoldOut": false,
+        "isSpicy": false,
+        "tags": [
+          "rice",
+          "salmon",
+          "sashimi"
+        ]
+      },
+      {
+        "id": "r50m6",
+        "name": "Gyudon",
+        "description": "Sliced beef and onions simmered in sweet soy.",
+        "price": 8.3,
+        "category": "Rice",
+        "isSoldOut": false,
+        "isSpicy": false,
+        "tags": [
+          "beef",
+          "rice"
+        ]
+      },
+      {
+        "id": "r50m7",
+        "name": "Assorted Sushi (10 pcs)",
+        "description": "Chef's selection of nigiri.",
+        "price": 23.95,
+        "category": "Sets",
+        "isSoldOut": false,
+        "isSpicy": false,
+        "tags": [
+          "fish",
+          "sushi"
+        ]
+      },
+      {
+        "id": "r50m8",
+        "name": "Karaage Set",
+        "description": "Japanese fried chicken with rice and miso soup.",
+        "price": 12.1,
+        "category": "Sets",
+        "isSoldOut": false,
+        "isSpicy": false,
+        "tags": [
+          "chicken",
+          "fried",
+          "rice"
+        ]
+      },
+      {
+        "id": "r50m9",
+        "name": "Miso Soup",
+        "description": "Tofu and seaweed miso soup.",
+        "price": 3.25,
+        "category": "Sides",
+        "isSoldOut": false,
+        "isSpicy": false,
+        "tags": [
+          "soup",
+          "tofu"
+        ]
+      },
+      {
+        "id": "r50m10",
+        "name": "Takoyaki (6 pcs)",
+        "description": "Octopus balls with mayo and bonito.",
+        "price": 6.55,
+        "category": "Snacks",
+        "isSoldOut": false,
+        "isSpicy": false,
+        "tags": [
+          "octopus",
+          "snack"
+        ]
+      },
+      {
+        "id": "r50m11",
+        "name": "Matcha Mochi (3 pcs)",
+        "description": "Chewy mochi with red bean.",
+        "price": 4.35,
+        "category": "Desserts",
+        "isSoldOut": false,
+        "isSpicy": false,
+        "tags": [
+          "matcha",
+          "mochi"
+        ]
+      },
+      {
+        "id": "r50m12",
+        "name": "Barley Water",
+        "description": "Homemade, lightly sweetened.",
+        "price": 2.15,
+        "category": "Drinks",
+        "isSoldOut": false,
+        "isSpicy": false,
+        "tags": [
+          "barley"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "r51",
+    "name": "Mdm Chua Salad Bar",
+    "cuisine": "Salads",
+    "rating": 4.4,
+    "deliveryMinutes": 15,
+    "deliveryFee": 4.65,
+    "isOpen": true,
+    "imageName": "leaf.fill",
+    "tags": [
+      "healthy",
+      "salads",
+      "vegetarian",
+      "bowl"
+    ],
+    "description": "Fresh bowls built your way in Lavender. The Grilled Chicken Bowl is popular.",
+    "area": "Lavender",
+    "reviewCount": 2819,
+    "priceLevel": 2,
+    "colorHex": "#7A8B2E",
+    "menu": [
+      {
+        "id": "r51m1",
+        "name": "Grilled Chicken Bowl",
+        "description": "Brown rice, grilled chicken and greens.",
+        "price": 12.95,
+        "category": "Mains",
+        "isSoldOut": false,
+        "isSpicy": false,
+        "tags": [
+          "bowl",
+          "chicken",
+          "healthy"
+        ]
+      },
+      {
+        "id": "r51m2",
+        "name": "Quinoa Falafel Bowl",
+        "description": "Quinoa, falafel and hummus.",
+        "price": 14.85,
+        "category": "Mains",
+        "isSoldOut": false,
+        "isSpicy": false,
+        "tags": [
+          "bowl",
+          "quinoa",
+          "vegetarian"
+        ]
+      },
+      {
+        "id": "r51m3",
+        "name": "Salmon Poke Bowl",
+        "description": "Salmon, avocado and edamame over rice.",
+        "price": 16.15,
+        "category": "Mains",
+        "isSoldOut": false,
+        "isSpicy": false,
+        "tags": [
+          "bowl",
+          "rice",
+          "salmon"
+        ]
+      },
+      {
+        "id": "r51m4",
+        "name": "Tofu Teriyaki Bowl",
+        "description": "Teriyaki tofu with sesame greens.",
+        "price": 11.95,
+        "category": "Mains",
+        "isSoldOut": false,
+        "isSpicy": false,
+        "tags": [
+          "bowl",
+          "tofu",
+          "vegetarian"
+        ]
+      },
+      {
+        "id": "r51m5",
+        "name": "Avocado Wrap",
+        "description": "Avocado, hummus and greens in a wrap.",
+        "price": 10.3,
+        "category": "Mains",
+        "isSoldOut": false,
+        "isSpicy": false,
+        "tags": [
+          "avocado",
+          "vegetarian",
+          "wrap"
+        ]
+      },
+      {
+        "id": "r51m6",
+        "name": "Caesar Chicken Salad",
+        "description": "Romaine, chicken and parmesan.",
+        "price": 10.85,
+        "category": "Mains",
+        "isSoldOut": false,
+        "isSpicy": false,
+        "tags": [
+          "chicken",
+          "salad"
+        ]
+      },
+      {
+        "id": "r51m7",
+        "name": "Sweet Potato Fries",
+        "description": "Baked sweet potato wedges.",
+        "price": 5.05,
+        "category": "Sides",
+        "isSoldOut": false,
+        "isSpicy": false,
+        "tags": [
+          "sweet potato"
+        ]
+      },
+      {
+        "id": "r51m8",
+        "name": "Fruit Cup",
+        "description": "Seasonal fruit.",
+        "price": 4.3,
+        "category": "Sides",
+        "isSoldOut": false,
+        "isSpicy": false,
+        "tags": [
+          "fruit"
+        ]
+      },
+      {
+        "id": "r51m9",
+        "name": "Boiled Egg (2)",
+        "description": "Protein add-on.",
+        "price": 2.25,
+        "category": "Sides",
+        "isSoldOut": false,
+        "isSpicy": false,
+        "tags": [
+          "egg"
+        ]
+      },
+      {
+        "id": "r51m10",
+        "name": "Lime Juice",
+        "description": "Freshly squeezed.",
+        "price": 2.85,
+        "category": "Drinks",
+        "isSoldOut": false,
+        "isSpicy": false,
+        "tags": [
+          "lime"
+        ]
+      },
+      {
+        "id": "r51m11",
+        "name": "Green Smoothie",
+        "description": "Spinach, apple and banana.",
+        "price": 6.4,
+        "category": "Drinks",
+        "isSoldOut": false,
+        "isSpicy": false,
+        "tags": [
+          "smoothie"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "r52",
+    "name": "Mr Koh Mala Kitchen",
+    "cuisine": "Sichuan",
+    "rating": 4.8,
+    "deliveryMinutes": 31,
+    "deliveryFee": 3.0,
+    "isOpen": true,
+    "imageName": "flame.fill",
+    "tags": [
+      "sichuan",
+      "mala",
+      "numbing spicy",
+      "hotpot",
+      "spicy",
+      "pork"
+    ],
+    "description": "Heat that builds slowly in Clementi. Start with the Boiled Fish in Chilli Oil.",
+    "area": "Clementi",
+    "reviewCount": 37,
+    "priceLevel": 3,
+    "colorHex": "#D70F64",
+    "menu": [
+      {
+        "id": "r52m1",
+        "name": "Boiled Fish in Chilli Oil",
+        "description": "Fish fillets poached in numbing chilli oil.",
+        "price": 25.75,
+        "category": "Mains",
+        "isSoldOut": false,
+        "isSpicy": true,
+        "tags": [
+          "chilli oil",
+          "fish",
+          "spicy"
+        ]
+      },
+      {
+        "id": "r52m2",
+        "name": "Mala Xiang Guo (Small)",
+        "description": "Pick-your-own dry stir-fry, small.",
+        "price": 13.05,
+        "category": "Mains",
+        "isSoldOut": false,
+        "isSpicy": true,
+        "tags": [
+          "mala",
+          "spicy",
+          "stir-fry"
+        ]
+      },
+      {
+        "id": "r52m3",
+        "name": "Chongqing Chicken",
+        "description": "Crispy chicken buried in dried chillies.",
+        "price": 19.55,
+        "category": "Mains",
+        "isSoldOut": false,
+        "isSpicy": true,
+        "tags": [
+          "chicken",
+          "fried",
+          "spicy"
+        ]
+      },
+      {
+        "id": "r52m4",
+        "name": "Twice-cooked Pork",
+        "description": "Pork belly stir-fried with leeks and chilli bean paste.",
+        "price": 12.7,
+        "category": "Mains",
+        "isSoldOut": false,
+        "isSpicy": true,
+        "tags": [
+          "pork",
+          "spicy"
+        ]
+      },
+      {
+        "id": "r52m5",
+        "name": "Mapo Tofu",
+        "description": "Silken tofu in chilli bean sauce with minced pork.",
+        "price": 13.75,
+        "category": "Mains",
+        "isSoldOut": false,
+        "isSpicy": true,
+        "tags": [
+          "pork",
+          "spicy",
+          "tofu"
+        ]
+      },
+      {
+        "id": "r52m6",
+        "name": "Dan Dan Noodles",
+        "description": "Noodles in a sesame chilli sauce.",
+        "price": 7.45,
+        "category": "Noodles",
+        "isSoldOut": false,
+        "isSpicy": true,
+        "tags": [
+          "noodles",
+          "sesame",
+          "spicy"
+        ]
+      },
+      {
+        "id": "r52m7",
+        "name": "Cumin Lamb Skewers (5 pcs)",
+        "description": "Grilled lamb skewers dusted with cumin.",
+        "price": 9.9,
+        "category": "Snacks",
+        "isSoldOut": false,
+        "isSpicy": true,
+        "tags": [
+          "grilled",
+          "lamb",
+          "skewer"
         ]
       },
       {
         "id": "r52m8",
         "name": "Spring Onion Pancake",
         "description": "Flaky pan-fried pancake.",
-        "price": 4.55,
+        "price": 5.95,
         "category": "Snacks",
         "isSoldOut": false,
         "isSpicy": false,
@@ -6999,12 +6955,24 @@
         "id": "r52m9",
         "name": "Soya Bean Milk",
         "description": "Fresh, hot or cold.",
-        "price": 1.65,
+        "price": 1.75,
         "category": "Drinks",
         "isSoldOut": false,
         "isSpicy": false,
         "tags": [
           "soya"
+        ]
+      },
+      {
+        "id": "r52m10",
+        "name": "Fresh Coconut",
+        "description": "Coconut water with flesh.",
+        "price": 3.85,
+        "category": "Drinks",
+        "isSoldOut": false,
+        "isSpicy": false,
+        "tags": [
+          "coconut"
         ]
       }
     ]

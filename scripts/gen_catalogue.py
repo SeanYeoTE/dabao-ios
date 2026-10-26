@@ -615,6 +615,11 @@ def build():
             slots.append((cuisine, index < n_laksa))
     assert len(slots) == 95, len(slots)
     rng.shuffle(slots)
+    # The first laksa stall (the history-laksa fixture's "L1") is a Peranakan one, so the worked example
+    # in the sprint 2 contract has a Peranakan profile.
+    first_laksa = next(i for i, slot in enumerate(slots) if slot[1])
+    first_peranakan = next(i for i, slot in enumerate(slots) if slot == ("Peranakan", True))
+    slots[first_laksa], slots[first_peranakan] = slots[first_peranakan], slots[first_laksa]
 
     used_names = set(b["name"] for b in BASE)
     owners = list(OWNERS)
