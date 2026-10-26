@@ -16,6 +16,7 @@ final class AboutViewController: UITableViewController {
         title = "About"
         navigationController?.navigationBar.prefersLargeTitles = true
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
+        tableView.backgroundColor = DS.Color.background
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -39,7 +40,10 @@ final class AboutViewController: UITableViewController {
         } else {
             content.text = Credits.contributors[indexPath.row]
         }
+        content.textProperties.color = DS.Color.textPrimary
+        content.textProperties.adjustsFontForContentSizeCategory = true
         cell.contentConfiguration = content
+        cell.backgroundColor = DS.Color.surface
         cell.selectionStyle = .none
         return cell
     }

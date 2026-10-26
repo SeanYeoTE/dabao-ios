@@ -12,22 +12,30 @@ final class MenuPresenterTests: XCTestCase {
     final class FakeView: MenuViewProtocol {
         var shownSections: [MenuSectionViewModel] = []
         var reloadedRows: [MenuItemViewModel] = []
-        var cartBarTitle: String??
+        var cartBar: CartBarViewModel??
         var messages: [String] = []
+        var replacePrompts: [String] = []
+        var confirmReplace: (() -> Void)?
 
         func showLoading(_ isLoading: Bool) {}
         func showHeader(_ header: MenuHeaderViewModel) {}
         func showSections(_ sections: [MenuSectionViewModel]) { shownSections = sections }
         func reloadRow(_ row: MenuItemViewModel) { reloadedRows.append(row) }
-        func showCartBar(title: String?) { cartBarTitle = .some(title) }
+        func showCartBar(_ bar: CartBarViewModel?) { cartBar = .some(bar) }
         func showMessage(title: String, message: String) { messages.append(title) }
+        func showReplaceCartConfirmation(currentRestaurantName: String, onReplace: @escaping () -> Void) {
+            replacePrompts.append(currentRestaurantName)
+            confirmReplace = onReplace
+        }
     }
 
     final class FakeInteractor: MenuInteractorInputProtocol {
         var addedIDs: [String] = []
+        var replacedIDs: [String] = []
         func loadMenu() {}
         func addItem(id: String) { addedIDs.append(id) }
         func removeItem(id: String) {}
+        func replaceCart(withItemID id: String) { replacedIDs.append(id) }
     }
 
     final class FakeRouter: MenuRouterProtocol {
@@ -86,8 +94,21 @@ final class MenuPresenterTests: XCTestCase {
 
         presenter.didUpdateCart(CartSummary(quantities: ["a": 2], itemCount: 2, total: 9))
 
-        XCTAssertEqual(view.cartBarTitle, .some("View cart · 2 items · $9.00"))
+        XCTAssertEqual(view.cartBar, .some(CartBarViewModel(itemCount: 2, totalText: "$9.00")))
         XCTAssertEqual(view.reloadedRows.last?.quantityText, "×2")
+    }
+
+    func test_differentRestaurant_asksViewToConfirm_thenReplacesCart() {
+        let view = FakeView()
+        let interactor = FakeInteractor()
+        let presenter = MenuPresenter(view: view, interactor: interactor, router: FakeRouter())
+
+        presenter.didRequestReplaceCart(currentRestaurantName: "Other Place", itemID: "a")
+        XCTAssertEqual(view.replacePrompts, ["Other Place"])
+        XCTAssertTrue(interactor.replacedIDs.isEmpty)
+
+        view.confirmReplace?()
+        XCTAssertEqual(interactor.replacedIDs, ["a"])
     }
 
     // TODO (Day 14): write a test that checks the "sold out" message appears
