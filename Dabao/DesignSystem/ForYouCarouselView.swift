@@ -26,7 +26,7 @@ private final class ForYouCardCell: UICollectionViewCell {
         closedBadge.font = DS.Font.caption
         closedBadge.adjustsFontForContentSizeCategory = true
         closedBadge.textColor = DS.Color.danger
-        closedBadge.backgroundColor = DS.Color.separator
+        closedBadge.backgroundColor = DS.Color.background
         closedBadge.isHidden = true
 
         let topRow = AdaptiveStackView([tile, closedBadge], spacing: DS.Spacing.s, alignment: .top)

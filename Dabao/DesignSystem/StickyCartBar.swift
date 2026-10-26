@@ -8,6 +8,8 @@ final class StickyCartBar: UIControl {
     private let countLabel = InsetLabel()
     private let titleLabel = UILabel.ds(font: DS.Font.headline, color: DS.Color.onBrand)
     private let totalLabel = UILabel.ds(font: DS.Font.headline, color: DS.Color.onBrand)
+    private var itemCount = 0
+    private var title = ""
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -39,6 +41,7 @@ final class StickyCartBar: UIControl {
         countLabel.contentInsets = UIEdgeInsets(top: DS.Spacing.xs, left: DS.Spacing.s, bottom: DS.Spacing.xs, right: DS.Spacing.s)
         countLabel.setContentHuggingPriority(.required, for: .horizontal)
         countLabel.setContentCompressionResistancePriority(.required, for: .horizontal)
+        countLabel.widthAnchor.constraint(greaterThanOrEqualTo: countLabel.heightAnchor).isActive = true
 
         titleLabel.setContentHuggingPriority(.defaultLow, for: .horizontal)
         totalLabel.textAlignment = .natural
@@ -54,6 +57,9 @@ final class StickyCartBar: UIControl {
         addAction(UIAction { [weak self] _ in self?.onTap?() }, for: .touchUpInside)
         isAccessibilityElement = true
         accessibilityTraits = .button
+        registerForTraitChanges([UITraitPreferredContentSizeCategory.self]) { (self: Self, _) in
+            self.updateTexts()
+        }
     }
 
     override func layoutSubviews() {
@@ -62,9 +68,18 @@ final class StickyCartBar: UIControl {
     }
 
     func configure(itemCount: Int, totalText: String, title: String = "View cart") {
-        countLabel.text = "\(itemCount)"
-        titleLabel.text = title
+        self.itemCount = itemCount
+        self.title = title
         totalLabel.text = totalText
         accessibilityLabel = "\(title), \(itemCount) \(itemCount == 1 ? "item" : "items"), \(totalText)"
+        updateTexts()
+    }
+
+    /// At accessibility sizes the count badge would eat a whole row, so the count joins the title instead.
+    private func updateTexts() {
+        let compact = traitCollection.usesAccessibilityLayout
+        countLabel.isHidden = compact
+        countLabel.text = "\(itemCount)"
+        titleLabel.text = compact ? "\(title) (\(itemCount))" : title
     }
 }

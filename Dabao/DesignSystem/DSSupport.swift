@@ -113,8 +113,17 @@ final class SymbolTileView: UIView {
         let configuration = UIImage.SymbolConfiguration(pointSize: side * 0.4, weight: .semibold)
         imageView.image = UIImage(systemName: symbolName, withConfiguration: configuration)
             ?? UIImage(systemName: "fork.knife", withConfiguration: configuration)
-        imageView.tintColor = tint
-        backgroundColor = tint.withAlphaComponent(0.16)
+        // Data-driven colours can be too dark on a dark surface, so lighten them there.
+        let adapted = UIColor { traits in
+            let resolved = tint.resolvedColor(with: traits)
+            guard traits.userInterfaceStyle == .dark else { return resolved }
+            var red: CGFloat = 0, green: CGFloat = 0, blue: CGFloat = 0, alpha: CGFloat = 0
+            resolved.getRed(&red, green: &green, blue: &blue, alpha: &alpha)
+            let mix: CGFloat = 0.4
+            return UIColor(red: red + (1 - red) * mix, green: green + (1 - green) * mix, blue: blue + (1 - blue) * mix, alpha: alpha)
+        }
+        imageView.tintColor = adapted
+        backgroundColor = adapted.withAlphaComponent(0.2)
     }
 }
 

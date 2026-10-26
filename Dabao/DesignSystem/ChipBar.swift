@@ -88,7 +88,7 @@ final class ChipBar: UIView {
                 let selected = button.isSelected
                 configuration.baseForegroundColor = selected ? DS.Color.chipSelectedText : DS.Color.chipText
                 configuration.background.backgroundColor = selected ? DS.Color.chipSelectedBackground : DS.Color.chipBackground
-                configuration.background.strokeColor = selected ? DS.Color.chipSelectedBackground : DS.Color.separator
+                configuration.background.strokeColor = selected ? DS.Color.chipSelectedBackground : DS.Color.textTertiary.withAlphaComponent(0.5)
                 configuration.background.strokeWidth = 1
                 button.configuration = configuration
             }
@@ -105,6 +105,7 @@ final class ChipBar: UIView {
     private func updateSelection() {
         for (title, button) in zip(titles, buttons) {
             button.isSelected = title == selectedTitle
+            button.accessibilityHint = button.isSelected ? "Double tap to clear this filter" : nil
         }
     }
 

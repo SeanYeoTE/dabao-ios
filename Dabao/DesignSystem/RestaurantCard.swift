@@ -66,7 +66,7 @@ final class RestaurantCardCell: CardTableViewCell {
         closedBadge.font = DS.Font.caption
         closedBadge.adjustsFontForContentSizeCategory = true
         closedBadge.textColor = DS.Color.danger
-        closedBadge.backgroundColor = DS.Color.separator
+        closedBadge.backgroundColor = DS.Color.background
         closedBadge.numberOfLines = 0
         closedBadge.isHidden = true
 

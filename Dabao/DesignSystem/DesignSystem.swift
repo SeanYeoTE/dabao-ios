@@ -49,7 +49,7 @@ enum DS {
 
         static let success = dynamic(light: 0x1E7F4F, dark: 0x4CD28A)
         static let warning = dynamic(light: 0xA55A00, dark: 0xFFB340)
-        static let danger = dynamic(light: 0xC62828, dark: 0xFF6B6B)
+        static let danger = dynamic(light: 0xB3261E, dark: 0xFF6B6B)
 
         static let chipBackground = dynamic(light: 0xFFFFFF, dark: 0x2C2C2E)
         static let chipText = dynamic(light: 0x1F1F24, dark: 0xF5F5F7)
