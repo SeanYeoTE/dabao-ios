@@ -81,7 +81,7 @@ final class DeliveryRouteProvider {
         }
     }
 
-    nonisolated private static func fetchRoute(from start: GeoPoint, to end: GeoPoint) async -> DeliveryRoute? {
+    @concurrent nonisolated private static func fetchRoute(from start: GeoPoint, to end: GeoPoint) async -> DeliveryRoute? {
         let request = MKDirections.Request()
         request.source = MKMapItem(placemark: MKPlacemark(coordinate: coordinate(start)))
         request.destination = MKMapItem(placemark: MKPlacemark(coordinate: coordinate(end)))

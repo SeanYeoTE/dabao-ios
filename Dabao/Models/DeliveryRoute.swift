@@ -60,13 +60,19 @@ nonisolated enum DeliveryLocations {
                         longitude: centre.longitude + (lonUnit * 2 - 1) * maxOffsetDegrees)
     }
 
-    /// FNV-1a over the UTF-8 bytes. Unlike `hashValue`, it never changes between launches.
+    /// FNV-1a over the UTF-8 bytes, mixed. Unlike `hashValue`, it never changes between launches.
     static func stableHash(_ text: String) -> UInt64 {
         var hash: UInt64 = 0xcbf29ce484222325
         for byte in text.utf8 {
             hash ^= UInt64(byte)
             hash = hash &* 0x100000001b3
         }
+        // Finalise so the high bits differ too, even for ids that differ in one trailing character.
+        hash ^= hash >> 33
+        hash = hash &* 0xff51afd7ed558ccd
+        hash ^= hash >> 33
+        hash = hash &* 0xc4ceb9fe1a85ec53
+        hash ^= hash >> 33
         return hash
     }
 }
