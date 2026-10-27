@@ -29,3 +29,4 @@ Tested on a dedicated iPhone 17 Pro simulator ("Dabao QA S5", iOS 26), so the sh
 - Save stays enabled on an unchanged, valid profile. Saving is harmless, but it isn't disabled.
 
 XCTest was not run, at the user's request. `DabaoTests` compiles.
+- PR: https://github.com/SeanYeoTE/dabao-ios/pull/3
