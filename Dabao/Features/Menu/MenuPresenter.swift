@@ -72,6 +72,8 @@ final class MenuPresenter: MenuPresenterProtocol, MenuInteractorOutputProtocol {
             view?.showMessage(title: "Sold out", message: "Sorry, \(item.name) is sold out today.")
         case .limitReached(let limit):
             view?.showMessage(title: "That's a lot of \(item.name)!", message: "You can order up to \(limit) of each dish.")
+        case .cartFromAnotherRestaurant(let currentName):
+            view?.showMessage(title: "Cart from another restaurant", message: "Your cart has items from \(currentName). Finish that order or clear your cart before adding dishes from here.")
         }
     }
 

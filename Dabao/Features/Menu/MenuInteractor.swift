@@ -44,6 +44,12 @@ final class MenuInteractor: MenuInteractorInputProtocol {
             return
         }
 
+        // Rule: a cart can only hold food from one restaurant at a time.
+        if let current = cart.restaurant, current.id != restaurant.id, !cart.lines.isEmpty {
+            output?.didFailToAdd(item, reason: .cartFromAnotherRestaurant(current.name))
+            return
+        }
+
         // Rule: at most `maxQuantityPerItem` of any one dish.
         if cart.quantity(of: item) >= CartStore.maxQuantityPerItem {
             output?.didFailToAdd(item, reason: .limitReached(CartStore.maxQuantityPerItem))

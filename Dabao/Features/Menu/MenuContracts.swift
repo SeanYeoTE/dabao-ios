@@ -72,6 +72,7 @@ enum AddToCartFailure: Equatable {
     case restaurantClosed
     case soldOut
     case limitReached(Int)
+    case cartFromAnotherRestaurant(String)   // name of the restaurant already in the cart
 }
 
 // MARK: - View models: exactly what the view needs, already formatted
