@@ -134,7 +134,7 @@ final class DeliveryMapView: UIView {
             rect = rect.union(MKMapRect(x: point.x, y: point.y, width: 0, height: 0))
         }
         guard !rect.isNull else { return }
-        if rect != lastFit {
+        if lastFit.map({ !MKMapRectEqualToRect($0, rect) }) ?? true {
             lastFit = rect
             pendingFit = rect
             applyPendingFit()
