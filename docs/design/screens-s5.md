@@ -25,7 +25,7 @@ Same tokens and rules as [screens-s1.md](./screens-s1.md). The contract is [spri
 |---|---|
 | `AvatarView` | 44 or 88 pt fixed circle. Initials are white rounded bold at 38 % of the diameter. An emoji sits at 50 % on a 20 % tint. A symbol is white at half size. Hidden from VoiceOver. |
 | `ProfileHeaderView` | Self-sizing column. The name and contact line are a single VoiceOver header element ("Aisha Tan, +65 9123 4567 · aisha@example.com"). |
-| `StatsRowView` | Equal-width tiles: a brand symbol, the value (`headline`, 2 lines) and the label (`caption`). Each tile is one element, "Total spent, $45.20". Vertical at AX sizes. |
+| `StatsRowView` | Equal-width tiles: a brand symbol, the value (`headline`, up to 3 lines, then an ellipsis) and the label (`caption`). Each tile is one element, "Total spent, $45.20". Vertical at AX sizes. |
 | `FormFieldView` | Footnote label, a 44 pt+ bordered field on `surface`, and a danger error line. The error is posted as an announcement when it first appears and is added to the field's accessibility value. |
 
 ## Avatar palette

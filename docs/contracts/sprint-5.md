@@ -150,7 +150,7 @@ struct StatItem: Hashable { let value: String; let label: String; let symbolName
 final class StatsRowView: UIView {
     func configure(_ items: [StatItem])
     // Equal-width tiles on DS.Color.surfaceElevated with radius small: a brand-tinted symbol, the value
-    // (headline, wraps up to 2 lines) and the label (caption, textSecondary).
+    // (headline, up to 3 lines, then truncated with an ellipsis) and the label (caption, textSecondary).
     // Switches to a vertical stack at accessibility sizes. Each tile is one VoiceOver element: "<label>, <value>".
 }
 

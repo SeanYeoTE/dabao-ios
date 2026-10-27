@@ -55,7 +55,12 @@ private final class StatTileView: UIView {
         icon.contentMode = .left
         icon.setContentHuggingPriority(.required, for: .vertical)
 
-        let value = UILabel.ds(font: DS.Font.headline, color: DS.Color.textPrimary, lines: 2)
+        // Long restaurant names get three lines and may shrink a little so a long word fits the narrow tile,
+        // then end in an ellipsis rather than a clipped word.
+        let value = UILabel.ds(font: DS.Font.headline, color: DS.Color.textPrimary, lines: 3)
+        value.lineBreakMode = .byTruncatingTail
+        value.adjustsFontSizeToFitWidth = true
+        value.minimumScaleFactor = 0.75
         value.text = item.value
         let label = UILabel.ds(font: DS.Font.caption, color: DS.Color.textSecondary)
         label.text = item.label
