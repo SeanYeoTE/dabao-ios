@@ -48,6 +48,7 @@ final class RestaurantListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "Dabao"
+        navigationItem.backButtonTitle = "Back"
         navigationController?.navigationBar.prefersLargeTitles = true
         view.backgroundColor = DS.Color.background
 
