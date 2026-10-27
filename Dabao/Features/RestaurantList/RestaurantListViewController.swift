@@ -97,7 +97,7 @@ extension RestaurantListViewController: UITableViewDataSource, UITableViewDelega
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let restaurant = restaurants[indexPath.row + 1]
+        let restaurant = restaurants[indexPath.row]
 
         // The Menu screen is a VIPER module. We ask its router to build it for us.
         let menu = MenuRouter.createModule(restaurant: restaurant, cart: CartStore.shared)
