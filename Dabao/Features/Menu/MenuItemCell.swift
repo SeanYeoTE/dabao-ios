@@ -44,7 +44,7 @@ final class MenuItemCell: UITableViewCell {
         addButton.setImage(UIImage(systemName: "plus.circle.fill"), for: .normal)
         removeButton.setImage(UIImage(systemName: "minus.circle"), for: .normal)
         addButton.addAction(UIAction { [weak self] _ in self?.onAdd?() }, for: .touchUpInside)
-        removeButton.addAction(UIAction { [weak self] _ in self?.onAdd?() }, for: .touchUpInside)
+        removeButton.addAction(UIAction { [weak self] _ in self?.onRemove?() }, for: .touchUpInside)
 
         let nameRow = UIStackView(arrangedSubviews: [nameLabel, spicyIcon])
         nameRow.spacing = 4
