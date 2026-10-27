@@ -22,7 +22,16 @@ final class MenuViewController: UIViewController {
         setUpCartBar()
         setUpSpinner()
 
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(cartDidChange),
+                                               name: CartStore.didChangeNotification,
+                                               object: nil)
+
         presenter.viewDidLoad()
+    }
+
+    @objc private func cartDidChange() {
+        presenter.cartDidChange()
     }
 
     private func setUpTableView() {

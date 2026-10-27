@@ -38,6 +38,10 @@ final class MenuPresenter: MenuPresenterProtocol, MenuInteractorOutputProtocol {
         router.showCart()
     }
 
+    func cartDidChange() {
+        interactor.loadMenu()
+    }
+
     // MARK: MenuInteractorOutputProtocol (from the interactor)
 
     func didLoadMenu(restaurant: Restaurant, items: [MenuItem]) {

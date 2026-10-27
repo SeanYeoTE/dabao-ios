@@ -33,6 +33,7 @@ protocol MenuPresenterProtocol: AnyObject {
     func didTapAdd(itemID: String)
     func didTapRemove(itemID: String)
     func didTapCartBar()
+    func cartDidChange()
 }
 
 // MARK: Interactor (the presenter asks the interactor to do things)
