@@ -31,3 +31,12 @@ drags went through `serve-sim@0.1.48`. Each check was confirmed with OCR on a `s
 
 - XCTest not run (standing user request); `DabaoTests` compiles (`build-for-testing`).
 - Sprint 5 agents had no shell or file tools in this session, so the PM wrote every role's code itself, keeping each role's commit tags and file ownership.
+
+## Re-test after merging `main` (Account feature, PR #3)
+
+Merged `origin/main` into this branch. The conflicts were in `Fixtures.swift` (both fixtures kept) and `README.md` (both sections kept). Clean `build` and `build-for-testing` succeed, and the greps are clean. On the QA simulator:
+
+- `history-rating` renders as before.
+- A rating saves and survives a relaunch with `state.json` at `schemaVersion` 2.
+- The closed-restaurant alert and Reorder → Cart (with the note) still work.
+- `profile-sample` shows the Account tab ("Aisha Tan") and the Past orders cards.

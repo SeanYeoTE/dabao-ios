@@ -1,7 +1,7 @@
 import Foundation
 import os
 
-/// Saves and restores `AppState` (the cart and order history) as `state.json`.
+/// Saves and restores `AppState` (the cart, order history and profile) as `state.json`.
 ///
 /// Saves are debounced, so a burst of taps writes once. We take the snapshot on the main actor,
 /// then encode and write it on a background queue so the UI never waits on the disk.
@@ -53,7 +53,7 @@ final class PersistenceController {
 
     // MARK: - Saving
 
-    /// Call after any change to the cart or history. Writes 0.3 s after the last call.
+    /// Call after any change to the cart, history or profile. Writes 0.3 s after the last call.
     func scheduleSave() {
         debounceTask?.cancel()
         debounceTask = Task {
@@ -105,7 +105,8 @@ final class PersistenceController {
     private func currentState() -> AppState {
         AppState(schemaVersion: AppState.currentSchemaVersion,
                  cart: CartStore.shared.persisted,
-                 history: HistoryStore.shared.orders)
+                 history: HistoryStore.shared.orders,
+                 profile: ProfileStore.shared.profile)
     }
 
     private func quarantine() {
