@@ -37,7 +37,8 @@ final class StarRatingView: UIView {
             button.addAction(UIAction { [weak self] _ in self?.select(value) }, for: .touchUpInside)
             stack.addArrangedSubview(button)
             NSLayoutConstraint.activate([
-                button.widthAnchor.constraint(greaterThanOrEqualToConstant: DS.minTapTarget),
+                // Fixed width so the row keeps the same spacing whatever text sits beside it.
+                button.widthAnchor.constraint(equalToConstant: DS.minTapTarget),
                 button.heightAnchor.constraint(greaterThanOrEqualToConstant: DS.minTapTarget)
             ])
             buttons.append(button)
