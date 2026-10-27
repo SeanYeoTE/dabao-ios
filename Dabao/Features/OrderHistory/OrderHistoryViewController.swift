@@ -14,7 +14,7 @@ final class OrderHistoryViewController: UIViewController {
     private var pastOrder: [UUID] = []
     private var hasShownOrders = false
 
-    private let tableView = UITableView(frame: .zero, style: .plain)
+    private let tableView = OrdersTableView(frame: .zero, style: .plain)
     private let emptyState = EmptyStateView(symbolName: "receipt",
                                             title: "No orders yet",
                                             message: "Your past orders will show up here.")
@@ -83,6 +83,13 @@ final class OrderHistoryViewController: UIViewController {
             }
             return cell
         }
+    }
+}
+
+/// Past order cards are mostly controls (body, Reorder, stars), so let a drag that starts on one still scroll.
+private final class OrdersTableView: UITableView {
+    override func touchesShouldCancel(in view: UIView) -> Bool {
+        true
     }
 }
 
