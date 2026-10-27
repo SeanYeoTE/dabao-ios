@@ -1,6 +1,6 @@
 # Design spec: sprint 5
 
-Same tokens and rules as [screens-s1.md](./screens-s1.md). Behaviour is defined in [sprint-5.md](../contracts/sprint-5.md).
+Same tokens and rules as [screens-s1.md](./screens-s1.md). Behaviour is defined in [sprint-5-reorder-rating.md](../contracts/sprint-5-reorder-rating.md).
 
 ## Orders tab
 

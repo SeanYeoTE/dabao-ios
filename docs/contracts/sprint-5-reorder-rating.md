@@ -98,7 +98,7 @@ fixture list in any doc comment that enumerates fixtures.
 
 ## Designer (`Dabao/DesignSystem`, `docs/design`)
 
-Plain values only (no model types). Write `docs/design/screens-s5.md` (layout, spacing, states a–d, dark mode, AX5).
+Plain values only (no model types). Write `docs/design/screens-s5-reorder-rating.md` (layout, spacing, states a–d, dark mode, AX5).
 
 ```swift
 /// Five stars. Outline `star` in DS.Color.brand when empty, `star.fill` in DS.Color.brand when filled.
