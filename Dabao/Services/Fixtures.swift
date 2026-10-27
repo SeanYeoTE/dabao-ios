@@ -7,15 +7,20 @@ import os
 enum Fixtures {
 
     static let names = ["empty", "cart-chicken-rice", "history-laksa", "history-mixed",
-                         "order-on-the-way", "two-active-orders"]
+                         "order-on-the-way", "two-active-orders", "profile-sample"]
+
+    /// The person `profile-sample` signs in as.
+    static let sampleProfile = UserProfile(name: "Aisha Tan", phone: "91234567", email: "aisha@example.com",
+                                           avatarEmoji: "🍜", avatarColor: .teal)
 
     private static let logger = Logger(subsystem: "com.tinkercademy.dabao", category: "fixtures")
 
     /// Applies the named fixture. An unknown name is logged and ignored.
     static func apply(_ name: String, catalog: CatalogStore, cart: CartStore = .shared,
-                      history: HistoryStore = .shared, now: Date = Date()) {
+                      history: HistoryStore = .shared, profiles: ProfileStore = .shared, now: Date = Date()) {
         switch name {
         case "empty":
+            profiles.replace(nil)
             install(spec: [], orders: [], cart: cart, history: history)
         case "cart-chicken-rice":
             install(spec: [(id: "r1", items: [("r1m1", 2), ("r1m5", 1)])], orders: [],
@@ -29,6 +34,10 @@ enum Fixtures {
             install(spec: [], orders: orders, cart: cart, history: history)
         case "history-mixed":
             guard let orders = historyMixed(catalog: catalog, now: now) else { return missing(name) }
+            install(spec: [], orders: orders, cart: cart, history: history)
+        case "profile-sample":
+            guard let orders = historyMixed(catalog: catalog, now: now) else { return missing(name) }
+            profiles.replace(sampleProfile)
             install(spec: [], orders: orders, cart: cart, history: history)
         case "order-on-the-way", "two-active-orders":
             guard let rice = catalog.restaurant(id: "r1"), let riceDish = item("r1m1", in: rice)
@@ -52,6 +61,7 @@ enum Fixtures {
 
     // MARK: - Helpers
 
+    /// Four single-item orders from four restaurants, newest first: laksa, chicken rice, Indian, mala.
     private static func historyMixed(catalog: CatalogStore, now: Date) -> [PastOrder]? {
         guard let laksa = firstRestaurant(in: catalog, where: { $0.tags.contains("laksa") }),
               let laksaDish = laksaDish(of: laksa),

@@ -4,7 +4,7 @@ import Foundation
 @MainActor
 enum AppBootstrap {
 
-    /// 1. `-dabaoReset` deletes saved state. 2. Load the catalogue. 3. Restore history and cart from disk.
+    /// 1. `-dabaoReset` deletes saved state. 2. Load the catalogue. 3. Restore history, profile and cart from disk.
     /// 4. Apply `-dabaoFixture`, which overrides what was restored (and saves). 5. Start the delivery tracker. 6. Build the recommendation index.
     /// Calls `completion` on the main actor once, with the catalogue error if loading failed.
     static func start(completion: @escaping (Error?) -> Void) {
@@ -19,6 +19,7 @@ enum AppBootstrap {
             case .success(let restaurants):
                 let state = PersistenceController.shared.loadState()
                 HistoryStore.shared.replaceAll(state.history)
+                ProfileStore.shared.replace(state.profile)
                 CartStore.shared.restore(state.cart, catalog: CatalogStore.shared)
 
                 if let fixture = LaunchOptions.fixture {
