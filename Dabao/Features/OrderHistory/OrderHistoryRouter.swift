@@ -1,6 +1,6 @@
 import UIKit
 
-/// Builds the Orders module and opens the Receipt, or Order tracking, for an order.
+/// Builds the Orders module, opens the Receipt, Order tracking or Cart, and shows the reorder alerts.
 @MainActor
 final class OrderHistoryRouter: OrderHistoryRouterProtocol {
 
@@ -27,5 +27,22 @@ final class OrderHistoryRouter: OrderHistoryRouterProtocol {
     func showTracking(orderID: UUID) {
         let tracking = OrderTrackingRouter.createModule(orderID: orderID)
         viewController?.navigationController?.pushViewController(tracking, animated: true)
+    }
+
+    func showCart() {
+        viewController?.showCartTab()
+    }
+
+    func showAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        viewController?.present(alert, animated: true)
+    }
+
+    func showReplaceCartConfirmation(title: String, message: String, onReplace: @escaping () -> Void) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        alert.addAction(UIAlertAction(title: "Replace", style: .destructive) { _ in onReplace() })
+        viewController?.present(alert, animated: true)
     }
 }

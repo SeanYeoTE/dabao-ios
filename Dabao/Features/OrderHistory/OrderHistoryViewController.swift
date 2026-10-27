@@ -1,13 +1,18 @@
 import UIKit
 
-/// The Orders tab: past orders, newest first. Tap one to open its receipt.
+/// The Orders tab: orders on their way, then past orders, newest first.
+/// Tap an active order to track it, or a past order's card to open its receipt.
 final class OrderHistoryViewController: UIViewController {
 
-    private nonisolated enum Section { case orders }
+    private nonisolated enum Section: Hashable { case active, past }
 
     var presenter: OrderHistoryPresenterProtocol!
 
-    private var rows: [UUID: OrderHistoryCellModel] = [:]
+    private var activeRows: [UUID: OrderHistoryCellModel] = [:]
+    private var pastRows: [UUID: PastOrderCellModel] = [:]
+    private var activeOrder: [UUID] = []
+    private var pastOrder: [UUID] = []
+    private var hasShownOrders = false
 
     private let tableView = UITableView(frame: .zero, style: .plain)
     private let emptyState = EmptyStateView(symbolName: "receipt",
@@ -30,10 +35,15 @@ final class OrderHistoryViewController: UIViewController {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.delegate = self
         tableView.register(OrderHistoryCell.self, forCellReuseIdentifier: OrderHistoryCell.reuseIdentifier)
+        tableView.register(PastOrderCell.self, forCellReuseIdentifier: PastOrderCell.reuseIdentifier)
+        tableView.register(SectionHeaderView.self, forHeaderFooterViewReuseIdentifier: SectionHeaderView.reuseIdentifier)
         tableView.backgroundColor = DS.Color.background
         tableView.separatorStyle = .none
         tableView.rowHeight = UITableView.automaticDimension
-        tableView.estimatedRowHeight = 110
+        tableView.estimatedRowHeight = 220
+        tableView.sectionHeaderHeight = UITableView.automaticDimension
+        tableView.estimatedSectionHeaderHeight = 52
+        tableView.sectionHeaderTopPadding = 0
         view.addSubview(tableView)
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: view.topAnchor),
@@ -56,8 +66,19 @@ final class OrderHistoryViewController: UIViewController {
 
     private func makeDataSource() -> UITableViewDiffableDataSource<Section, UUID> {
         UITableViewDiffableDataSource<Section, UUID>(tableView: tableView) { [weak self] tableView, indexPath, id in
+            guard let self else { return UITableViewCell() }
+            if let row = self.pastRows[id] {
+                let cell = tableView.dequeueReusableCell(withIdentifier: PastOrderCell.reuseIdentifier, for: indexPath)
+                if let cell = cell as? PastOrderCell {
+                    cell.configure(row)
+                    cell.onSelectBody = { [weak self] in self?.presenter.didSelectOrder(id: id) }
+                    cell.onReorder = { [weak self] in self?.presenter.didTapReorder(id: id) }
+                    cell.onRate = { [weak self] stars in self?.presenter.didRate(id: id, stars: stars) }
+                }
+                return cell
+            }
             let cell = tableView.dequeueReusableCell(withIdentifier: OrderHistoryCell.reuseIdentifier, for: indexPath)
-            if let cell = cell as? OrderHistoryCell, let row = self?.rows[id] {
+            if let cell = cell as? OrderHistoryCell, let row = self.activeRows[id] {
                 cell.configure(row)
             }
             return cell
@@ -69,22 +90,46 @@ final class OrderHistoryViewController: UIViewController {
 
 extension OrderHistoryViewController: OrderHistoryViewProtocol {
 
-    func showOrders(_ orders: [OrderHistoryCellModel]) {
-        let previous = rows
-        let previousIDs = dataSource.snapshot().itemIdentifiers
-        rows = Dictionary(orders.map { ($0.id, $0) }, uniquingKeysWith: { _, latest in latest })
+    func showOrders(active: [OrderHistoryCellModel], past: [PastOrderCellModel]) {
+        let previousActive = activeRows
+        let previousPast = pastRows
+        let newActiveOrder = active.map(\.id)
+        let newPastOrder = past.map(\.id)
+        let newActive = Dictionary(active.map { ($0.id, $0) }, uniquingKeysWith: { _, latest in latest })
+        let newPast = Dictionary(past.map { ($0.id, $0) }, uniquingKeysWith: { _, latest in latest })
 
         // The tracker ticks every second, so skip the update when nothing on screen changed.
-        guard previousIDs != orders.map(\.id) || previous != rows else { return }
+        guard !hasShownOrders || newActiveOrder != activeOrder || newPastOrder != pastOrder
+                || newActive != previousActive || newPast != previousPast else { return }
+
+        hasShownOrders = true
+        activeRows = newActive
+        pastRows = newPast
+        activeOrder = newActiveOrder
+        pastOrder = newPastOrder
 
         var snapshot = NSDiffableDataSourceSnapshot<Section, UUID>()
-        snapshot.appendSections([.orders])
-        snapshot.appendItems(orders.map(\.id))
-        snapshot.reconfigureItems(orders.filter { previous[$0.id] != nil && previous[$0.id] != $0 }.map(\.id))
+        if !active.isEmpty {
+            snapshot.appendSections([.active])
+            snapshot.appendItems(newActiveOrder, toSection: .active)
+        }
+        if !past.isEmpty {
+            snapshot.appendSections([.past])
+            snapshot.appendItems(newPastOrder, toSection: .past)
+        }
+        // An order that just arrived moves sections, so reconfigure only rows that stayed in the same kind of cell.
+        let changed = active.filter { previousActive[$0.id] != nil && previousActive[$0.id] != $0 }.map(\.id)
+            + past.filter { previousPast[$0.id] != nil && previousPast[$0.id] != $0 }.map(\.id)
+        let moved = Set(newActiveOrder).intersection(previousPast.keys).union(Set(newPastOrder).intersection(previousActive.keys))
+        snapshot.reconfigureItems(changed)
+        if !moved.isEmpty {
+            snapshot.reloadItems(Array(moved))
+        }
         dataSource.apply(snapshot, animatingDifferences: view.window != nil)
 
-        tableView.isHidden = orders.isEmpty
-        emptyState.isHidden = !orders.isEmpty
+        let isEmpty = active.isEmpty && past.isEmpty
+        tableView.isHidden = isEmpty
+        emptyState.isHidden = !isEmpty
     }
 }
 
@@ -92,9 +137,23 @@ extension OrderHistoryViewController: OrderHistoryViewProtocol {
 
 extension OrderHistoryViewController: UITableViewDelegate {
 
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        guard let kind = dataSource.sectionIdentifier(for: section),
+              let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: SectionHeaderView.reuseIdentifier)
+                as? SectionHeaderView else { return nil }
+        header.configure(title: kind == .active ? "Active orders" : "Past orders")
+        return header
+    }
+
+    // Past cards handle their own taps (body, Reorder, stars), so only active rows select.
+    func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
+        dataSource.sectionIdentifier(for: indexPath.section) == .active
+    }
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        guard let id = dataSource.itemIdentifier(for: indexPath) else { return }
+        guard dataSource.sectionIdentifier(for: indexPath.section) == .active,
+              let id = dataSource.itemIdentifier(for: indexPath) else { return }
         presenter.didSelectOrder(id: id)
     }
 }
