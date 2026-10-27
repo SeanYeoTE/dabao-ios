@@ -17,8 +17,8 @@ There's no server: the 100 restaurants and their menus come from `Dabao/Resource
 | Folder | What's in it |
 | --- | --- |
 | `Dabao/App` | Start-up code and the tab bar |
-| `Dabao/Models` | Plain data: `Restaurant`, `MenuItem`, `CartLine`, `PastOrder`, `AppState` |
-| `Dabao/Services` | The on-device "backend": catalogue, cart, order history, saving, recommendations, launch options |
+| `Dabao/Models` | Plain data: `Restaurant`, `MenuItem`, `CartLine`, `PastOrder`, `UserProfile`, `AppState` |
+| `Dabao/Services` | The on-device "backend": catalogue, cart, order history, profile, saving, recommendations, launch options |
 | `Dabao/DesignSystem` | Colours, fonts, spacing and shared UI pieces (cards, chips, cart bar, quantity control) |
 | `Dabao/Features/Splash` | The pink launch splash |
 | `Dabao/Features/RestaurantList` | Home: search, cuisine chips, "For you" and the restaurant list. Plain MVC |
@@ -27,7 +27,9 @@ There's no server: the 100 restaurants and their menus come from `Dabao/Resource
 | `Dabao/Features/OrderHistory` | The Orders tab: past orders. **VIPER** |
 | `Dabao/Features/Receipt` | A read-only receipt for one past order. **VIPER** |
 | `Dabao/Features/OrderTracking` | Live tracking for an order that's on its way. **VIPER** |
-| `Dabao/Features/About` | About screen and the list of contributors |
+| `Dabao/Features/Account` | The Account tab: profile, order stats, delivery address and a link to About. **VIPER** |
+| `Dabao/Features/AccountEdit` | The sheet for editing your name, phone, email and avatar. **VIPER** |
+| `Dabao/Features/About` | About screen and the list of contributors, opened from Account |
 | `DabaoTests` | Unit tests for the Menu presenter |
 | `scripts/gen_catalogue.py` | Generates the restaurant catalogue |
 | `docs/` | Sprint contracts, design specs and the accessibility audit |
@@ -38,6 +40,7 @@ There's no server: the 100 restaurants and their menus come from `Dabao/Resource
 - **Menu** shows a restaurant's dishes by category. A cart holds food from one restaurant at a time, so adding from a second restaurant asks before replacing the cart. Closed restaurants and sold-out dishes can't be ordered.
 - **Cart** lets you change quantities, swipe to delete, add notes and see the subtotal, delivery fee and total. **Place order** saves the order to your history and empties the cart.
 - **Orders** lists past orders, newest first. Tap one to see its receipt. A receipt is a snapshot, so it stays the same even if the menu changes.
+- **Account** shows your name, phone, email and avatar (initials or an emoji on a colour), how much you've spent, your most-ordered restaurant and when you started ordering, plus the delivery address. Until you add your details you're a "Guest". **Edit** opens a sheet that checks the phone (8-digit Singapore number) and email before saving. The About screen and credits are one tap away.
 - **For you** on Home suggests restaurants based on what you've ordered before.
 - **Order on the way**: after you place an order, a floating bar above the tab bar shows its progress (Confirmed → Preparing → On the way → Delivered) and the minutes left. Tap it for the tracking screen, which has a map of the restaurant, the rider and your home. There's no server, so progress is worked out from the time the order was placed and the restaurant's delivery time (`Services/DeliveryTracker.swift`).
 
@@ -45,7 +48,7 @@ There's no server: the 100 restaurants and their menus come from `Dabao/Resource
 
 ### Saving
 
-The cart and order history are saved together as one JSON file, `Application Support/Dabao/state.json`, with a `schemaVersion`. Saves are batched (a short debounce), written atomically on a background queue, and flushed when the app goes into the background. If the file can't be read, it's moved aside as `state.corrupt-<time>.json` rather than overwritten.
+The cart, order history and profile are saved together as one JSON file, `Application Support/Dabao/state.json`, with a `schemaVersion` (currently 2; version 2 added `profile`, and version 1 files still load, with no profile). Saves are batched (a short debounce), written atomically on a background queue, and flushed when the app goes into the background. If the file can't be read, it's moved aside as `state.corrupt-<time>.json` rather than overwritten.
 
 ### Recommendations
 
@@ -85,7 +88,7 @@ Handy for demos and testing. Add them in Xcode under *Product › Scheme › Edi
 | `-dabaoNoDelay` | Skips the pretend 0.4 s network delay |
 | `-dabaoOfflineMap` | Skips Apple Maps directions and draws an approximate route |
 | `-dabaoFastDelivery` | Makes each delivery minute last one second, to watch an order arrive |
-| `-dabaoFixture <name>` | Starts with sample data: `empty`, `cart-chicken-rice`, `history-laksa`, `history-mixed`, `order-on-the-way` or `two-active-orders` |
+| `-dabaoFixture <name>` | Starts with sample data: `empty`, `cart-chicken-rice`, `history-laksa`, `history-mixed`, `order-on-the-way`, `two-active-orders` or `profile-sample` (the `history-mixed` orders plus a sample profile). `empty` also clears the profile |
 
 For example:
 

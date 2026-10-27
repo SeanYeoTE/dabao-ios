@@ -25,11 +25,11 @@ final class MainTabBarController: UITabBarController {
         let orders = UINavigationController(rootViewController: OrderHistoryRouter.createModule())
         orders.tabBarItem = UITabBarItem(title: "Orders", image: UIImage(systemName: "receipt"), tag: 2)
 
-        let about = UINavigationController(rootViewController: AboutViewController())
-        about.tabBarItem = UITabBarItem(title: "About", image: UIImage(systemName: "info.circle"), tag: 3)
+        let account = UINavigationController(rootViewController: AccountRouter.createModule())
+        account.tabBarItem = UITabBarItem(title: "Account", image: UIImage(systemName: "person.circle"), tag: 3)
 
-        viewControllers = [home, cart, orders, about]
-        [home, cart, orders, about].forEach { $0.delegate = self }
+        viewControllers = [home, cart, orders, account]
+        [home, cart, orders, account].forEach { $0.delegate = self }
         delegate = self
         view.backgroundColor = DS.Color.background
 
