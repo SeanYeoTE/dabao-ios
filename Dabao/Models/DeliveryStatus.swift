@@ -58,7 +58,7 @@ nonisolated struct DeliveryStatus: Equatable, Sendable {
         default: stage = .delivered
         }
 
-        let remaining = stage == .delivered ? 0 : max(0, Int((max(total - elapsed, 0) / minuteLength).rounded(.up)))
+        let remaining = stage == .delivered ? 0 : Int(((total - min(max(elapsed, 0), total)) / minuteLength).rounded(.up))
         return DeliveryStatus(orderID: order.id, stage: stage, progress: progress,
                               minutesRemaining: remaining, estimatedArrival: arrival)
     }
