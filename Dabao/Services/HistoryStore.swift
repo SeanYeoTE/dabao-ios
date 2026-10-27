@@ -39,6 +39,20 @@ final class HistoryStore {
         orders.first(where: { $0.id == id })
     }
 
+    /// Saves a 1...5 star rating. False, with nothing changed, if the order is unknown, the value is out of range,
+    /// or the order can't be rated right now (not delivered yet, or past its deadline).
+    @discardableResult
+    func setRating(_ stars: Int, for orderID: UUID, now: Date = Date()) -> Bool {
+        guard (1...5).contains(stars),
+              let index = orders.firstIndex(where: { $0.id == orderID }),
+              RatingPolicy.canRate(orders[index], now: now, minuteLength: DeliveryTracker.shared.minuteLength)
+        else { return false }
+        orders[index].rating = stars
+        notifyChange()
+        PersistenceController.shared.scheduleSave()
+        return true
+    }
+
     /// Replaces the whole list (restoring from disk, or loading a fixture). Sorts newest first. Doesn't save.
     func replaceAll(_ newOrders: [PastOrder]) {
         orders = newOrders.sorted { $0.placedAt > $1.placedAt }
