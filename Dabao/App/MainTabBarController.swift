@@ -3,6 +3,16 @@ import UIKit
 /// The four tabs at the bottom of the app.
 final class MainTabBarController: UITabBarController {
 
+    private lazy var statusBarHost = OrderStatusBarHost(container: self)
+
+    override var selectedViewController: UIViewController? {
+        didSet { statusBarHost.update(animated: false) }
+    }
+
+    override var selectedIndex: Int {
+        didSet { statusBarHost.update(animated: false) }
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -19,6 +29,8 @@ final class MainTabBarController: UITabBarController {
         about.tabBarItem = UITabBarItem(title: "About", image: UIImage(systemName: "info.circle"), tag: 3)
 
         viewControllers = [home, cart, orders, about]
+        [home, cart, orders, about].forEach { $0.delegate = self }
+        delegate = self
         view.backgroundColor = DS.Color.background
 
         NotificationCenter.default.addObserver(self,
@@ -26,6 +38,12 @@ final class MainTabBarController: UITabBarController {
                                                name: CartStore.didChangeNotification,
                                                object: nil)
         cartDidChange()
+        statusBarHost.install()
+    }
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        statusBarHost.update(animated: false)
     }
 
     @objc private func cartDidChange() {
@@ -42,6 +60,27 @@ final class MainTabBarController: UITabBarController {
         viewControllers?
             .compactMap { $0 as? UINavigationController }
             .first { $0.viewControllers.first is CartViewController }
+    }
+}
+
+// MARK: - Keeping the floating order bar in step with the screens
+
+extension MainTabBarController: UITabBarControllerDelegate, UINavigationControllerDelegate {
+
+    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+        statusBarHost.update(animated: false)
+    }
+
+    func navigationController(_ navigationController: UINavigationController,
+                              willShow viewController: UIViewController,
+                              animated: Bool) {
+        statusBarHost.navigationWillShow(viewController, in: navigationController, animated: animated)
+    }
+
+    func navigationController(_ navigationController: UINavigationController,
+                              didShow viewController: UIViewController,
+                              animated: Bool) {
+        statusBarHost.navigationDidShow(in: navigationController)
     }
 }
 
