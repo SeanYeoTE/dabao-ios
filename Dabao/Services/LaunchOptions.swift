@@ -13,6 +13,12 @@ nonisolated enum LaunchOptions {
     /// Skip the simulated network delay.
     static var noDelay: Bool { has("-dabaoNoDelay") }
 
+    /// Make 1 delivery minute last 1 second, for demos and QA.
+    static var fastDelivery: Bool { has("-dabaoFastDelivery") }
+
+    /// Skip MapKit directions and always draw the on-device fallback route.
+    static var offlineMap: Bool { has("-dabaoOfflineMap") }
+
     /// The name of a fixture from `Fixtures` to load over the saved state.
     static var fixture: String? {
         let arguments = ProcessInfo.processInfo.arguments

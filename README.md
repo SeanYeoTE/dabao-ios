@@ -26,6 +26,7 @@ There's no server: the 100 restaurants and their menus come from `Dabao/Resource
 | `Dabao/Features/Cart` | The cart tab and Place order. Plain MVC |
 | `Dabao/Features/OrderHistory` | The Orders tab: past orders. **VIPER** |
 | `Dabao/Features/Receipt` | A read-only receipt for one past order. **VIPER** |
+| `Dabao/Features/OrderTracking` | Live tracking for an order that's on its way. **VIPER** |
 | `Dabao/Features/About` | About screen and the list of contributors |
 | `DabaoTests` | Unit tests for the Menu presenter |
 | `scripts/gen_catalogue.py` | Generates the restaurant catalogue |
@@ -38,6 +39,7 @@ There's no server: the 100 restaurants and their menus come from `Dabao/Resource
 - **Cart** lets you change quantities, swipe to delete, add notes and see the subtotal, delivery fee and total. **Place order** saves the order to your history and empties the cart.
 - **Orders** lists past orders, newest first. Tap one to see its receipt. A receipt is a snapshot, so it stays the same even if the menu changes.
 - **For you** on Home suggests restaurants based on what you've ordered before.
+- **Order on the way**: after you place an order, a floating bar above the tab bar shows its progress (Confirmed → Preparing → On the way → Delivered) and the minutes left. Tap it for the tracking screen, which has a map of the restaurant, the rider and your home. There's no server, so progress is worked out from the time the order was placed and the restaurant's delivery time (`Services/DeliveryTracker.swift`).
 
 ## How it works
 
@@ -68,6 +70,10 @@ With no orders yet, it falls back to popularity: rating × ln(1 + review count).
 
 The script uses only the Python standard library and a fixed random seed, so it gives the same file every time. The first five restaurants (`r1`–`r5`) are the original ones the course exercises use.
 
+### Delivery map
+
+The tracking screen's map uses fixed locations, not GPS: each restaurant is placed in its area (with a small fixed offset), and orders go to a fixed address, Ngee Ann Polytechnic. The route comes from Apple Maps driving directions between those points, or a dashed curve if that isn't available. The rider waits at the restaurant while the food is prepared, then moves along the route as the order progresses (`Services/DeliveryRouteProvider.swift`, `Models/DeliveryRoute.swift`).
+
 ## Launch arguments
 
 Handy for demos and testing. Add them in Xcode under *Product › Scheme › Edit Scheme › Run › Arguments*, or pass them to `xcrun simctl launch`:
@@ -77,7 +83,9 @@ Handy for demos and testing. Add them in Xcode under *Product › Scheme › Edi
 | `-dabaoReset` | Deletes the saved cart and history |
 | `-dabaoSkipSplash` | Skips the splash screen |
 | `-dabaoNoDelay` | Skips the pretend 0.4 s network delay |
-| `-dabaoFixture <name>` | Starts with sample data: `empty`, `cart-chicken-rice`, `history-laksa` or `history-mixed` |
+| `-dabaoOfflineMap` | Skips Apple Maps directions and draws an approximate route |
+| `-dabaoFastDelivery` | Makes each delivery minute last one second, to watch an order arrive |
+| `-dabaoFixture <name>` | Starts with sample data: `empty`, `cart-chicken-rice`, `history-laksa`, `history-mixed`, `order-on-the-way` or `two-active-orders` |
 
 For example:
 

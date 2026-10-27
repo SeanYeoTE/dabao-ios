@@ -24,7 +24,9 @@ final class HistoryStore {
                               restaurantID: restaurant.id, restaurantName: restaurant.name,
                               cuisine: restaurant.cuisine, imageName: restaurant.imageName,
                               colorHex: restaurant.colorHex, lines: lines,
-                              subtotal: cart.subtotal, deliveryFee: cart.deliveryFee, total: cart.total)
+                              subtotal: cart.subtotal, deliveryFee: cart.deliveryFee, total: cart.total,
+                              deliveryMinutes: restaurant.deliveryMinutes,
+                              restaurantArea: restaurant.area)
 
         orders.insert(order, at: 0)
         notifyChange()

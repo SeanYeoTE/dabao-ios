@@ -7,6 +7,7 @@ final class OrderHistoryPresenter: OrderHistoryPresenterProtocol, OrderHistoryIn
     weak var view: OrderHistoryViewProtocol?
     private let interactor: OrderHistoryInteractorInputProtocol
     private let router: OrderHistoryRouterProtocol
+    private var activeOrderIDs: Set<UUID> = []
 
     init(view: OrderHistoryViewProtocol, interactor: OrderHistoryInteractorInputProtocol, router: OrderHistoryRouterProtocol) {
         self.view = view
@@ -21,20 +22,26 @@ final class OrderHistoryPresenter: OrderHistoryPresenterProtocol, OrderHistoryIn
     }
 
     func didSelectOrder(id: UUID) {
-        router.showReceipt(orderID: id)
+        if activeOrderIDs.contains(id) {
+            router.showTracking(orderID: id)
+        } else {
+            router.showReceipt(orderID: id)
+        }
     }
 
     // MARK: OrderHistoryInteractorOutputProtocol (from the interactor)
 
-    func didLoadOrders(_ orders: [PastOrder]) {
-        view?.showOrders(orders.map(makeRow(for:)))
+    func didLoadOrders(_ orders: [PastOrder], statuses: [UUID: DeliveryStatus]) {
+        activeOrderIDs = Set(statuses.keys)
+        view?.showOrders(orders.map { makeRow(for: $0, status: statuses[$0.id]) })
     }
 
-    func makeRow(for order: PastOrder) -> OrderHistoryCellModel {
-        OrderHistoryCellModel(
+    func makeRow(for order: PastOrder, status: DeliveryStatus? = nil) -> OrderHistoryCellModel {
+        let dateText = OrderDateFormatter.string(from: order.placedAt)
+        return OrderHistoryCellModel(
             id: order.id,
             restaurantName: order.restaurantName,
-            dateText: OrderDateFormatter.string(from: order.placedAt),
+            dateText: status?.summaryText ?? dateText,
             itemsSummary: order.lines.map { "\($0.quantity) × \($0.name)" }.joined(separator: ", "),
             totalText: PriceFormatter.string(from: order.total),
             symbolName: order.imageName,

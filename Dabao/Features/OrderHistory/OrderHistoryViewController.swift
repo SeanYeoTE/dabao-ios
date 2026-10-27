@@ -71,7 +71,11 @@ extension OrderHistoryViewController: OrderHistoryViewProtocol {
 
     func showOrders(_ orders: [OrderHistoryCellModel]) {
         let previous = rows
+        let previousIDs = dataSource.snapshot().itemIdentifiers
         rows = Dictionary(orders.map { ($0.id, $0) }, uniquingKeysWith: { _, latest in latest })
+
+        // The tracker ticks every second, so skip the update when nothing on screen changed.
+        guard previousIDs != orders.map(\.id) || previous != rows else { return }
 
         var snapshot = NSDiffableDataSourceSnapshot<Section, UUID>()
         snapshot.appendSections([.orders])
