@@ -31,6 +31,6 @@ final class MainTabBarController: UITabBarController {
 
     @objc private func cartDidChange() {
         let count = CartStore.shared.itemCount
-        viewControllers?[1].tabBarItem.badgeValue = "\(count)"
+        viewControllers?[1].tabBarItem.badgeValue = count > 0 ? "\(count)" : nil
     }
 }
