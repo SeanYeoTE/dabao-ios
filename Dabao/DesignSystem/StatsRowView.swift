@@ -35,7 +35,10 @@ final class StatsRowView: UIView {
     }
 
     private func applyAxis() {
-        stack.axis = traitCollection.usesAccessibilityLayout ? .vertical : .horizontal
+        let vertical = traitCollection.usesAccessibilityLayout
+        stack.axis = vertical ? .vertical : .horizontal
+        // Equal widths side by side; stacked tiles take their own height.
+        stack.distribution = vertical ? .fill : .fillEqually
     }
 }
 
