@@ -31,11 +31,13 @@ nonisolated struct PastOrder: Codable, Hashable, Identifiable, Sendable {
     let deliveryMinutes: Int?
     /// The restaurant's neighbourhood when the order was placed, used to place it on the delivery map. Nil for older orders.
     let restaurantArea: String?
+    /// The person's star rating, 1...5. Nil until they rate it.
+    var rating: Int?
 
     init(id: UUID, placedAt: Date, restaurantID: String, restaurantName: String, cuisine: String,
          imageName: String, colorHex: String, lines: [PastOrderLine], subtotal: Decimal,
          deliveryFee: Decimal, total: Decimal, deliveryMinutes: Int? = nil,
-         restaurantArea: String? = nil) {
+         restaurantArea: String? = nil, rating: Int? = nil) {
         self.id = id
         self.placedAt = placedAt
         self.restaurantID = restaurantID
@@ -49,9 +51,32 @@ nonisolated struct PastOrder: Codable, Hashable, Identifiable, Sendable {
         self.total = total
         self.deliveryMinutes = deliveryMinutes
         self.restaurantArea = restaurantArea
+        self.rating = rating
     }
 
     var itemCount: Int {
         lines.reduce(0) { $0 + $1.quantity }
+    }
+
+    /// When the simulated delivery reaches the door. Orders saved before tracking existed count as delivered when placed.
+    func deliveredAt(minuteLength: TimeInterval) -> Date {
+        guard let minutes = deliveryMinutes, minutes > 0, minuteLength > 0 else { return placedAt }
+        return placedAt.addingTimeInterval(Double(minutes) * minuteLength)
+    }
+}
+
+/// How long after delivery an order can still be rated.
+nonisolated enum RatingPolicy {
+
+    static let windowDays = 3
+
+    static func deadline(for order: PastOrder, minuteLength: TimeInterval) -> Date {
+        order.deliveredAt(minuteLength: minuteLength).addingTimeInterval(Double(windowDays) * 86_400)
+    }
+
+    /// Only delivered orders can be rated, and only until the deadline.
+    static func canRate(_ order: PastOrder, now: Date, minuteLength: TimeInterval) -> Bool {
+        DeliveryStatus.make(for: order, now: now, minuteLength: minuteLength).stage == .delivered
+            && now < deadline(for: order, minuteLength: minuteLength)
     }
 }

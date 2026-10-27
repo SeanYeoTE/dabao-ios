@@ -7,7 +7,7 @@ import os
 enum Fixtures {
 
     static let names = ["empty", "cart-chicken-rice", "history-laksa", "history-mixed",
-                         "order-on-the-way", "two-active-orders", "profile-sample"]
+                         "order-on-the-way", "two-active-orders", "profile-sample", "history-rating"]
 
     /// The person `profile-sample` signs in as.
     static let sampleProfile = UserProfile(name: "Aisha Tan", phone: "91234567", email: "aisha@example.com",
@@ -34,6 +34,9 @@ enum Fixtures {
             install(spec: [], orders: orders, cart: cart, history: history)
         case "history-mixed":
             guard let orders = historyMixed(catalog: catalog, now: now) else { return missing(name) }
+            install(spec: [], orders: orders, cart: cart, history: history)
+        case "history-rating":
+            guard let orders = historyRating(catalog: catalog, now: now) else { return missing(name) }
             install(spec: [], orders: orders, cart: cart, history: history)
         case "profile-sample":
             guard let orders = historyMixed(catalog: catalog, now: now) else { return missing(name) }
@@ -78,6 +81,29 @@ enum Fixtures {
         ]
     }
 
+    /// Delivered orders inside and outside the rating window, rated and not, plus two that can't be reordered.
+    private static func historyRating(catalog: CatalogStore, now: Date) -> [PastOrder]? {
+        guard let rice = catalog.restaurant(id: "r1"),
+              let riceDish = item("r1m1", in: rice), let riceSide = item("r1m5", in: rice),
+              let closed = firstRestaurant(in: catalog, where: { !$0.isOpen }), let closedDish = closed.menu.first,
+              let partial = firstRestaurant(in: catalog, where: { $0.isOpen && $0.menu.contains(where: \.isSoldOut) }),
+              let soldOut = partial.menu.first(where: \.isSoldOut),
+              let available = partial.menu.first(where: { !$0.isSoldOut }),
+              let mala = catalog.restaurant(id: "r2"), let malaDish = item("r2m1", in: mala)
+        else { return nil }
+
+        let hour: TimeInterval = 60 * 60
+        return [
+            order(from: rice, lines: [(riceDish, 2), (riceSide, 1)], placedAt: now.addingTimeInterval(-26 * hour),
+                  notes: [riceDish.id: "Less rice"]),
+            order(from: closed, lines: [(closedDish, 1)], placedAt: now.addingTimeInterval(-30 * hour)),
+            order(from: partial, lines: [(soldOut, 1), (available, 1)], placedAt: now.addingTimeInterval(-50 * hour),
+                  rating: 4),
+            order(from: mala, lines: [(malaDish, 1)], placedAt: daysAgo(5, from: now)),
+            order(from: rice, lines: [(riceDish, 1)], placedAt: daysAgo(6, from: now), rating: 3),
+        ]
+    }
+
     /// A placement time that puts the order at `progress` of its delivery right now.
     private static func placed(_ restaurant: Restaurant, progress: Double, now: Date) -> Date {
         let total = Double(restaurant.deliveryMinutes) * DeliveryTracker.shared.minuteLength
@@ -119,10 +145,11 @@ enum Fixtures {
         now.addingTimeInterval(-Double(days) * 24 * 60 * 60)
     }
 
-    private static func order(from restaurant: Restaurant, lines: [(MenuItem, Int)], placedAt: Date) -> PastOrder {
+    private static func order(from restaurant: Restaurant, lines: [(MenuItem, Int)], placedAt: Date,
+                              notes: [String: String] = [:], rating: Int? = nil) -> PastOrder {
         let pastLines = lines.map { menuItem, quantity in
             PastOrderLine(id: UUID(), menuItemID: menuItem.id, name: menuItem.name,
-                          unitPrice: menuItem.price, quantity: quantity, notes: "")
+                          unitPrice: menuItem.price, quantity: quantity, notes: notes[menuItem.id] ?? "")
         }
         let subtotal = pastLines.reduce(Decimal(0)) { $0 + $1.subtotal }
         return PastOrder(id: UUID(), placedAt: placedAt, restaurantID: restaurant.id,
@@ -131,6 +158,6 @@ enum Fixtures {
                          subtotal: subtotal, deliveryFee: restaurant.deliveryFee,
                          total: subtotal + restaurant.deliveryFee,
                          deliveryMinutes: restaurant.deliveryMinutes,
-                         restaurantArea: restaurant.area)
+                         restaurantArea: restaurant.area, rating: rating)
     }
 }
