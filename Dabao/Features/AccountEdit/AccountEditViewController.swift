@@ -160,6 +160,10 @@ extension AccountEditViewController: AccountEditViewProtocol {
                 button.setTitle("None", for: .normal)
                 button.setTitleColor(DS.Color.textSecondary, for: .normal)
                 button.titleLabel?.font = DS.Font.caption
+                // The circle has a fixed size, so the word shrinks to fit at large text sizes instead of becoming "…".
+                button.titleLabel?.adjustsFontSizeToFitWidth = true
+                button.titleLabel?.minimumScaleFactor = 0.3
+                button.titleEdgeInsets = UIEdgeInsets(top: 0, left: DS.Spacing.xs, bottom: 0, right: DS.Spacing.xs)
                 button.accessibilityLabel = "No emoji, use initials"
             }
             emojiRow.addArrangedSubview(button)
