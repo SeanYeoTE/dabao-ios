@@ -140,9 +140,10 @@ final class PastOrderCell: CardTableViewCell {
 `SectionHeaderView` is reused for "Active orders" and "Past orders" (`DS.Font.title2`); change it only if needed, and
 keep its existing API.
 
-Layout checks are required: render the cell in states a–d, in light and dark, at the default size and at AX5, on the
-developer simulator (frontend may not be done yet; use a temporary test host only on your machine and **never commit
-it**). Activate constraints only after views are in the hierarchy.
+Layout checks: the working tree is shared and synchronized folders compile everything under `Dabao/`, so **never
+add a temporary test host**. Review constraints carefully (activate them only after views are in the hierarchy; no
+conflicting required constraints between the AX5 and default layouts). The frontend and PM check the real screen on
+the simulators.
 
 ## Frontend (`Dabao/Features/OrderHistory`, `Dabao/App`)
 
