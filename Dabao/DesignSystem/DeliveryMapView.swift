@@ -88,6 +88,11 @@ final class DeliveryMapView: UIView {
             self, selector: #selector(reduceMotionChanged),
             name: UIAccessibility.reduceMotionStatusDidChangeNotification, object: nil
         )
+        // Core Animation drops running animations when the app is backgrounded.
+        NotificationCenter.default.addObserver(
+            self, selector: #selector(reduceMotionChanged),
+            name: UIApplication.didBecomeActiveNotification, object: nil
+        )
     }
 
     deinit {
