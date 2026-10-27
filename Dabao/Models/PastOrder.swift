@@ -29,10 +29,13 @@ nonisolated struct PastOrder: Codable, Hashable, Identifiable, Sendable {
     let total: Decimal
     /// The restaurant's delivery estimate when the order was placed. Nil for orders saved before tracking existed.
     let deliveryMinutes: Int?
+    /// The restaurant's neighbourhood when the order was placed, used to place it on the delivery map. Nil for older orders.
+    let restaurantArea: String?
 
     init(id: UUID, placedAt: Date, restaurantID: String, restaurantName: String, cuisine: String,
          imageName: String, colorHex: String, lines: [PastOrderLine], subtotal: Decimal,
-         deliveryFee: Decimal, total: Decimal, deliveryMinutes: Int? = nil) {
+         deliveryFee: Decimal, total: Decimal, deliveryMinutes: Int? = nil,
+         restaurantArea: String? = nil) {
         self.id = id
         self.placedAt = placedAt
         self.restaurantID = restaurantID
@@ -45,6 +48,7 @@ nonisolated struct PastOrder: Codable, Hashable, Identifiable, Sendable {
         self.deliveryFee = deliveryFee
         self.total = total
         self.deliveryMinutes = deliveryMinutes
+        self.restaurantArea = restaurantArea
     }
 
     var itemCount: Int {

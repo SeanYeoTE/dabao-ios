@@ -120,6 +120,7 @@ enum Fixtures {
                          imageName: restaurant.imageName, colorHex: restaurant.colorHex, lines: pastLines,
                          subtotal: subtotal, deliveryFee: restaurant.deliveryFee,
                          total: subtotal + restaurant.deliveryFee,
-                         deliveryMinutes: restaurant.deliveryMinutes)
+                         deliveryMinutes: restaurant.deliveryMinutes,
+                         restaurantArea: restaurant.area)
     }
 }
