@@ -114,6 +114,17 @@ final class CartStore {
         notifyChange()
     }
 
+    /// Empties the cart and fills it from a reorder. Sold-out items are skipped in case the catalogue changed.
+    func replaceCart(with newLines: [ReorderLine], from restaurant: Restaurant) {
+        lines = newLines.filter { !$0.item.isSoldOut }.map {
+            CartLine(item: $0.item,
+                     quantity: min(max($0.quantity, 1), CartStore.maxQuantityPerItem),
+                     notes: String($0.notes.prefix(CartStore.maxNotesLength)))
+        }
+        self.restaurant = lines.isEmpty ? nil : restaurant
+        notifyChange()
+    }
+
     // MARK: - Changing and removing
 
     func remove(_ item: MenuItem) {
