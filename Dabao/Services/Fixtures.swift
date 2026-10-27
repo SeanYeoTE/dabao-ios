@@ -6,7 +6,8 @@ import os
 @MainActor
 enum Fixtures {
 
-    static let names = ["empty", "cart-chicken-rice", "history-laksa", "history-mixed"]
+    static let names = ["empty", "cart-chicken-rice", "history-laksa", "history-mixed",
+                         "order-on-the-way", "two-active-orders"]
 
     private static let logger = Logger(subsystem: "com.tinkercademy.dabao", category: "fixtures")
 
@@ -27,26 +28,51 @@ enum Fixtures {
             }
             install(spec: [], orders: orders, cart: cart, history: history)
         case "history-mixed":
-            guard let laksa = firstRestaurant(in: catalog, where: { $0.tags.contains("laksa") }),
-                  let laksaDish = laksaDish(of: laksa),
-                  let rice = catalog.restaurant(id: "r1"), let riceDish = item("r1m1", in: rice),
-                  let indian = firstRestaurant(in: catalog, where: { $0.cuisine == "Indian" }),
-                  let curry = indian.menu.first(where: { !$0.isSoldOut }),
-                  let mala = catalog.restaurant(id: "r2"), let malaDish = item("r2m1", in: mala)
-            else { return missing(name) }
-            let orders = [
-                order(from: laksa, lines: [(laksaDish, 1)], placedAt: daysAgo(1, from: now)),
-                order(from: rice, lines: [(riceDish, 1)], placedAt: daysAgo(2, from: now)),
-                order(from: indian, lines: [(curry, 1)], placedAt: daysAgo(3, from: now)),
-                order(from: mala, lines: [(malaDish, 1)], placedAt: daysAgo(4, from: now)),
-            ]
+            guard let orders = historyMixed(catalog: catalog, now: now) else { return missing(name) }
             install(spec: [], orders: orders, cart: cart, history: history)
+        case "order-on-the-way", "two-active-orders":
+            guard let rice = catalog.restaurant(id: "r1"), let riceDish = item("r1m1", in: rice)
+            else { return missing(name) }
+            var orders = historyMixed(catalog: catalog, now: now) ?? []
+            orders.append(order(from: rice, lines: [(riceDish, 1)], placedAt: placed(rice, progress: 0.5, now: now)))
+            if name == "order-on-the-way" {
+                install(spec: [], orders: orders, cart: cart, history: history)
+            } else {
+                guard let kopi = catalog.restaurant(id: "r3"), let kopiDish = kopi.menu.first(where: { !$0.isSoldOut }),
+                      let mala = catalog.restaurant(id: "r2"), let malaDish = mala.menu.first(where: { !$0.isSoldOut })
+                else { return missing(name) }
+                orders.append(order(from: kopi, lines: [(kopiDish, 1)], placedAt: placed(kopi, progress: 0.2, now: now)))
+                install(spec: [(id: mala.id, items: [(malaDish.id, 1)])], orders: orders,
+                        catalog: catalog, cart: cart, history: history)
+            }
         default:
             logger.error("Unknown fixture \(name, privacy: .public)")
         }
     }
 
     // MARK: - Helpers
+
+    private static func historyMixed(catalog: CatalogStore, now: Date) -> [PastOrder]? {
+        guard let laksa = firstRestaurant(in: catalog, where: { $0.tags.contains("laksa") }),
+              let laksaDish = laksaDish(of: laksa),
+              let rice = catalog.restaurant(id: "r1"), let riceDish = item("r1m1", in: rice),
+              let indian = firstRestaurant(in: catalog, where: { $0.cuisine == "Indian" }),
+              let curry = indian.menu.first(where: { !$0.isSoldOut }),
+              let mala = catalog.restaurant(id: "r2"), let malaDish = item("r2m1", in: mala)
+        else { return nil }
+        return [
+            order(from: laksa, lines: [(laksaDish, 1)], placedAt: daysAgo(1, from: now)),
+            order(from: rice, lines: [(riceDish, 1)], placedAt: daysAgo(2, from: now)),
+            order(from: indian, lines: [(curry, 1)], placedAt: daysAgo(3, from: now)),
+            order(from: mala, lines: [(malaDish, 1)], placedAt: daysAgo(4, from: now)),
+        ]
+    }
+
+    /// A placement time that puts the order at `progress` of its delivery right now.
+    private static func placed(_ restaurant: Restaurant, progress: Double, now: Date) -> Date {
+        let total = Double(restaurant.deliveryMinutes) * DeliveryTracker.shared.minuteLength
+        return now.addingTimeInterval(-total * progress)
+    }
 
     private static func install(spec: [(id: String, items: [(String, Int)])], orders: [PastOrder],
                                 catalog: CatalogStore? = nil, cart: CartStore, history: HistoryStore) {
@@ -93,6 +119,7 @@ enum Fixtures {
                          restaurantName: restaurant.name, cuisine: restaurant.cuisine,
                          imageName: restaurant.imageName, colorHex: restaurant.colorHex, lines: pastLines,
                          subtotal: subtotal, deliveryFee: restaurant.deliveryFee,
-                         total: subtotal + restaurant.deliveryFee)
+                         total: subtotal + restaurant.deliveryFee,
+                         deliveryMinutes: restaurant.deliveryMinutes)
     }
 }

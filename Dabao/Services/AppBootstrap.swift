@@ -5,7 +5,7 @@ import Foundation
 enum AppBootstrap {
 
     /// 1. `-dabaoReset` deletes saved state. 2. Load the catalogue. 3. Restore history and cart from disk.
-    /// 4. Apply `-dabaoFixture`, which overrides what was restored (and saves). 5. Build the recommendation index.
+    /// 4. Apply `-dabaoFixture`, which overrides what was restored (and saves). 5. Start the delivery tracker. 6. Build the recommendation index.
     /// Calls `completion` on the main actor once, with the catalogue error if loading failed.
     static func start(completion: @escaping (Error?) -> Void) {
         if LaunchOptions.reset {
@@ -24,6 +24,7 @@ enum AppBootstrap {
                 if let fixture = LaunchOptions.fixture {
                     Fixtures.apply(fixture, catalog: CatalogStore.shared)
                 }
+                DeliveryTracker.shared.start()
                 Recommender.shared.prepare(restaurants: restaurants)
                 completion(nil)
             }
