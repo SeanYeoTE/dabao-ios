@@ -41,7 +41,7 @@ final class OrderHistoryPresenter: OrderHistoryPresenterProtocol, OrderHistoryIn
         return OrderHistoryCellModel(
             id: order.id,
             restaurantName: order.restaurantName,
-            dateText: status.map { "\($0.summaryText) · \(dateText)" } ?? dateText,
+            dateText: status?.summaryText ?? dateText,
             itemsSummary: order.lines.map { "\($0.quantity) × \($0.name)" }.joined(separator: ", "),
             totalText: PriceFormatter.string(from: order.total),
             symbolName: order.imageName,
