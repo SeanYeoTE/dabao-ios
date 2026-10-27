@@ -1,8 +1,8 @@
 # Contract: sprint 5 (Account tab)
 
 The ground rules, ownership and conventions in [sprint-1.md](./sprint-1.md) still apply. This contract is frozen
-once the agents start. Branch `feature/s5-account`, cut from `main` (sprint 2). Sprints 3–4 live on another
-branch, so don't reference `DeliveryTracker`, `OrderStatusBarHost` or any tracking code.
+once the agents start. Branch `feature/s5-account`, rebased onto `main` after sprints 3–4 (PR #2) merged. Keep the
+floating order bar (`OrderStatusBarHost`) wiring in `MainTabBarController` intact when swapping the tab.
 
 ## Decisions
 
